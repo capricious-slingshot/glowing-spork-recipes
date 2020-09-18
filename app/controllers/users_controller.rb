@@ -28,6 +28,16 @@ class UsersController < ApplicationController
     render layout: "authentication"
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      #show errors
+      render :edit, layout: "authentication"
+    end
+  end
+
   def destroy
     session.clear
     redirect_to root_path 
