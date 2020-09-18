@@ -15,7 +15,27 @@
  */
  @import "bulma";
 
- .hero.is-primary{
+ /* authentication layout */
+ .hidden{
+	 display: none;
+ }
+.auth-wrapper{
+	padding: 40px;
+	background: #f6f6f6;
+	border-radius: 1%;
+}
+a.footer-link {
+	color: #000;
+}
+hr.login-hr{
+	background-color: #605757;
+}
+.box{
+	opacity: 1;
+}
+
+/* appliction layout */ 
+.hero.is-primary{
 	background-color: #750000;
 }
 .main{
