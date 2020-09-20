@@ -34,6 +34,17 @@ hr.login-hr{
 	opacity: 1;
 }
 
+/* flash */
+.field_with_errors input{
+	border-color: red;
+}
+.message .message-header p{
+	text-align: center;
+}
+.is-error .message-header{
+	background-color: #b30404;
+}
+
 /* appliction layout */ 
 .hero.is-primary{
 	background-color: #750000;

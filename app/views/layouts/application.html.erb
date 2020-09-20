@@ -54,7 +54,21 @@
       </div>
     </section>
     <section class="main">
+
+      <% if flash[:notice]%>
+      <!-- if flash render _flash.html.erb -->
+        <header class="message <%= flash_class %>">
+          <div class="message-header">
+            <p><%= flash[:notice] || flash[:alert] %></p>
+            <!-- JS needed  <button class="delete" aria-label="delete"></button> -->
+          </div>
+        </header>
+      <% end %>
+
       <%= yield %>
+
     </section>
+    <footer></footer>
   </body>
 </html>
+

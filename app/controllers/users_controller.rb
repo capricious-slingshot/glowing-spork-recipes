@@ -16,10 +16,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       #can i redirect to the page they were just on?
-      redirect_to "/users/#{@user.id}"
+      redirect_to user_path, notice: "Welcome #{@user.name}!"
     else
-      #show errors
-      render :new
+      render :new, alert: "Danger Batman"
     end
   end
 
@@ -29,11 +28,12 @@ class UsersController < ApplicationController
   end
 
   def update
+    #issues abound here
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to @user, notice: "User Successfully Updated"
     else
-      #show errors
+      flash[:alert] = "Danger Batman"
       render :edit, layout: "authentication"
     end
   end

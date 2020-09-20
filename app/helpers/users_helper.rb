@@ -1,4 +1,14 @@
 module UsersHelper
+  def flash_class
+    # @user.errors.full_messages
+    # @user.errors.any?
+    if flash[:notice]
+      "is-success"
+    elsif flash[:alert]
+      "is-error"
+    end
+  end
+
   def button_language(user)
     if user.new_record?
       "Create Account"
@@ -11,7 +21,7 @@ module UsersHelper
     if user.new_record?
       "Sign Up"
     else
-      "Settings"
+      "#{user.name.capitalize}"
     end
   end
 
@@ -19,7 +29,7 @@ module UsersHelper
     if user.new_record?
       "Account Required to Proceed"
     else
-      "Update User Settings"
+      "Update Account Settings"
     end
   end
 

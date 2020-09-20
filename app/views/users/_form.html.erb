@@ -4,6 +4,7 @@
 <div class="box">
   <fieldset>
     <%= form_for(@user) do |f| %>
+      <%= render 'shared/flash' if flash[:alert] %>
       <div class="field required">
         <div class="control">
           <%= f.label :name, class: 'hidden' %>
