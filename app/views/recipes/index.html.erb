@@ -6,7 +6,7 @@
 					<% group.each do |recipe| %>	
 						<div class="column">
 							<div class="card">
-							  <a href="/recipes/<%= recipe.id %>" alt="<%= recipe.title %>" class="card_wrapper">
+							  <a href="<%= recipe_path(recipe) %>" alt="<%= recipe.title %>" class="card_wrapper">
 									<div class="card-image">
 										<figure class="image is-4by3">
 											<%= image_tag "#{recipe_image(recipe)}" %>
