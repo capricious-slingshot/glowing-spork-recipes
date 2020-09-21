@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    flash[:notice] = "test"
+    #if admin
     @users = User.all
   end
 
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to root_url, notice: "Account Succesfully Deleted!"
+    #if admin redirect to @users
   end
 
 

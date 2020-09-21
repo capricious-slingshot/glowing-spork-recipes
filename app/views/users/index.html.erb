@@ -1,1 +1,31 @@
-<h1> Users Index Page</h1>
+<div class="container">
+  <div class="columns ">
+    <div class="column is-three-fourths-tablet table-container">
+    <h1 class="subtitle is-1">All Users</h1>
+      <table class="table is-striped is-hoverable is-narrow is-fullwidth">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= link_to "Settings", edit_user_path(user), class: "button is-info" %></td>
+              <td><%= link_to "Delete Account", user,
+                                  method: "delete",
+                                  data: {confirm: "Are you sure?"}, 
+                                  class: "button is-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

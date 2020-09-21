@@ -79,3 +79,12 @@ hr.login-hr{
 	color: black;
 }
 
+/* admin views */
+.table-container {
+	background: #fff;
+	margin-top: 40px;
+}
+.admin-grid article{
+	border-bottom: 1px solid grey;
+	padding-top: 5px;
+}
