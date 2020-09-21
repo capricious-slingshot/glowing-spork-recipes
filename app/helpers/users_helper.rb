@@ -1,7 +1,5 @@
 module UsersHelper
   def flash_class
-    # @user.errors.full_messages
-    # @user.errors.any?
     if flash[:notice]
       "is-success"
     elsif flash[:alert]
@@ -29,7 +27,7 @@ module UsersHelper
     if user.new_record?
       "Account Required to Proceed"
     else
-      "Update Account Settings"
+      "Account Settings"
     end
   end
 
@@ -40,7 +38,7 @@ module UsersHelper
     elsif user.persisted?
       link_to "Signup", new_user_path, {class: "footer-link"}
     else
-      #add conditional for logged in
+      #add conditional for log out
     end
   end
 end

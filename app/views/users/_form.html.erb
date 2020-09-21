@@ -30,6 +30,13 @@
         </div>
       </div>
         <%= f.submit "#{button_language(@user)}", class: "button is-block is-info is-large is-fullwidth" %>
+        <% if @user.persisted? %>
+          <br>
+          <%= link_to "Delete Account", @user,
+                      method: "delete",
+                      data: {confirm: "Are you sure?"}, 
+                      class: "button is-block is-danger is-large is-fullwidth" %>
+        <% end %>
     <% end %>
   </fieldset>
 </div>

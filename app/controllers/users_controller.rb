@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
+
   def index
+    flash[:notice] = "test"
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
+
   end
 
   def new
@@ -13,23 +16,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    #truemail validation?
+    @user = User.create(user_params)
+    if @user.valid?
       #can i redirect to the page they were just on?
-      redirect_to user_path, notice: "Welcome #{@user.name}!"
+      redirect_to @user, notice: "Welcome #{@user.name}!"
     else
-      render :new, alert: "Danger Batman"
+      flash[:alert] = "Danger Batman"
+      render :new, layout: "authentication"
     end
+
   end
 
   def edit
-    @user = User.find(params[:id])
     render layout: "authentication"
   end
 
   def update
-    #issues abound here
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user, notice: "User Successfully Updated"
     else
@@ -39,13 +42,19 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    session.clear
-    redirect_to root_path 
+    @user.destroy
+    redirect_to root_url, notice: "Account Succesfully Deleted!"
   end
+
 
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+  
 end
