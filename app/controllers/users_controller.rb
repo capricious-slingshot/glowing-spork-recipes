@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       #can i redirect to the page they were just on?
+      session[:user_id] = @user.id
       redirect_to @user, notice: "Welcome #{@user.name}!"
     else
       flash[:alert] = "Danger Batman"

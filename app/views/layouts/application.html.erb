@@ -27,8 +27,8 @@
             </div>
             <div class="navbar-menu">
               <div class="navbar-start">
-                <a href="/" class="navbar-item">My Recipes</a>
-                <a href="/" class="navbar-item">Top Rated</a>
+                <%= link_to "My Recipes", current_user, class:"navbar-item" %>
+                <%= link_to "Top Rated", "/", class:"navbar-item" %>
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">Styles</a>
                   <div class="navbar-dropdown">
@@ -38,14 +38,12 @@
                   </div>
                 </div>
               </div>
-<!-- # todo: login || search -->
-              <!-- <a href="#" class="navbar-item">Search</a> -->
               <div class="navbar-end">
                 <div class="navbar-item">
+<!-- # todo: search -->
+                  <!-- <a href="#" class="navbar-item">Search</a> -->
                   <div class="buttons">
-                    <%= link_to "Sign Up", new_user_path, class:"button is-light" %>
-                    <%= link_to "Log in", new_session_path, class:"button is-light" %>
-                    <%= link_to "Log out", new_session_path, class:"button is-light" %>
+                    <%= navigation_auth_buttons %>
                   </div>
                 </div>
               </div>
@@ -55,7 +53,6 @@
       </div>
     </section>
     <section class="main">
-    
       <%= render "/shared/flash_header" if !flash.empty? %>
 
       <%= yield %>

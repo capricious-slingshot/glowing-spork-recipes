@@ -1,4 +1,19 @@
 module ApplicationHelper
+  def navigation_auth_buttons
+    if current_user
+      link_to "Settings", edit_user_path(current_user), class: "button is-light"
+      link_to "Log out", current_user, class: "button is-light"
+    else
+      link_to "Sign Up", new_user, class: "button is-light"
+      link_to "Log in", new_session, class: "button is-light"
+    end
+  end
+
+  def current_user
+    #memoization
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
   def flash_class
     if flash[:notice]
       "is-success"
@@ -29,8 +44,6 @@ module ApplicationHelper
       link_to "Login", new_session_path, {class: "footer-link"}
     elsif user.persisted?
       sign_up_user
-    else
-      #link_to "logout", new_user_path, {class: "footer-link"}
     end
   end
 
