@@ -17,7 +17,19 @@
             <div class="container has-text-centered">
               <div class="column is-4 is-offset-4">
                 <div class="column auth-wrapper">
-                  <%= yield %>
+                  <h3 class="title has-text-black"><%= @user ? auth_header_language(@user) : "Login" %></h3>
+                  <hr class="login-hr">
+                  <p class="subtitle has-text-black"><%= auth_sub_header_language(@user) if @user %></p>
+                  <div class="box">
+                    <fieldset>
+    
+                      <%= render "/shared/flash_header" if !flash.empty? %>
+
+                      <%= yield %>
+                      
+                    </fieldset>
+                  </div>
+                  <p><%= @user ? auth_footer_link(@user) : sign_up_user %></p>
                 </div>
               </div>
             </div>

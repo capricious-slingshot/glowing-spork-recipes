@@ -15,7 +15,7 @@
         <div class="block">
           <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-              <a class="navbar-item logo" href="#">
+              <a class="navbar-item logo" href="<%= root_url %>">
                <%= image_tag "spork.png" %>
                <h1 class="title is-3"> &nbsp; Glowing Spork Recipes </h1>
               </a>
@@ -27,13 +27,13 @@
             </div>
             <div class="navbar-menu">
               <div class="navbar-start">
-                <a href="#" class="navbar-item">My Recipes</a>
-                <a href="#" class="navbar-item">Top Rated</a>
+                <a href="/" class="navbar-item">My Recipes</a>
+                <a href="/" class="navbar-item">Top Rated</a>
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">Styles</a>
                   <div class="navbar-dropdown">
                     <% @styles.each do |style| %>
-                      <a class="navbar-item"><%= style.name %></a>
+                      <a href="/recipies/<%= style.name %>" class="navbar-item"><%= style.name %></a>
                     <% end %>
                   </div>
                 </div>
@@ -44,7 +44,8 @@
                 <div class="navbar-item">
                   <div class="buttons">
                     <%= link_to "Sign Up", new_user_path, class:"button is-light" %>
-                    <%= link_to "Log in", new_user_path, class:"button is-light" %>
+                    <%= link_to "Log in", new_session_path, class:"button is-light" %>
+                    <%= link_to "Log out", new_session_path, class:"button is-light" %>
                   </div>
                 </div>
               </div>
@@ -54,15 +55,8 @@
       </div>
     </section>
     <section class="main">
-      <% if !flash.empty? %>
-      <!-- can I share the flash template somehow? -->
-        <header class="message <%= flash_class %>">
-          <div class="message-header">
-            <p><%= flash[:notice] || flash[:alert] %></p>
-            <!-- JS needed  <button class="delete" aria-label="delete"></button> -->
-          </div>
-        </header>
-      <% end %>
+    
+      <%= render "/shared/flash_header" if !flash.empty? %>
 
       <%= yield %>
 
