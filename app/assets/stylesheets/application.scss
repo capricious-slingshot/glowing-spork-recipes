@@ -44,6 +44,9 @@ hr.login-hr{
 .is-error .message-header{
 	background-color: #b30404;
 }
+.main .message.is-success,  .main .message.is-error{
+	margin-bottom: 0;
+}
 
 /* appliction layout */ 
 .hero.is-primary{

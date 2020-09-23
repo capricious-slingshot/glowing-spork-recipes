@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_signin, except: [:new, :create]
+  before_action :authorized_user, only: [:edit, :update, :destroy]
 
   def index
     #if admin
@@ -7,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.find(params[:id])
   end
 
   def new
@@ -26,7 +27,6 @@ class UsersController < ApplicationController
       flash[:alert] = "Danger Batman"
       render :new, layout: "authentication"
     end
-
   end
 
   def edit
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "User Successfully Updated"
+      redirect_to @user, notice: "Successfully Updated #{@user.name}"
     else
       flash[:alert] = "Danger Batman"
       render :edit, layout: "authentication"
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    session[:user_id] = nil
     redirect_to root_url, notice: "Account Succesfully Deleted!"
     #if admin redirect to @users
   end
@@ -55,8 +56,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def find_user
-    @user = User.find(params[:id])
+  def authorized_user
+    redirect_to root_path unless current_user?(User.find(params[:id]))
   end
   
 end
