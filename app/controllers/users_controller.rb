@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       #can i redirect to the page they were just on?
+      # session[:intended_url] = request.url
       session[:user_id] = @user.id
       redirect_to @user, notice: "Welcome #{@user.name}!"
     else
@@ -57,7 +58,8 @@ class UsersController < ApplicationController
   end
 
   def authorized_user
-    redirect_to root_path unless current_user?(User.find(params[:id]))
+    @user = User.find(params[:id])
+    redirect_to root_url unless current_user?(@user)
   end
   
 end
