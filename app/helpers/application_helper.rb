@@ -27,7 +27,7 @@ module ApplicationHelper
   def auth_footer_link(user)
     return if user.persisted?
     if user.new_record?
-      link_to "Login", new_session_path, {class: "footer-link"}
+      link_to "Log In", new_session_path, {class: "footer-link"}
     elsif user.persisted?
       sign_up_user
     end
