@@ -8,7 +8,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    #public or private user page?
+    binding.pry
+    #danger batman
+
+
+    #public or private user page option
     @user = User.find(params[:id])
   end
 
