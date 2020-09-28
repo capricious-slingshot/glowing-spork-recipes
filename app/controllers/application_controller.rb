@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user?
 
   def set_nav_variable
-    @styles = Style.all
+    @catagories = Category.all
   end
 
   private

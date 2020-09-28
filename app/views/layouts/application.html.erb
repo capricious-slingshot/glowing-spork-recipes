@@ -30,10 +30,10 @@
                 <%= link_to "My Recipes", current_user, class:"navbar-item" %>
                 <%= link_to "Top Rated", "/", class:"navbar-item" %>
                 <div class="navbar-item has-dropdown is-hoverable">
-                  <a class="navbar-link">Styles</a>
+                  <a class="navbar-link">Catagories</a>
                   <div class="navbar-dropdown">
-                    <% @styles.each do |style| %>
-                      <a href="/recipies/<%= style.name %>" class="navbar-item"><%= style.name %></a>
+                    <% @catagories.each do |catagorie| %>
+                      <a href="/recipies/<%= catagorie.name %>" class="navbar-item"><%= catagorie.name %></a>
                     <% end %>
                   </div>
                 </div>

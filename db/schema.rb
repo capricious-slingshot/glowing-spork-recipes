@@ -12,6 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20200923031025) do
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
   end
@@ -28,14 +32,14 @@ ActiveRecord::Schema.define(version: 20200923031025) do
     t.index ["course_id"], name: "index_recipes_on_course_id"
   end
 
+  create_table "recipes_categories", id: false, force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "category_id"
+  end
+
   create_table "recipes_restrictions", id: false, force: :cascade do |t|
     t.integer "recipe_id"
     t.integer "restriction_id"
-  end
-
-  create_table "recipes_styles", id: false, force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "style_id"
   end
 
   create_table "recipes_tags", force: :cascade do |t|
@@ -44,10 +48,6 @@ ActiveRecord::Schema.define(version: 20200923031025) do
   end
 
   create_table "restrictions", force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "styles", force: :cascade do |t|
     t.string "name"
   end
 
