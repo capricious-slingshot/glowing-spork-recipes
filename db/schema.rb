@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20200923031025) do
   create_table "recipes", force: :cascade do |t|
     t.string "photo"
     t.string "title"
-    t.string "author"
+    t.string "author_id"
     t.string "description"
-    t.integer "rating"
+    t.boolean "public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "course_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20200923031025) do
 
   create_table "restrictions", force: :cascade do |t|
     t.string "name"
+    t.string "description"
   end
 
   create_table "tags", force: :cascade do |t|
