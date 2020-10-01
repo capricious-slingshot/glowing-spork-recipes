@@ -4,7 +4,8 @@ module RecipeHelper
 	end
 
 	def	author_name(recipe)
-	  recipe.author.present? ? recipe.author : "Anonymous"
+		author = User.find(recipe.author_id)
+	  author.present? ? author.name : "Anonymous"
 	end
 	
 	def	created_on(recipe)

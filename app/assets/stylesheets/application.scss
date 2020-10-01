@@ -33,6 +33,10 @@ hr.login-hr{
 .box{
 	opacity: 1;
 }
+/* OAuth Social*/
+a.oath{
+	margin-top: 10px;
+}
 
 /* flash */
 .field_with_errors input{
@@ -48,10 +52,6 @@ hr.login-hr{
 	margin-bottom: 0;
 }
 
-/* OAuth Social*/
-a.oath{
-	margin-top: 10px;
-}
 
 /* appliction layout */ 
 .hero.is-primary{
@@ -90,5 +90,8 @@ a.oath{
 /* admin views */
 .main-container {
 	background: #fff;
-	margin-top: 12px;
+	// margin-top: 12px;
+}
+.show-wrapper{
+	padding: 0 20px 20px;
 }

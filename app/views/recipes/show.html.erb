@@ -1,1 +1,88 @@
-<h2> Show page Bitches! </h2>
+<div class="show-wrapper">
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-8">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child notification">
+            <p class="title"><%= @recipe.title.capitalize %></p>
+            <p class="subtitle">Author: <%= link_to "#{author_name(@recipe)}", user_path(@user)%></p>
+          </article>
+          <article class="tile is-child notification">
+            <p class="title">4 stars</p>
+            <p><%= @recipe.description %></p>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification">
+            <figure class="image is-4by3">
+              <%= image_tag "#{recipe_image(@recipe)}" %>
+            </figure>
+          </article>
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification">
+          <p class="title">Ingredients</p>
+          <p class="subtitle"></p>
+          <div class="content">
+            <ul>
+              <li>1/2 cup sugar</li>
+              <li>1/2 stick butter</li>
+              <li>1 cup flour</li>
+              <li>2 eggs</li>
+            </ul><!-- Content -->
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification">
+        <div class="content">
+          <p class="title">Steps</p>
+          <p class="subtitle">step 1:</p>
+          <p>"glk jsgd asgdicablic bcuhavsu qwkj aiuscbj iasbouasi igligca</p>
+          <p class="subtitle">step 2:</p>
+          <p>"aiuscbj iasbouasi igligca iagistic oiajahbsdjhc </p>
+          <p class="subtitle">step 2:</p>
+          <div class="content">
+            <p>" abhu aslbib auibcliasbviwhah jbjg;ih dfihfqnivja</p>
+          </div>
+        </div>
+      </article>
+    </div>   
+    </div>
+    <div class="tile is-parent">
+        <article class="tile is-child notification">
+          <div class="content">
+            <a  href=""class="tag is-danger is-large">Thai</a>
+            <a href="" class="tag is-danger is-large">Vietnamese</a>
+            <a href="" class="tag is-warning is-medium">Gluten Free</a>
+            <a href="" class="tag is-warning is-medium">Keto</a>
+            <a href="" class="tag is-warning is-medium">Bulletproof</a>
+              <a href="" class="tag is-success is-medium">Breakfast</a>
+              <a href="" class="tag is-success is-medium">Dessert</a>
+            <div class="tags">
+              <a href="" class="tag">#whatever</a>
+              <a href="" class="tag">#paleo</a>
+              <a href="" class="tag">#delicios</a>
+              <a href="" class="tag">#zomg</a>
+              <a href="" class="tag">#hashtag</a>
+              <a href="" class="tag">#whatever</a>
+              <a href="" class="tag">#paleo</a>
+              <a href="" class="tag">#delicios</a>
+              <a href="" class="tag">#zomg</a>
+              <a href="" class="tag">#hashtag</a>
+              <a href="" class="tag">#whatever</a>
+              <a href="" class="tag">#delicios</a>
+              <a href="" class="tag">#zomg</a>
+              <a href="" class="tag">#hashtag</a>
+
+
+            </div>
+          </div>
+        </article>
+      </div>
+  </div>
+</div>
+
+<!-- Catagories as links -->
