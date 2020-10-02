@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'recipes#index'
+  get  '/', to: 'recipes#index'
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  
   
 
   #path_helper is free with resources - needs to be manually defined with as:

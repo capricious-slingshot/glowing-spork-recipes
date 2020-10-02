@@ -23,7 +23,7 @@
       <%= password_field(:user, :password_confirmation, class: "input is-large", placeholder: "Password Confirmation") %>
     </div>
   </div>
-    <%= f.submit "#{button_language(@user)}", class: "button is-block is-info is-large is-fullwidth" %>
+    <%= f.submit "#{button_language(@user)}", class: "button is-block is-info is-large is-fullwidth", id:"logIn" %>
     <% if @user.persisted? %>
       <br>
       <%= link_to "Delete Account", @user,
