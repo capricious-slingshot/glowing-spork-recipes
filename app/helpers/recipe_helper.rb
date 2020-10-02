@@ -4,10 +4,13 @@ module RecipeHelper
 	end
 
 	def	author_name(recipe)
-		author = User.find(recipe.author_id)
-	  author.present? ? author.name : "Anonymous"
+	  author(recipe).present? ? author(recipe).name : "Anonymous"
 	end
-	
+
+	def	author(recipe)
+		User.find(recipe.author_id)
+	end
+		
 	def	created_on(recipe)
     recipe.created_at.strftime("%B %d, %Y")
 	end
