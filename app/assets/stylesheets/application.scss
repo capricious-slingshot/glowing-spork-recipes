@@ -13,8 +13,12 @@
  *= require_tree .
  *= require_self
  */
+ $tag-background-color: hsl(0, 0%, 86%);
  @import "bulma";
 
+ a{
+	text-decoration: none !important;
+}
  /* authentication layout */
  .hidden{
 	 display: none;
@@ -94,4 +98,18 @@ a.oath{
 }
 .show-wrapper{
 	padding: 0 20px 20px;
+}
+
+.top-element{
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.odd-box, .even-box{
+	color: #fff;
+}
+.odd-box{
+  background: #851d1d;
+}
+.even-box{
+  background: #4d4b4b;
 }

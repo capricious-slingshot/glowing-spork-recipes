@@ -3,11 +3,11 @@
     <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
-          <article class="tile is-child notification">
-            <p class="title"><%= @recipe.title.capitalize %></p>
-            <p class="subtitle">Author: <%= link_to "#{author_name(@recipe)}", user_path(@user)%></p>
+          <article class="tile is-child notification top-element odd-box heading">
+            <h1 class="title"><%= @recipe.title.capitalize %></h1>
+            <h3 class="subtitle">Author: <%= link_to "#{author_name(@recipe)}", user_path(@user) %></h3>
           </article>
-          <article class="tile is-child notification">
+          <article class="tile is-child notification even-box">
             <p class="title">4 stars</p>
             <p><%= @recipe.description %></p>
           </article>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child notification">
+        <article class="tile is-child notification odd-box heading">
           <p class="title">Ingredients</p>
           <p class="subtitle"></p>
           <div class="content">
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="tile is-parent">
-      <article class="tile is-child notification">
+      <article class="tile is-child notification even-box top-element">
         <div class="content">
           <p class="title">Steps</p>
           <p class="subtitle">step 1:</p>
