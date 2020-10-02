@@ -62,7 +62,6 @@ class UsersController < ApplicationController
   end
 
   def authorized_user
-    # binding.pry
     @user = User.find(params[:id])
     
     unless current_user?(@user) || current_user.admin?

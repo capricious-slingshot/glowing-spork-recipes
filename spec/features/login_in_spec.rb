@@ -43,7 +43,7 @@ describe "User Log In" do
   it 'successuflly logs in user' do
     visit '/login'
     fill_in 'email', with: 'test1@me.com'
-    fill_in 'password', with: '1234'
+    fill_in 'password', with: '123456789'
     click_button('Log In')
     expect(page).to have_content('Welcome back, test1')
   end
