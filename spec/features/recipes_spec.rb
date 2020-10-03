@@ -1,24 +1,17 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe 'Recipes' do
   describe "View Index" do
-    it 'shows all recipe catagories in nav dropdown' do
-      visit '/'
-      categories = Category.all.collect { |c| c.name }.join(" ")
-
-      expect(page).to have_text(categories)
-    end
-
     it 'shows index card of all recipes' do
       visit root_path    
-      recipe = Recipe.all.first
+      recipe = Recipe.all.sample
+      user = User.find(recipe.author_id)
   
       expect(page).to have_text(recipe.title)
       expect(page).to have_link(nil, href: "#{recipe_path(recipe)}")
-      expect(page).to have_link("test1", href: "/users/1")
-      expect(page).to have_text("My perfect brownie is thick, fudgy, c...")
-      expect(page).to have_text("October 02, 2020")
+      expect(page).to have_link("#{user.name}", href: "/users/#{user.id}")
+      expect(page).to have_text("#{recipe.description.truncate(40)}")
+      expect(page).to have_text("#{recipe.created_at.strftime('%B %d, %Y')}")
     end
   end
 
