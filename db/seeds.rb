@@ -125,3 +125,4 @@ User.create(name: 'test2', email: 'test2@me.com', password: '123456789', passwor
 User.create(name: 'test3', email: 'test3@me.com', password: '123456789', password_confirmation: '123456789')
 User.create(name: 'test4', email: 'test4@me.com', password: '123456789', password_confirmation: '123456789')
 User.create(name: 'test5', email: 'test5@me.com', password: '123456789', password_confirmation: '123456789')
+User.create(name: 'test6', email: 'test6@me.com', password: '123456789', password_confirmation: '123456789', admin: true)

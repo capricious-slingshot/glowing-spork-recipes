@@ -11,12 +11,6 @@ describe "User Log In" do
     expect(current_path).to eq(new_session_path)
   end
   
-  it 'non logged in user sees the right nav items' do
-    visit '/'
-    expect(page).to have_text('Glowing Spork Recipes')
-    expect(page).not_to have_link('Settings')
-    expect(page).not_to have_link('Log Out')
-  end
   it 'prompts for an email and password' do
     visit '/login'
     
