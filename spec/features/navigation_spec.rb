@@ -75,7 +75,7 @@ describe 'Navigation' do
       fill_in 'email', with: 'test6@me.com'
       fill_in 'password', with: '123456789'
       click_button('Log In')
-      # expect(page).to have_content('Welcome back, test6')
+      expect(page).to have_content('Welcome back, test6')
     end
 
     it "admin can modify url to navigate to '/users' page" do
