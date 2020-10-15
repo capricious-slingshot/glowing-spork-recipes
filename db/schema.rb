@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201015183942) do
+ActiveRecord::Schema.define(version: 20201015190533) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 20201015183942) do
     t.string "location"
     t.boolean "public_profile", default: true
     t.boolean "metric", default: false
+  end
+
+  create_table "users_recipes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipe_id"
+    t.integer "rating", default: 0
+    t.boolean "saved", default: false
   end
 
 end
