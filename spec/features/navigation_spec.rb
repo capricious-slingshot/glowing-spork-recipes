@@ -15,6 +15,7 @@ describe 'Navigation' do
   
     expect(page).to have_text(categories)
   end
+
   describe 'navigation for non-authenticated users' do
     it 'non-logged in user sees buttons to login or signup in navigation' do
       visit '/'
