@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20200923031025) do
     t.string "title"
     t.string "author_id"
     t.string "description"
-    t.boolean "public"
+    t.boolean "public", null: false, default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "course_id"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20200923031025) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.boolean "admin", default: false
+    t.boolean "admin", null: false, default: false
   end
 
 end
