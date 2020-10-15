@@ -5,7 +5,7 @@ class CreateRecipes < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :author_id
       t.string :description
-      t.boolean :public
+      t.boolean :public, default: true
 
       t.timestamps
     end

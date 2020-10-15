@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200923031025) do
+ActiveRecord::Schema.define(version: 20201015183942) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20200923031025) do
     t.string "title"
     t.string "author_id"
     t.string "description"
-    t.boolean "public", null: false, default: true
+    t.boolean "public", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "course_id"
@@ -61,7 +61,12 @@ ActiveRecord::Schema.define(version: 20200923031025) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.boolean "admin", null: false, default: false
+    t.boolean "admin", default: false
+    t.string "photo"
+    t.string "bio"
+    t.string "location"
+    t.boolean "public_profile", default: true
+    t.boolean "metric", default: false
   end
 
 end
