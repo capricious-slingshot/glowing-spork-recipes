@@ -9,7 +9,7 @@ describe 'Navigation' do
 
   xit 'Top Rated takes user to all recipes sorted by rating'
 
-  it 'shows all recipe catagories in nav dropdown' do
+  it 'shows all recipe categories in nav dropdown' do
     visit '/'
     categories = Category.all.collect { |c| c.name }.join(" ")
   

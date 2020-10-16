@@ -51,8 +51,8 @@ describe 'Recipes' do
       # need test for course
     end
 
-    it 'displays correct catagories that it belongs to ' do
-      # need test for catagories
+    it 'displays correct categories that it belongs to ' do
+      # need test for categories
     end
 
     it 'displays correct dietary restrictions ' do
