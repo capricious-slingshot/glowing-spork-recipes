@@ -39,15 +39,13 @@
     <div class="tile is-parent">
       <article class="tile is-child notification even-box top-element">
         <div class="content">
-          <p class="title">Steps</p>
-          <p class="subtitle">step 1:</p>
-          <p>"glk jsgd asgdicablic bcuhavsu qwkj aiuscbj iasbouasi igligca</p>
-          <p class="subtitle">step 2:</p>
-          <p>"aiuscbj iasbouasi igligca iagistic oiajahbsdjhc </p>
-          <p class="subtitle">step 2:</p>
-          <div class="content">
-            <p>" abhu aslbib auibcliasbviwhah jbjg;ih dfihfqnivja</p>
-          </div>
+          <p class="title">Do All Of The Things</p>
+          <% @steps.each do |s| %>
+            <p class="subtitle">Step <%= s.position %>:</p>
+            <div class="content">
+              <p><%= s.description %></p>
+            </div>
+          <% end %>
         </div>
           <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "button is-warning is-large crud-button" %>
       </article>

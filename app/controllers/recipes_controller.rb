@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
     @recipes = Recipe.all
@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
 
   def show
     @user = User.find(@recipe.author_id)
+    @steps = @recipe.steps
   end
 
   def edit
@@ -34,7 +35,7 @@ class RecipesController < ApplicationController
 
   private
 
-  def find_user
+  def find_recipe
     @recipe = Recipe.find(params[:id])
   end
 

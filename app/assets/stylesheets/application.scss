@@ -114,6 +114,9 @@ a.oath{
 	background: #4d4b4b;
 	position: relative;
 }
+.even-box .crud-button{
+	margin-top: 40px;
+}
 
 
 
@@ -122,8 +125,5 @@ a.oath{
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
-	.even-box .crud-button{
-		position: absolute;
-		bottom: 20px;
-	}
+	
 }
