@@ -69,14 +69,11 @@ ActiveRecord::Schema.define(version: 20201015190533) do
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
-<<<<<<< HEAD
     t.string "photo"
     t.string "bio"
     t.string "location"
     t.boolean "public_profile", default: true
     t.boolean "metric", default: false
-=======
->>>>>>> f05bf6134a4e7dc74923b0bba667bade809f40a7
   end
 
 end
