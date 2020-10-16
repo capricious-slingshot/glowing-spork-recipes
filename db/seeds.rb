@@ -126,3 +126,9 @@ User.create(name: 'test3', email: 'test3@me.com', password: '123456789', passwor
 User.create(name: 'test4', email: 'test4@me.com', password: '123456789', password_confirmation: '123456789')
 User.create(name: 'test5', email: 'test5@me.com', password: '123456789', password_confirmation: '123456789')
 User.create(name: 'test6', email: 'test6@me.com', password: '123456789', password_confirmation: '123456789', admin: true)
+
+Step.create(description:"kjsad kljskd lhak mkjkjlsadgv iub oaisd buebrvilb aihc alnksvnjvpak oah iabskja a kskb kjasb kjabsvkb akbkj", position: 1, recipe_id: 1)
+Step.create(description:"kjd kskd sadgv iub buebr vilb aihc alnks vnjvp ak oah iabskja a kskb kj", position: 2, recipe_id: 1)
+Step.create(description:"jskd lhak mkj lsa oaise brv ilnjvp ak oah iabskja a kskb kjasb kjabsvkb akbkj", position: 3, recipe_id: 1)
+Step.create(description:"kd lhak mkjk jls adgv iub oaisd bueb rvi lb aihc alnk svnjvpak oah iab skja a kskbkjasb akbkj", position: 4, recipe_id: 1)
+Step.create(description:"skdk jkj  sad gb oaisd brvilb hc alnk s vnjvpak oah ia bskja a", position: 5, recipe_id: 1)
