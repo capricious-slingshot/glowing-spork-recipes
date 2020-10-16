@@ -12,6 +12,6 @@ class AddColumnsToUsers < ActiveRecord::Migration[5.1]
     remove_column :users, :bio, :string
     remove_column :users, :location, :string
     remove_column :users, :public_profile, :boolean, default: true
-    remove_column :users, :metric, :boolean, default: false
+    remove_column :users, :metric, :boolean
   end
 end

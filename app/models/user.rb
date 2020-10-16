@@ -1,10 +1,14 @@
 class User < ApplicationRecord
+
   extend ActiveModel::Naming
   validates :name, presence: true, uniqueness: true
   validates_uniqueness_of :email, case_sensitive: false
   validates :email, presence: true, email: true
   validates :password, length: { minimum: 9 }
   has_secure_password
+
+  has_many :user_recipes
+  has_many :recipes, through: :user_recipes
 
   def self.authenticate(email, password)
     user = User.find_by(email: email)
