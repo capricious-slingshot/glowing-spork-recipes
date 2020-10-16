@@ -32,8 +32,8 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">Catagories</a>
                   <div class="navbar-dropdown">
-                    <% @categories.each do |category| %>
-                      <a href="/recipies/<%= category.name %>" class="navbar-item"><%= category.name %></a>
+                    <% @categories.each do |c| %>
+                      <a href="/recipies/<%= c.name %>" class="navbar-item"><%= c.name %></a>
                     <% end %>
                   </div>
                 </div>
