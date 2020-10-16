@@ -57,6 +57,13 @@ ActiveRecord::Schema.define(version: 20201015190533) do
     t.integer "recipe_id"
   end
 
+  create_table "user_recipes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipe_id"
+    t.integer "rating", default: 0
+    t.boolean "saved", default: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -67,13 +74,6 @@ ActiveRecord::Schema.define(version: 20201015190533) do
     t.string "location"
     t.boolean "public_profile", default: true
     t.boolean "metric", default: false
-  end
-
-  create_table "users_recipes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "recipe_id"
-    t.integer "rating", default: 0
-    t.boolean "saved", default: false
   end
 
 end
