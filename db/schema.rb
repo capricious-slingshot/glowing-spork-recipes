@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201016200214) do
+ActiveRecord::Schema.define(version: 20201016212154) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20201016200214) do
     t.integer "recipe_id"
     t.integer "rating", default: 0
     t.boolean "saved", default: false
+    t.text "notes"
   end
 
   create_table "users", force: :cascade do |t|
