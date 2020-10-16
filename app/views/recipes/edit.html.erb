@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="columns">
+	  <div class="column main-container">
+			<%= form_for(@recipe) do |f| %>
+      <div class="field">
+        <%= f.label :title, class: "label" %>
+        <div class="control">
+          <%= f.text_field :title, class: "input is-large" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :photo, "Photo Url", class: "label" %>
+        <div class="control">
+          <%= f.text_field :photo, class: "input is-large" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :description, class: "label" %>
+        <div class="control">
+          <%= f.text_area :description, class: "textarea is-large" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :public, "Make Recipe Public?", class: "label" %>
+        <div class="control">
+          <%= f.label :public, "Yes", value: "true" %>
+          <%= f.radio_button :public, true %>
+          <%= f.label :public, "No", value: "false" %>
+          <%= f.radio_button :public, false, class: "radio is-large" %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <%= f.submit "Update Recipe", class: "button is-warning is-large" %>
+      <% end %>
+      <%= link_to "Delete", @recipe,
+                  method: "delete",
+                  data: {confirm: "Are you want to delete this Recipe?"}, 
+                  class: "button is-danger is-large" %>
+        </div>
+      </div>
+		</div>
+	</div>
+</div>
+
+

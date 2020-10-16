@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20201015183942) do
   create_table "recipes", force: :cascade do |t|
     t.string "photo"
     t.string "title"
-    t.string "author_id"
+    t.integer "author_id"
     t.string "description"
     t.boolean "public", default: true
     t.datetime "created_at", null: false
