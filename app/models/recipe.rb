@@ -5,8 +5,8 @@ class Recipe < ApplicationRecord
   has_many :recipe_categories
   has_many :categories, through: :recipe_categories
 
-  has_many :recipes_restrictions
-  has_many :restrictions, through: :recipes_restrictions
+  has_many :recipe_restrictions
+  has_many :restrictions, through: :recipe_restrictions
 
   has_many :recipes_tags
   has_many :tags, through: :recipes_tags
