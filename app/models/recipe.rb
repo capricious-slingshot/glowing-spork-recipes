@@ -11,6 +11,9 @@ class Recipe < ApplicationRecord
   has_many :recipe_tags
   has_many :tags, through: :recipe_tags
 
+  has_many :measurements
+  has_many :ingredients, through: :measurements
+
   has_many :steps
 
   belongs_to :course

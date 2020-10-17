@@ -27,11 +27,10 @@
           <p class="subtitle"></p>
           <div class="content">
             <ul>
-              <li>1/2 cup sugar</li>
-              <li>1/2 stick butter</li>
-              <li>1 cup flour</li>
-              <li>2 eggs</li>
-            </ul><!-- Content -->
+              <% @recipe.measurements.each do |m| %>
+                <li><%= m.quantity %> <%= m.unit %> <%= m.ingredient %></li>
+              <% end %>
+            </ul>
           </div>
         </article>
       </div>
@@ -76,8 +75,6 @@
               <a href="" class="tag">#delicios</a>
               <a href="" class="tag">#zomg</a>
               <a href="" class="tag">#hashtag</a>
-
-
             </div>
           </div>
         </article>
