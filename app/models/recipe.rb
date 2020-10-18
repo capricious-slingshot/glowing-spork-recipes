@@ -17,4 +17,8 @@ class Recipe < ApplicationRecord
   has_many :steps
 
   belongs_to :course
+
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :course_id, presence: true
 end

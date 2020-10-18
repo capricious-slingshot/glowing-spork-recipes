@@ -3,30 +3,36 @@
 	  <div class="column main-container">
 			<%= form_for(@recipe) do |f| %>
       <div class="field">
-        <%= f.label :title, class: "label" %>
+        <%= f.label :title, class: "subtitle is-3" %>
         <div class="control">
           <%= f.text_field :title, class: "input is-large" %>
         </div>
       </div>
       <div class="field">
-        <%= f.label :photo, "Photo Url", class: "label" %>
+        <%= f.label :photo, "Photo Url", class: "subtitle is-3" %>
         <div class="control">
           <%= f.text_field :photo, class: "input is-large" %>
         </div>
       </div>
       <div class="field">
-        <%= f.label :description, class: "label" %>
+        <%= f.label :description, class: "subtitle is-3" %>
         <div class="control">
           <%= f.text_area :description, class: "textarea is-large" %>
         </div>
       </div>
       <div class="field">
-        <%= f.label :public, "Make Recipe Public?", class: "label" %>
-        <div class="control">
-          <%= f.label :public, "Yes", value: "true" %>
-          <%= f.radio_button :public, true %>
-          <%= f.label :public, "No", value: "false" %>
-          <%= f.radio_button :public, false, class: "radio is-large" %>
+        <%= f.label :course_id, "Corse", class: "subtitle is-3" %><br>
+        <div class="select">
+          <%= f.collection_select(:course_id, Course.all, :id, :name) %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :public, "Make Recipe Public?", class: "subtitle is-4" %>
+        <div class="control radio">
+          <%= f.label :public, "Yes", value: "true", class: "subtitle is-4" %>
+          <%= f.radio_button :public, true, class: "subtitle is-4" %>
+          <%= f.label :public, "No", value: "false", class: "subtitle is-4" %>
+          <%= f.radio_button :public, false %>
         </div>
       </div>
       <div class="field">
