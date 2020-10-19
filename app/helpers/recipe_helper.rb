@@ -22,4 +22,10 @@ module RecipeHelper
 	def	short_description(recipe)
     recipe.description.truncate(40)
 	end
+
+	def	author_edit_button(recipe)
+		if current_user.id == recipe.author_id
+      link_to "Edit Recipe", edit_recipe_path(recipe), class: "button is-warning is-large crud-button"
+		end
+	end
 end

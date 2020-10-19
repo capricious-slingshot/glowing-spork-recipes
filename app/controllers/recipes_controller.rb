@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @user = User.find(@recipe.author_id)
+    @author = User.find(@recipe.author_id)
     @steps = @recipe.steps
   end
 
@@ -15,6 +15,8 @@ class RecipesController < ApplicationController
   end
 
   def update
+    #itterate over measurements - 
+    binding.pry
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Successfully Updated"
     else

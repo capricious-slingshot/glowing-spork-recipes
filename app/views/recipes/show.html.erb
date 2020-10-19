@@ -4,8 +4,8 @@
       <div class="tile">
         <div class="tile is-parent is-vertical">
           <article class="tile is-child notification top-element odd-box heading">
-            <h1 class="title"><%= @recipe.title.capitalize %></h1>
-            <h3 class="subtitle">Author: <%= link_to "#{author_name(@recipe)}", user_path(@user) %></h3>
+            <h1 class="title is-2"><%= @recipe.title %></h1>
+            <p><%= link_to "#{author_name(@recipe)}", user_path(@author) %></p>
             <p><%= created_on(@recipe) %></p>
           </article>
           <article class="tile is-child notification even-box">
@@ -51,7 +51,7 @@
             </div>
           <% end %>
         </div>
-          <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "button is-warning is-large crud-button" %>
+          <%= author_edit_button(@recipe) %>
       </article>
     </div>   
     </div>
