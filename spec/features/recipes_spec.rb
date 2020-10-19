@@ -33,8 +33,9 @@ describe 'Recipes' do
     end
 
     it 'displays correct star rating' do
-      expect(page).to have_text("stars")
-      # need test for star rating
+      expect(page).to have_tag('span.has-text-star', count: 3)
+      expect(page).to have_tag('i.fa-star', count: 3)
+      expect(page).to have_text("#{@recipe.star_rating} stars")
     end
 
     it 'displays every ingredient and corrosponding measurement' do
@@ -43,7 +44,7 @@ describe 'Recipes' do
     end
 
     it 'displays correct number of steps' do
-      expect(page).to have_text("Steps")
+      expect(page).to have_text("Step")
       # need test for step count
     end
 

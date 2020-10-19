@@ -9,7 +9,12 @@
             <p><%= created_on(@recipe) %></p>
           </article>
           <article class="tile is-child notification even-box">
-            <p class="title">4 stars</p>
+            <p class="subtitle is-4">
+              <% @recipe.star_rating.floor.times do %>
+                <span class="icon has-text-star"><i class="fas fa-star"></i></span>
+              <%end %>
+            </p>
+            <p class="title is-5"><%= @recipe.star_rating.round(1) %> Stars</p>
             <p><%= @recipe.description %></p>
           </article>
         </div>

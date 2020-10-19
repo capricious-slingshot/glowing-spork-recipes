@@ -17,4 +17,10 @@ class Recipe < ApplicationRecord
   has_many :steps
 
   belongs_to :course
+
+  def star_rating
+    rated = UserRecipe.where(recipe_id: self.id)
+    sum = rated.collect{ |i| i.rating}.reduce(0, :+)
+    sum / rated.count
+  end
 end
