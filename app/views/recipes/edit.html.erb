@@ -33,10 +33,9 @@
 
         <div class="field">
           <div class="select">
-          <%binding.pry%>
-            <%= m.collection_select(:quantity_id, Quantity.all, :id, :ammount) %>
-            <%= m.collection_select(:unit_id, Unit.all, :id, :name) %>
-            <%= m.collection_select(:ingredient_id, Ingredient.all, :id, :name) %>
+            <%= f.collection_select(m.quantity_id, Quantity.all, :id, :ammount) %>
+            <%= f.collection_select(m.unit_id, Unit.all, :id, :name) %>
+            <%= f.collection_select(m.ingredient_id, Ingredient.all, :id, :name) %>
           </div>
         </div>
         
