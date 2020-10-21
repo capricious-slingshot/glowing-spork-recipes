@@ -1,14 +1,19 @@
 class UsersController < ApplicationController
   before_action :require_signin, except: [:new, :create]
-  before_action :authorized_user, only: [:edit, :update, :destroy]
+  before_action :authorize, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:index]
 
   def index
-    @users = User.all
+      @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
+    user = User.find(params[:id])
+    if user.public_profile? || authorized_user
+      @user = user 
+    else
+      redirect_to root_url, notice: "Profile is not Public"
+    end
   end
 
   def new
@@ -31,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    render layout: "authentication"
+    
   end
 
   def update
@@ -39,7 +44,7 @@ class UsersController < ApplicationController
       redirect_to @user, notice: "Successfully Updated #{@user.name}"
     else
       flash[:alert] = "Danger Batman"
-      render :edit, layout: "authentication"
+      render :edit
     end
   end
 
@@ -58,15 +63,16 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :bio, :location, :public_profile )
   end
 
   def authorized_user
     @user = User.find(params[:id])
-    
-    unless current_user?(@user) || current_user.admin?
-      redirect_to root_url, notice: "Access Denied" 
-    end
+    current_user?(@user) || current_user_admin?
+  end
+
+  def authorize
+    redirect_to root_url, notice: "Access Denied" unless authorized_user
   end
 
 end
