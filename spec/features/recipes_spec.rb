@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Recipes' do
-  describe "View Index" do
-    it 'shows index card of all recipes' do
+describe 'Recipe' do
+  describe "Index" do
+    it 'shows card of all recipes' do
       visit root_path    
       recipe = Recipe.all.sample
       user = User.find(recipe.author_id)
@@ -15,7 +15,7 @@ describe 'Recipes' do
     end
   end
 
-  describe "View Show" do
+  describe "Show" do
     before do
       @recipe = Recipe.all.sample
       visit "/recipes/#{@recipe.id}"
@@ -70,7 +70,7 @@ describe 'Recipes' do
     end
   end
 
-  describe 'editing a recipe' do
+  describe 'editing' do
     before do
       @recipe = Recipe.create(photo: 'pizza.jpg', title: 'Margaharita Pizza', author_id: 2, description: "MCurabitur volutpat massa eu molestie tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc consectetur eros ut lacus dapibus tincidunt. Sed semper hendrerit felis vitae pulvinar. Duis hendrerit ex sed eros sagittis feugiat. Aliquam erat volutpat. Ut euismod in sem in sollicitudin. Vestibulum ipsum ex, pretium at sem ac, interdum hendrerit felis. Sed ac diam ullamcorper, gravida nulla eu, dapibus nisi. Mauris ac feugiat nisl. Curabitur non eros eu tellus maximus vehicula non nec turpis. In hac habitasse platea dictumst. Duis sit amet quam et nulla congue feugiat.", course_id: 4, public: true)
     end
@@ -97,6 +97,26 @@ describe 'Recipes' do
       
     end
 
-    it 'correctly updates and displays recipe attributes'
+    it 'correctly updates and displays new recipe attributes' do
+      visit recipe_url(@recipe)
+
+      click_link 'Edit'
+      fill_in 'Title', with: "azziP atirahgraM"
+
+      click_button 'Update Recipe'
+
+      expect(current_path).to eq(recipe_path(@recipe))
+
+      expect(page).to have_text('azziP atirahgraM')
+    end
+
+    it 'correctly deletes a recipe and rediercts to all recipes' do
+      visit recipe_url(@recipe)
+
+      click_link 'Delete'
+      click_link 'Ok'
+      expect(@recipe).to be(nil)
+      expect(current_path).to eq(recipes_path)
+    end
   end
 end

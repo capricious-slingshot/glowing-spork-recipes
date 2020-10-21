@@ -26,22 +26,6 @@
           <%= f.collection_select(:course_id, Course.all, :id, :name) %>
         </div>
       </div>
-
-      
-
-      <% @recipe.measurements.each do |m| %> 
-
-        <div class="field">
-          <div class="select">
-            <%= f.collection_select(m.quantity_id, Quantity.all, :id, :ammount) %>
-            <%= f.collection_select(m.unit_id, Unit.all, :id, :name) %>
-            <%= f.collection_select(m.ingredient_id, Ingredient.all, :id, :name) %>
-          </div>
-        </div>
-        
-      <% end %>
-
-
       <div class="field">
         <%= f.label :public, "Make Recipe Public?", class: "subtitle is-4" %>
         <div class="control radio">
