@@ -1,8 +1,24 @@
 <div class="container">
 	<div class="columns">
 	  <div class="column is-three-fourths-tablet main-container">
-    <h1 class="subtitle is-1"><%= @user.name %></h1>
- 
+      <article class="media">
+          <figure class="media-left">
+            <figure class="image is-128x128">
+              <%= image_tag user_image(@user), class: "is-rounded" %>
+            </figure>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= @user.name %></strong> <small><%= user_location(@user) %></small>
+              </p>
+              <p>
+                <%= user_bio(@user) %>
+              </p>
+            </div>
+          </div>
+        </article>
+    
     <!-- two tabs: show 'authored recipies'  show 'saved recipes' -->
 
     <%# @user.recipies.each do |recipe| %>
