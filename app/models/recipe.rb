@@ -1,5 +1,4 @@
 class Recipe < ApplicationRecord
-<<<<<<< Updated upstream
   has_many :user_recipes
   has_many :users, through: :user_recipes
 
@@ -28,8 +27,4 @@ class Recipe < ApplicationRecord
     sum / rated.count
   end
 
-=======
-  has_and_belongs_to_many :styles
-  belongs_to :course
->>>>>>> Stashed changes
 end

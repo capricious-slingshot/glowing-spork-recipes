@@ -5,12 +5,12 @@ class Measurement < ApplicationRecord
   has_many :quantities
   has_many :units
 
-  def quantity
+  def ammount
     Quantity.find(quantity_id).ammount
   end
 
   def unit
-    Unit.find(unit_id).name.pluralize
+    Unit.find(unit_id).name
   end
 
   def ingredient
