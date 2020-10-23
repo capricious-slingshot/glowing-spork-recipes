@@ -26,7 +26,7 @@
             <%= f.fields_for :measurements do |m| %>
               <div class="column">
                 <div class="field">
-                  <%= m.label :course_id, "Quantity", class: "hidden subtitle is-4" %><br>
+                  <%= m.label :quantity_id, "Quantity", class: "hidden subtitle is-4" %><br>
                   <p class="control select is-fullwidth">
                     <%= m.collection_select(:quantity_id, Quantity.all, :id, :ammount, prompt:"Quantity") %>
                   </p>
@@ -34,7 +34,7 @@
               </div>
               <div class="column">
                   <div class="field">
-                    <%= m.label :course_id, "Unit", class: "hidden subtitle is-4" %><br>
+                    <%= m.label :unit_id, "Unit", class: "hidden subtitle is-4" %><br>
                     <p class="select control is-fullwidth">
                       <%= m.collection_select(:unit_id, Unit.all, :id, :name, prompt:"Unit") %>
                     </p>
@@ -42,7 +42,7 @@
               </div>
               <div class="column">
                 <div class="field">
-                    <%= m.label :course_id, "Ingredient", class: "hidden subtitle is-4" %><br>
+                    <%= m.label :ingredient_id, "Ingredient", class: "hidden subtitle is-4" %><br>
                     <p class="select control is-fullwidth">
                       <%= m.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt:"Ingredient") %>
                     </p>

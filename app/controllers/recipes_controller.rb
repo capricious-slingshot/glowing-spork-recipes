@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
   end
 
   def update
+    binding.pry
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Successfully Updated"
     else
@@ -39,7 +40,16 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
+  # def save_ingredient
+  #   binding.pry
+  #   user_input = params[:recipe][:measurements][:ingredient].capitalize
+  #   ingredient = Ingredient.find_or_create_by(name: user_input)
+  #   params[:recipe][:measurements][:ingredient].delete
+  #   params[:recipe][:measurements][:ingredient_id] = ingredient_id
+  # end
+
   def recipe_params
-    params.require(:recipe).permit(:photo, :title, :description, :public, :course_id)
+    params.require(:recipe).permit(:photo, :title, :description, :public, :course_id, 
+                                    {measurements: [ :quantity_id, :unit_id, :ingredient_id ]})
   end
 end

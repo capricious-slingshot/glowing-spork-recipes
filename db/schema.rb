@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20200831013615) do
     t.integer "recipe_id"
     t.integer "quantity_id"
     t.integer "unit_id"
-    t.integer "ingredient"
+    t.integer "ingredient_id"
   end
 
   create_table "quantities", force: :cascade do |t|
