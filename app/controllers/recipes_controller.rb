@@ -10,12 +10,27 @@ class RecipesController < ApplicationController
     @steps = @recipe.steps
   end
 
+  def new
+    @recipe = Recipe.new
+  end
+
+  def create
+    binding.pry
+    recipe = Recipe.new(recipe_params)
+    recipe.author_id = current_user.id
+    if recipe.save
+      redirect_to recipe_url(recipe), notice: "Success"
+    else
+      flash[:alert] = "There was a problem. Recipe not created."
+      render :edit
+    end
+  end
+
   def edit
 
   end
 
   def update
-    binding.pry
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Successfully Updated"
     else
@@ -40,16 +55,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
-  # def save_ingredient
-  #   binding.pry
-  #   user_input = params[:recipe][:measurements][:ingredient].capitalize
-  #   ingredient = Ingredient.find_or_create_by(name: user_input)
-  #   params[:recipe][:measurements][:ingredient].delete
-  #   params[:recipe][:measurements][:ingredient_id] = ingredient_id
-  # end
-
   def recipe_params
-    params.require(:recipe).permit(:photo, :title, :description, :public, :course_id, 
-                                    {measurements: [ :quantity_id, :unit_id, :ingredient_id ]})
+    params.require(:recipe).permit(:title, :photo, :description, :course_id, :public)
   end
 end

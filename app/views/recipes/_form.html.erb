@@ -1,0 +1,71 @@
+			<%= form_for(@recipe) do |f| %>
+        <div class="field">
+          <%= f.label :title, class: "subtitle is-3" %>
+          <div class="control">
+            <%= f.text_field :title, class: "input is-large", autofocus: true %>
+          </div>
+        </div>
+        <div class="field">
+          <%= f.label :photo, "Photo Url", class: "subtitle is-3" %>
+          <div class="control">
+            <%= f.text_field :photo, class: "input is-large" %>
+          </div>
+        </div>
+        <div class="field">
+          <%= f.label :description, class: "subtitle is-3" %>
+          <div class="control">
+            <%= f.text_area :description, class: "textarea is-large" %>
+          </div>
+        </div>
+        <%= f.label :ingredients, "Ingredients", class: "subtitle is-3" %>
+        <div class="columns">
+   <!-- half-fixed
+             <%= f.fields_for :measurements do |m| %>
+               <div class="column">
+                 <div class="field">
+                   <%= m.label :quantity_id, "Quantity", class: "hidden subtitle is-4" %><br>
+                   <p class="control select is-fullwidth">
+                     <%= m.collection_select(:quantity_id, Quantity.all, :id, :ammount, prompt:"Quantity") %>
+                   </p>
+                 </div>
+               </div>
+               <div class="column">
+                   <div class="field">
+                     <%= m.label :unit_id, "Unit", class: "hidden subtitle is-4" %><br>
+                     <p class="select control is-fullwidth">
+                       <%= m.collection_select(:unit_id, Unit.all, :id, :name, prompt:"Unit") %>
+                     </p>
+                   </div>
+               </div>
+               <div class="column">
+                 <div class="field">
+                     <%= m.label :ingredient_id, "Ingredient", class: "hidden subtitle is-4" %><br>
+                     <p class="select control is-fullwidth">
+                       <%= m.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt:"Ingredient") %>
+                     </p>
+                 </div>
+               </div>
+             <% end %>
+         </div>
+  end half-fixed -->
+        <div class="field">
+        <br>
+          <%= f.label :course_id, "Course", class: "subtitle is-3" %><br><br>
+            <div class="select is-one-third">
+              <%= f.collection_select(:course_id, Course.all, :id, :name, prompt:"Course") %>
+            </div>
+        </div>
+        <div class="field"> 
+           <br>
+          <%= f.label :public, "Make Recipe Public?", class: "subtitle is-4" %>
+          <div class="control radio">
+            <%= f.label :public, "Yes", value: "true", class: "subtitle is-4" %>
+            <%= f.radio_button :public, true, class: "subtitle is-4" %>
+            <%= f.label :public, "No", value: "false", class: "subtitle is-4" %>
+            <%= f.radio_button :public, false %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= f.submit class: "button is-warning is-large" %>
+        <% end %>

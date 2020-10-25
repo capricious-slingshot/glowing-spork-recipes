@@ -22,9 +22,10 @@ class Recipe < ApplicationRecord
   validates :course_id, presence: true
 
   def star_rating
-    rated = UserRecipe.where(recipe_id: self.id)
-    sum = rated.collect{ |i| i.rating}.reduce(0, :+)
-    sum / rated.count
+    ratings = UserRecipe.where(recipe_id: self.id)
+    return 0 if ratings.empty?
+    sum = ratings.collect{ |i| i.rating}.reduce(0, :+)
+    sum / ratings.count
   end
-
+  
 end
