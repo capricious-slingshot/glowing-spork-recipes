@@ -10,15 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 20201016223819) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end
-=======
-ActiveRecord::Schema.define(version: 20200831013615) do
->>>>>>> Stashed changes
 
   create_table "courses", force: :cascade do |t|
     t.string "name"

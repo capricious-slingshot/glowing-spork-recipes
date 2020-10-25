@@ -28,4 +28,9 @@ module RecipeHelper
       link_to "Edit Recipe", edit_recipe_path(recipe), class: "button is-warning is-large crud-button"
 		end
 	end
+
+	def star_rating_text(recipe)
+		rating = recipe.star_rating.round(1)
+		!rating.zero? ? "#{rating.to_s} Stars" : "Not enough ratings yet"
+	end
 end
