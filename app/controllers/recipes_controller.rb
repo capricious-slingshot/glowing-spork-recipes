@@ -13,26 +13,20 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     9.times do
-      #someting is wrong with attributes association
-      #can't call the 'build_ingredients' method that is based on association
-      #binding.pry
-      #can't hit binding inside ingredient_attributes
-      
-      #  m = @recipe.measurements.build
-      # m.build_ingredient
-
-      @recipe.measurements.build
-      Ingredent.new #short cuts to the association error
+      m = @recipe.measurements.build
+      m.build_ingredient
     end
   end
 
   def create
-    recipe = Recipe.create(recipe_params)
-    if recipe.valid?
+    binding.pry
+    #I think my params are malformed?
+    recipe = Recipe.new(recipe_params)
+    if recipe.save
       redirect_to recipe_url(recipe), notice: "Success"
     else
       flash[:alert] = "There was a problem. Recipe was not created."
-      render :edit
+      render :new
     end
   end
 
@@ -68,7 +62,7 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public,
       measurements_attributes: [
-        :quantity, :unit, :ingredient_name, ingredient_attributes: [:name]
+        :quantity, :unit, ingredient_attributes: [:name]
       ]
     )
   end

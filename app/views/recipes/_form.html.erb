@@ -42,9 +42,9 @@
               <div class="column">
                 <%= m.fields_for :ingredient do |i|%>
                   <div class="field">
-                    <%= i.label :ingredient_name, "Ingredient", class: "hidden subtitle is-4" %><br>
+                    <%= i.label :name, "Ingredient", class: "hidden subtitle is-4" %><br>
                     <p class="control is-fullwidth">
-                      <%= i.text_field :ingredient_name, class: "input is-large", placeholder: "Ingredient Name" %>
+                      <%= i.text_field :name, class: "input is-large", placeholder: "Ingredient Name" %>
                     </p>
                   </div>
                 <% end %>

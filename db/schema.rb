@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20201025224422) do
   create_table "measurements", force: :cascade do |t|
     t.string "quantity"
     t.string "unit"
-    t.string "ingredient_name"
     t.integer "recipe_id"
     t.integer "ingredient_id"
     t.index ["ingredient_id"], name: "index_measurements_on_ingredient_id"
