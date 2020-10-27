@@ -11,7 +11,7 @@ class Recipe < ApplicationRecord
   has_many :recipe_tags
   has_many :tags, through: :recipe_tags
 
-  has_many :measurements
+  has_many :measurements, dependant: :destroy
   has_many :ingredients, through: :measurements
 
   has_many :steps
@@ -28,4 +28,9 @@ class Recipe < ApplicationRecord
     sum / ratings.count
   end
   
+  def measurements_attributes=(form_attributes)
+    form_attributes.values.each do |row|
+        self.measurement << Measurement.create(row) if row.values.all(&:present?)
+    end
+  end
 end

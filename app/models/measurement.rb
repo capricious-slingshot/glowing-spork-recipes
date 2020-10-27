@@ -1,19 +1,14 @@
 class Measurement < ApplicationRecord
   belongs_to :recipe
+  belongs_to :ingredients
+  validates :quantity, presence: true
+  validates :unit, presence: true
+  validates :ingredient_name, presence: true
+  validates :recipe_id, presence: true
+  validates :ingredient_id, presence: true
 
-  has_many :ingredients
-  has_many :quantities
-  has_many :units
-
-  def ammount
-    Quantity.find(quantity_id).ammount
-  end
-
-  def unit
-    Unit.find(unit_id).name
-  end
-
-  def ingredient
-    Ingredient.find(unit_id).name
+  def ingredient_attributes=(attr)
+    binding.pry
+    self.ingredient = Ingredient.find_or_create_by(attr) if attr['name'].present?
   end
 end

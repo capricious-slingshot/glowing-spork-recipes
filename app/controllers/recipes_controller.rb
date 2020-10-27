@@ -12,16 +12,26 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    9.times do
+      #someting is wrong with attributes association
+      #can't call the 'build_ingredients' method that is based on association
+      #binding.pry
+      #can't hit binding inside ingredient_attributes
+      
+      #  m = @recipe.measurements.build
+      # m.build_ingredient
+
+      @recipe.measurements.build
+      Ingredent.new #short cuts to the association error
+    end
   end
 
   def create
-    binding.pry
-    recipe = Recipe.new(recipe_params)
-    recipe.author_id = current_user.id
-    if recipe.save
+    recipe = Recipe.create(recipe_params)
+    if recipe.valid?
       redirect_to recipe_url(recipe), notice: "Success"
     else
-      flash[:alert] = "There was a problem. Recipe not created."
+      flash[:alert] = "There was a problem. Recipe was not created."
       render :edit
     end
   end
@@ -42,7 +52,7 @@ class RecipesController < ApplicationController
   def destroy
     if current_user.id == @recipe.author_id
       @recipe.destroy
-      redirect_to recipes_path, notice: "#{@recipe.title} Succesfully Deleted!"
+      redirect_to recipes_url, notice: "#{@recipe.title} Succesfully Deleted!"
     else
       flash[:alert] = "Error: #{@recipe.title} Not Deleted"
       render :edit
@@ -56,6 +66,10 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :photo, :description, :course_id, :public)
+    params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public,
+      measurements_attributes: [
+        :quantity, :unit, :ingredient_name, ingredient_attributes: [:name]
+      ]
+    )
   end
 end
