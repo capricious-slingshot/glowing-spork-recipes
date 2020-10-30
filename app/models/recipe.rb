@@ -24,13 +24,13 @@ class Recipe < ApplicationRecord
   def star_rating
     ratings = UserRecipe.where(recipe_id: self.id)
     return 0 if ratings.empty?
-    sum = ratings.collect{ |i| i.rating}.reduce(0, :+)
+    sum = ratings.collect{ |i| i.rating }.reduce(0, :+)
     sum / ratings.count
   end
   
   def measurements_attributes=(form_attributes)
     form_attributes.values.each do |row|
-      self.measurements << Measurement.create(row) if row.values.all?(&:present?)
+      self.measurements << Measurement.first_or_create(row) if row.values.all?(&:present?)
     end
   end
 end

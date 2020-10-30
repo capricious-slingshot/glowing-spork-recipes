@@ -6,7 +6,8 @@ Course.create(name: "Main")
 Course.create(name: "Dessert")
 Course.create(name: "Snacks")
 
-Recipe.create(
+
+brownies = Recipe.create(
   photo: 'brownies.jpg',
   title: 'brownies',
   author_id: 1,
@@ -14,8 +15,19 @@ Recipe.create(
   course_id: 6,
   public: true
 )
+Ingredient.create(name: 'Sugar')
+Ingredient.create(name: 'Egg')
+Ingredient.create(name: 'Butter')
+Ingredient.create(name: 'Flour')
+Ingredient.create(name: 'Milk Chocolate')
 
-Recipe.create(
+brownies.measurements.create(recipe_id: 1, quantity: "5", unit: "Tablespoons", ingredient_id: 1)
+brownies.measurements.create(recipe_id: 1, quantity: "3", unit: "Cups", ingredient_id: 2)
+brownies.measurements.create(recipe_id: 1, quantity: "5", unit: "1/2 stick", ingredient_id: 3)
+brownies.measurements.create(recipe_id: 1, quantity: "7", unit: "pinch", ingredient_id: 4)
+brownies.measurements.create(recipe_id: 1, quantity: "6", unit: "teaspoons", ingredient_id: 5)
+
+pizza = Recipe.create(
   photo: 'pizza.jpg',
   title: 'Margaharita Pizza',
   author_id: 2,
@@ -24,7 +36,19 @@ Recipe.create(
   public: true
 )
 
-Recipe.create(
+Ingredient.create(name: 'Flour')
+Ingredient.create(name: 'Egg')
+Ingredient.create(name: 'Cheese')
+Ingredient.create(name: 'Tomato Sauce')
+Ingredient.create(name: 'Basil')
+
+pizza.measurements.create(recipe_id: 2, quantity: "5", unit: "Tablespoons", ingredient_id: 6)
+pizza.measurements.create(recipe_id: 2, quantity: "3", unit: "Cups", ingredient_id: 7)
+pizza.measurements.create(recipe_id: 2, quantity: "5", unit: "1/2 stick", ingredient_id: 8)
+pizza.measurements.create(recipe_id: 2, quantity: "7", unit: "pinch", ingredient_id: 9)
+pizza.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 10)
+
+pad_thai = Recipe.create(
   photo: 'pad-thai.jpg',
   title: 'Pad Thai',
   author_id: 3,
@@ -32,8 +56,19 @@ Recipe.create(
   course_id: 5,
   public: true
 )
+Ingredient.create(name: 'Rice noodles')
+Ingredient.create(name: 'Egg')
+Ingredient.create(name: 'Tamarind')
+Ingredient.create(name: 'Bean Sprouts')
+Ingredient.create(name: 'Soy Sauce')
 
-Recipe.create(
+pad_thai.measurements.create(recipe_id: 2, quantity: "5", unit: "Tablespoons", ingredient_id: 11)
+pad_thai.measurements.create(recipe_id: 2, quantity: "3", unit: "Cups", ingredient_id: 12)
+pad_thai.measurements.create(recipe_id: 2, quantity: "5", unit: "1/2 stick", ingredient_id: 13)
+pad_thai.measurements.create(recipe_id: 2, quantity: "7", unit: "pinch", ingredient_id: 14)
+pad_thai.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 15)
+
+butter_chicken = Recipe.create(
   photo: 'butter-chicken.jpg',
   title: 'Butter Chicken',
   author_id: 4,
@@ -41,8 +76,19 @@ Recipe.create(
   course_id: 5,
   public: true
 )
+Ingredient.create(name: 'Basmati Rice')
+Ingredient.create(name: 'Coconut Milk')
+Ingredient.create(name: 'Curry')
+Ingredient.create(name: 'Chicken')
+Ingredient.create(name: 'Salt')
 
-Recipe.create(
+butter_chicken.measurements.create(recipe_id: 2, quantity: "5", unit: "Tablespoons", ingredient_id: 16)
+butter_chicken.measurements.create(recipe_id: 2, quantity: "3", unit: "Cups", ingredient_id: 17)
+butter_chicken.measurements.create(recipe_id: 2, quantity: "5", unit: "1/2 stick", ingredient_id: 18)
+butter_chicken.measurements.create(recipe_id: 2, quantity: "7", unit: "pinch", ingredient_id: 19)
+butter_chicken.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 20)
+
+ramen = Recipe.create(
   photo: 'ramen.jpg',
   title: 'Ramen',
   author_id: 5,
@@ -50,8 +96,19 @@ Recipe.create(
   course_id: 5,
   public: true
 )
+Ingredient.create(name: 'Soft Boiled Egg')
+Ingredient.create(name: 'Ramen Noodles')
+Ingredient.create(name: 'Scallions')
+Ingredient.create(name: 'Bone Broth')
+Ingredient.create(name: 'Garlic')
 
-Recipe.create(
+ramen.measurements.create(recipe_id: 2, quantity: "5", unit: "Tablespoons", ingredient_id: 21)
+ramen.measurements.create(recipe_id: 2, quantity: "3", unit: "Cups", ingredient_id: 22)
+ramen.measurements.create(recipe_id: 2, quantity: "5", unit: "1/2 stick", ingredient_id: 23)
+ramen.measurements.create(recipe_id: 2, quantity: "7", unit: "pinch", ingredient_id: 24)
+ramen.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 25)
+
+sushi_rice = Recipe.create(
   photo: 'sushi-rice.jpg',
   title: 'Sushi Rice',
   author_id: 1,
@@ -59,8 +116,19 @@ Recipe.create(
   course_id: 4,
   public: true
 )
+Ingredient.create(name: 'Sushi Rice')
+Ingredient.create(name: 'Coconut oil')
+Ingredient.create(name: 'Salt')
+Ingredient.create(name: 'Bone Broth')
+Ingredient.create(name: 'Water')
 
-Recipe.create(
+sushi_rice.measurements.create(recipe_id: 2, quantity: "5", unit: "Tablespoons", ingredient_id: 26)
+sushi_rice.measurements.create(recipe_id: 2, quantity: "3", unit: "Cups", ingredient_id: 27)
+sushi_rice.measurements.create(recipe_id: 2, quantity: "5", unit: "1/2 stick", ingredient_id: 28)
+sushi_rice.measurements.create(recipe_id: 2, quantity: "7", unit: "pinch", ingredient_id: 29)
+sushi_rice.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 30)
+
+fish_tacos = Recipe.create(
   photo: 'fish-tacos.jpg',
   title: 'Fish Tacos',
   author_id: 2,
@@ -68,8 +136,19 @@ Recipe.create(
   course_id: 5,
   public: true
 )
+Ingredient.create(name: 'Mahi Mahi')
+Ingredient.create(name: 'Lime')
+Ingredient.create(name: 'Tortillas')
+Ingredient.create(name: 'Cilantro')
+Ingredient.create(name: 'Pickled Radish')
 
-Recipe.create(
+sushi_rice.measurements.create(recipe_id: 2, quantity: "5", unit: "Tablespoons", ingredient_id: 31)
+sushi_rice.measurements.create(recipe_id: 2, quantity: "3", unit: "Cups", ingredient_id: 32)
+sushi_rice.measurements.create(recipe_id: 2, quantity: "5", unit: "1/2 stick", ingredient_id: 33)
+sushi_rice.measurements.create(recipe_id: 2, quantity: "7", unit: "pinch", ingredient_id: 34)
+sushi_rice.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 35)
+
+spring_rolls = Recipe.create(
   photo: 'spring-rolls.jpg',
   title: 'Fresh Spring Rolls',
   author_id: 4,
@@ -77,15 +156,40 @@ Recipe.create(
   course_id: 4,
   public: true
 )
+Ingredient.create(name: 'Rice Paper')
+Ingredient.create(name: 'Lettuce')
+Ingredient.create(name: 'Virmicelli Noodles')
+Ingredient.create(name: 'Shrimp')
+Ingredient.create(name: 'Hoisin Sauce')
 
-Recipe.create(
+spring_rolls.measurements.create(recipe_id: 2, quantity: "5", unit: "Tablespoons", ingredient_id: 36)
+spring_rolls.measurements.create(recipe_id: 2, quantity: "3", unit: "Cups", ingredient_id: 37)
+spring_rolls.measurements.create(recipe_id: 2, quantity: "5", unit: "1/2 stick", ingredient_id: 38)
+spring_rolls.measurements.create(recipe_id: 2, quantity: "7", unit: "pinch", ingredient_id: 39)
+spring_rolls.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 40)
+
+bimbap = Recipe.create(
   photo: 'bimbap.jpg',
   title: 'Bimbap',
   author_id: 1,
   description: "Bibimbap (비빔밥) is probably one of the most well-known and beloved Korean dishes to many people. Even if people don’t know anything about Korea, it’s not too difficult to find people who had Bibimbap sometime in their lives.",
   course_id: 5,
-  public: true
+  public: true,
+
 )
+Ingredient.create(name: 'White Rice')
+Ingredient.create(name: 'Kimchi')
+Ingredient.create(name: 'Bulgogi')
+Ingredient.create(name: 'Scallions')
+Ingredient.create(name: 'Sesame Seeds')
+Ingredient.create(name: 'Over Easy Egg')
+
+bimbap.measurements.create(recipe_id: 2, quantity: "5", unit: "Tablespoons", ingredient_id: 41)
+bimbap.measurements.create(recipe_id: 2, quantity: "3", unit: "Cups", ingredient_id: 42)
+bimbap.measurements.create(recipe_id: 2, quantity: "5", unit: "1/2 stick", ingredient_id: 43)
+bimbap.measurements.create(recipe_id: 2, quantity: "7", unit: "pinch", ingredient_id: 44)
+bimbap.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 45)
+bimbap.measurements.create(recipe_id: 2, quantity: "6", unit: "2", ingredient_id: 46)
 
 Category.create(name: "Vietnamese")
 Category.create(name: "Thai")
@@ -119,24 +223,6 @@ Tag.create(name: 'lunch')
 Tag.create(name: 'dinner')
 Tag.create(name: 'sweet')
 Tag.create(name: 'savory')
-
-Ingredient.create(name: 'Sugar')
-Ingredient.create(name: 'Egg')
-Ingredient.create(name: 'Butter')
-Ingredient.create(name: 'Flour')
-Ingredient.create(name: 'Milk Chocolate')
-Ingredient.create(name: 'Dark Chocolate')
-Ingredient.create(name: 'Water')
-Ingredient.create(name: 'Vanilla')
-Ingredient.create(name: 'Heavy Cream')
-Ingredient.create(name: 'Brown Sugar')
-Ingredient.create(name: 'Yeast')
-
-Measurement.create(recipe_id: 1, quantity: "5", unit: "Tablespoons")
-Measurement.create(recipe_id: 1, quantity: "3", unit: "Cups")
-Measurement.create(recipe_id: 1, quantity: "5", unit: "1/2 stick")
-Measurement.create(recipe_id: 1, quantity: "7", unit: "pinch")
-Measurement.create(recipe_id: 1, quantity: "6", unit: "2")
 
 User.create(name: 'test1', email: 'test1@me.com', password: '123456789', password_confirmation: '123456789')
 User.create(name: 'test2', email: 'test2@me.com', password: '123456789', password_confirmation: '123456789', public_profile: false)

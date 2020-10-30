@@ -3,7 +3,7 @@ class Measurement < ApplicationRecord
   belongs_to :ingredient
   validates :quantity, presence: true
   validates :unit, presence: true
-  # validates :recipe_id, presence: true
+  validates :recipe_id, presence: true
   validates :ingredient_id, presence: true
 
   def ingredient_attributes=(attr)

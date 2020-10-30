@@ -19,8 +19,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    binding.pry
-    #I think my params are malformed?
     recipe = Recipe.new(recipe_params)
     if recipe.save
       redirect_to recipe_url(recipe), notice: "Success"
@@ -35,6 +33,8 @@ class RecipesController < ApplicationController
   end
 
   def update
+    #params are fucked
+    binding.pry
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Successfully Updated"
     else
@@ -46,6 +46,7 @@ class RecipesController < ApplicationController
   def destroy
     if current_user.id == @recipe.author_id
       @recipe.destroy
+      @recipe.measurements.each { |m| m.destroy }
       redirect_to recipes_url, notice: "#{@recipe.title} Succesfully Deleted!"
     else
       flash[:alert] = "Error: #{@recipe.title} Not Deleted"
@@ -62,8 +63,9 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public,
       measurements_attributes: [
-        :quantity, :unit, ingredient_attributes: [:name]
-      ]
+        :id, :quantity, :unit, :recipe_id,
+          ingredient_attributes: [:id, :name]
+      ]    
     )
   end
 end

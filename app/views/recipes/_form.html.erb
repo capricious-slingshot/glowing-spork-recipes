@@ -1,27 +1,27 @@
-			<%= form_for(@recipe) do |f| %>
+			<%= form_for(@recipe) do |r| %>
         <div class="field">
-          <%= f.text_field :author_id, value: current_user.id, class: "hidden" %>
-          <%= f.label :title, class: "subtitle is-3" %>
+          <%= r.text_field :author_id, value: current_user.id, class: "hidden" %>
+          <%= r.label :title, class: "subtitle is-3" %>
           <div class="control">
-            <%= f.text_field :title, class: "input is-large", placeholder: "Recipe Name", autofocus: true %>
+            <%= r.text_field :title, class: "input is-large", placeholder: "Recipe Name", autofocus: true %>
           </div>
         </div>
         <div class="field">
-          <%= f.label :photo, "Photo Url", class: "subtitle is-3" %>
+          <%= r.label :photo, "Photo Url", class: "subtitle is-3" %>
           <div class="control">
-            <%= f.text_field :photo, class: "input is-large", placeholder: "Url" %>
+            <%= r.text_field :photo, class: "input is-large", placeholder: "Url" %>
           </div>
         </div>
         <div class="field">
-          <%= f.label :description, class: "subtitle is-3" %>
+          <%= r.label :description, class: "subtitle is-3" %>
           <div class="control">
-            <%= f.text_area :description, class: "textarea is-large", placeholder: "Tender juicy morsels of goodness....." %>
+            <%= r.text_area :description, class: "textarea is-large", placeholder: "Tender juicy morsels of goodness....." %>
           </div>
         </div>
-        <%= f.label :ingredients, "Ingredients", class: "subtitle is-3" %>
+        <%= r.label :ingredients, "Ingredients", class: "subtitle is-3" %>
         
   <!-- half-fixed -->
-        <%= f.fields_for :measurements do |m| %>
+        <%= r.fields_for :measurements do |m| %>
           <div class="columns">
             <div class="column">
               <div class="field">
@@ -54,22 +54,22 @@
   <!-- end half-fixed -->
         <div class="field">
         <br>
-          <%= f.label :course_id, "Course", class: "subtitle is-3" %><br><br>
+          <%= r.label :course_id, "Course", class: "subtitle is-3" %><br><br>
             <div class="select is-one-third">
-              <%= f.collection_select(:course_id, Course.all, :id, :name, prompt:"Course") %>
+              <%= r.collection_select(:course_id, Course.all, :id, :name, prompt:"Course") %>
             </div>
         </div>
         <div class="field"> 
            <br>
-          <%= f.label :public, "Make Recipe Public?", class: "subtitle is-4" %>
+          <%= r.label :public, "Make Recipe Public?", class: "subtitle is-4" %>
           <div class="control radio">
-            <%= f.label :public, "Yes", value: "true", class: "subtitle is-4" %>
-            <%= f.radio_button :public, true, class: "subtitle is-4" %>
-            <%= f.label :public, "No", value: "false", class: "subtitle is-4" %>
-            <%= f.radio_button :public, false %>
+            <%= r.label :public, "Yes", value: "true", class: "subtitle is-4" %>
+            <%= r.radio_button :public, true, class: "subtitle is-4" %>
+            <%= r.label :public, "No", value: "false", class: "subtitle is-4" %>
+            <%= r.radio_button :public, false %>
           </div>
         </div>
         <div class="field">
           <div class="control">
-            <%= f.submit class: "button is-warning is-large" %>
+            <%= r.submit class: "button is-warning is-large" %>
         <% end %>
