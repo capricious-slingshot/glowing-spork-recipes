@@ -19,6 +19,7 @@ class RecipesController < ApplicationController
   end
 
   def create
+    binding.pry
     recipe = Recipe.new(recipe_params)
     if recipe.save
       redirect_to recipe_url(recipe), notice: "Success"
@@ -33,8 +34,6 @@ class RecipesController < ApplicationController
   end
 
   def update
-    #params are fucked
-    binding.pry
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Successfully Updated"
     else
