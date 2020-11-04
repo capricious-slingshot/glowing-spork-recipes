@@ -30,22 +30,10 @@ class Recipe < ApplicationRecord
   
   def measurements_attributes=(form_attributes)
     form_attributes.values.each do |row|
-      # self.measurements << Measurement.first_or_create(row) if row.values.all?(&:present?) //original
-
-      # "quantity"=>"3", "unit"=>"slices", "ingredient_id"=> "3"  // table columns
-
-      # "quantity"=>"3", "unit"=>"slices", "ingredient_attributes"=>{"name"=>"sourdough"} //attributes_hash from form
-      
       if row.values.all?(&:present?)
-        binding.pry
-        # ingerdient = Ingredient.find_by(name: row[:ingredient_attributes][:name]) 
-        # // will return nil - ingredient_attributes inside Measurement
-
-        # // how can I hit ingredient_attributes inside Measurement?
-        # //is calling a method inside params a thing?
-        # Ingredient.find_by(name: self.ingredient_attributes(row["ingredient_attributes"])) 
-        
-        self.measurements << Measurement.find_or_create_by(row) #blows up becasue ingredient_attributes is not a column name
+        ingredient = Ingredient.find_or_initialize_by(name: row[:ingredient_attributes][:name])
+        ingredient.save!
+        self.measurements << Measurement.where(quantity: row['quantity'], unit: row['unit'], ingredient_id: ingredient.id).first_or_create(row) if row.values.all?(&:present?) #original
       end
     end
   end

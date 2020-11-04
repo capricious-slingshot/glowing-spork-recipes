@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
       #added check for present email above (&& !auth_hash["info"]["email"] = nil)
       
       user = User.find_or_create_by_omniauth(auth_hash)
-      binding.pry
       session[:user_id]  = user.id
 
       redirect_to root_path       
