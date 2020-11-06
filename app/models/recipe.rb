@@ -31,9 +31,8 @@ class Recipe < ApplicationRecord
   def measurements_attributes=(form_attributes)
     form_attributes.values.each do |row|
       if row.values.all?(&:present?)
-        ingredient = Ingredient.find_or_initialize_by(name: row[:ingredient_attributes][:name])
-        ingredient.save!
-        self.measurements << Measurement.where(quantity: row['quantity'], unit: row['unit'], ingredient_id: ingredient.id).first_or_create(row) if row.values.all?(&:present?) #original
+        ingredient = Ingredient.find_or_create_by(name: row[:ingredient_attributes][:name])
+        self.measurements << Measurement.where(quantity: row['quantity'], unit: row['unit'], ingredient_id: ingredient.id).first_or_create(row) if row.values.all?(&:present?)
       end
     end
   end
