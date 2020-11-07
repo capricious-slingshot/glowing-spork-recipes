@@ -54,17 +54,8 @@
           <div class="columns level">
             <div class="column level-left is-2">
               <div class="field">
-                <%= s.label :position, "Step Number", class: "subtitle is-5 level-item" %>
+                <%= s.label :position, "Step #{convert_index(s.index)}", class: "subtitle is-5 level-item" %>
               </div>
-            </div>
-            <div class="column level-right is-1">
-              <div class="field">
-                <div class="is-one-third">
-                  <%= s.text_field :position, class: "input is-large", placeholder: "Step Number" %>
-                </div>
-              </div>
-            </div>
-            <div class="column level-right is-9">
             </div>
           </div>
           <div class="columns">
@@ -106,7 +97,24 @@
             </div>
           </div>
         </div>
-      <br>
+        <%= r.label :tags, "Tags", class: "subtitle is-3" %><br><br>
+        <div class="columns">
+          <div class="column is-11 is-offset-1">
+            <div class="columns">
+              <%= r.fields_for :tags do |t| %>
+                <div class="column is-3">
+                  <div class="field">
+                    <%= t.label :name, "#", class: "subtitle is-3 hidden" %>
+                    <div class="control">
+                      <%= t.text_field :name, class: "input is-large", placeholder: "paleo, delicious...", autofocus: true %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <br>
+        </div>
         <div class="field"> 
            <br>
           <%= r.label :public, "Make Recipe Public?", class: "subtitle is-4" %>

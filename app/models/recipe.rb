@@ -2,10 +2,10 @@ class Recipe < ApplicationRecord
   has_many :user_recipes
   has_many :users, through: :user_recipes
 
-  has_many :recipe_categories, dependent: :destroy
+  has_many :recipe_categories
   has_many :categories, through: :recipe_categories
 
-  has_many :recipe_restrictions, dependent: :destroy
+  has_many :recipe_restrictions
   has_many :restrictions, through: :recipe_restrictions
 
   has_many :recipe_tags
@@ -34,7 +34,17 @@ class Recipe < ApplicationRecord
     form_attributes.values.each do |row|
       if row.values.all?(&:present?)
         ingredient = Ingredient.find_or_create_by(name: row[:ingredient_attributes][:name])
-        self.measurements << Measurement.where(quantity: row['quantity'], unit: row['unit'], ingredient_id: ingredient.id).first_or_create(row) if row.values.all?(&:present?)
+        self.measurements << Measurement.where(quantity: row['quantity'], unit: row['unit'], ingredient_id: ingredient.id).first_or_create(row)
+      end
+    end
+  end
+
+  def tags_attributes=(form_attr)
+    form_attr.values.each do |tag|
+      if tag.values.all?(&:present?)
+        tag_name = Tag.format(tag['name'])
+        t = Tag.find_or_create_by(name: tag_name)
+        self.tags << t if !self.tags.include?(t)
       end
     end
   end

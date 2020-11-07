@@ -44,10 +44,10 @@
       <article class="tile is-child notification even-box top-element">
         <div class="content">
           <p class="title">Do All Of The Things</p>
-          <% @steps.each do |s| %>
-            <p class="subtitle">Step <%= s.position %>:</p>
+          <% @steps.each_with_index do |step, index| %>
+            <p class="subtitle">Step <%= convert_index(index) %>:</p>
             <div class="content">
-              <p><%= s.description %></p>
+              <p><%= step.description %></p>
             </div>
           <% end %>
         </div>
@@ -65,20 +65,9 @@
               <%= link_to "#{restriction.name}", "#", class:"tag is-warning is-medium" %>
             <% end %>
             <div class="tags">
-              <a href="" class="tag">#whatever</a>
-              <a href="" class="tag">#paleo</a>
-              <a href="" class="tag">#delicios</a>
-              <a href="" class="tag">#zomg</a>
-              <a href="" class="tag">#hashtag</a>
-              <a href="" class="tag">#whatever</a>
-              <a href="" class="tag">#paleo</a>
-              <a href="" class="tag">#delicios</a>
-              <a href="" class="tag">#zomg</a>
-              <a href="" class="tag">#hashtag</a>
-              <a href="" class="tag">#whatever</a>
-              <a href="" class="tag">#delicios</a>
-              <a href="" class="tag">#zomg</a>
-              <a href="" class="tag">#hashtag</a>
+              <% @tags.each do |tag| %>
+                <%= link_to "##{tag.name}", "#", class:"tag" %>
+              <% end %>
             </div>
           </div>
         </article>

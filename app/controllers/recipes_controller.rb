@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
     @steps = @recipe.steps
     @categories = @recipe.categories
     @restrictions = @recipe.restrictions
+    @tags = @recipe.tags
   end
 
   def new
@@ -19,6 +20,7 @@ class RecipesController < ApplicationController
       m.build_ingredient
     end
     5.times {@recipe.steps.build}
+    4.times {@recipe.tags.build}    
   end
 
   def create
@@ -71,6 +73,9 @@ class RecipesController < ApplicationController
       ],
       steps_attributes:[
         :id, :description, :position
+      ],
+      tags_attributes:[
+        :id, :name
       ]
     )
   end

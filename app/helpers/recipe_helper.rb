@@ -33,4 +33,8 @@ module RecipeHelper
 		rating = recipe.star_rating.round(1)
 		!rating.zero? ? "#{rating.to_s} Stars" : "Not enough ratings yet"
 	end
+
+	def convert_index(index)
+    index += 1
+	end
 end

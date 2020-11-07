@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201107003816) do
+ActiveRecord::Schema.define(version: 20201107210653) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20201107003816) do
   create_table "recipe_tags", force: :cascade do |t|
     t.integer "recipe_id"
     t.integer "tag_id"
+    t.index ["recipe_id", "tag_id"], name: "index_recipe_tags_on_recipe_id_and_tag_id", unique: true
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -67,7 +68,6 @@ ActiveRecord::Schema.define(version: 20201107003816) do
 
   create_table "steps", force: :cascade do |t|
     t.string "description"
-    t.integer "position"
     t.integer "recipe_id"
     t.index ["recipe_id"], name: "index_steps_on_recipe_id"
   end
