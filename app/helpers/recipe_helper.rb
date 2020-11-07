@@ -37,4 +37,18 @@ module RecipeHelper
 	def convert_index(index)
     index += 1
 	end
+
+	def	shuffled_links(categories,restrictions,tags)
+		links = []
+		categories.each do |category|
+		  links << (link_to "#{category.name}", "#", class:"subtitle is-2 shuffled tag")
+		end
+		restrictions.each do |restriction|
+			links << (link_to "#{restriction.name}", "#", class:"subtitle is-3 shuffled tag is-white")
+		end
+		tags.each do |tag|
+			links << (link_to "##{tag.name}", "#", class:"subtitle is-4 shuffled")
+		end
+		links.shuffle
+	end
 end
