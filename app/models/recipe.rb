@@ -21,6 +21,8 @@ class Recipe < ApplicationRecord
   validates :description, presence: true
   validates :course_id, presence: true
 
+  accepts_nested_attributes_for :steps
+
   def star_rating
     ratings = UserRecipe.where(recipe_id: self.id)
     return 0 if ratings.empty?
@@ -36,4 +38,5 @@ class Recipe < ApplicationRecord
       end
     end
   end
+
 end

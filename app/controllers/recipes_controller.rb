@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
     9.times do
       m = @recipe.measurements.build
       m.build_ingredient
+      @recipe.steps.build
     end
   end
 
@@ -63,7 +64,10 @@ class RecipesController < ApplicationController
       measurements_attributes: [
         :id, :quantity, :unit, :recipe_id,
           ingredient_attributes: [:id, :name]
-      ]    
+      ],
+      steps_attributes:[
+        :id, :description, :position
+      ]
     )
   end
 end

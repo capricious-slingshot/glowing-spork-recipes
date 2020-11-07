@@ -19,8 +19,6 @@
           </div>
         </div>
         <%= r.label :ingredients, "Ingredients", class: "subtitle is-3" %>
-        
-  <!-- half-fixed -->
         <%= r.fields_for :measurements do |m| %>
           <div class="columns">
             <div class="column">
@@ -51,7 +49,36 @@
               </div>
             </div>
           <% end %>
-  <!-- end half-fixed -->
+        <%= r.label :ingredients, "Directions", class: "subtitle is-3" %><br><br>
+        <%= r.fields_for :steps do |s| %>
+          <div class="columns level">
+            <div class="column level-left is-2">
+              <div class="field">
+                <%= s.label :position, "Step Number", class: "subtitle is-5 level-item" %>
+              </div>
+            </div>
+            <div class="column level-right is-1">
+              <div class="field">
+                <div class="is-one-third">
+                  <%= s.text_field :position, class: "input is-large", placeholder: "Step Number" %>
+                </div>
+              </div>
+            </div>
+            <div class="column level-right is-9">
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-11 is-offset-1">
+              <div class="field">
+                <%= s.label :description, class: "subtitle is-3 hidden" %>
+                <div class="control">
+                  <%= s.text_area :description, class: "input is-large ", placeholder: "Description", autofocus: true %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br><br>
+        <% end %>
         <div class="field">
         <br>
           <%= r.label :course_id, "Course", class: "subtitle is-3" %><br><br>
