@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
     @author = User.find(@recipe.author_id)
     @steps = @recipe.steps
     @categories = @recipe.categories
+    @restrictions = @recipe.restrictions
   end
 
   def new
@@ -61,7 +62,9 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public, category_ids: [],
+    params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public, 
+      category_ids: [],
+      restriction_ids: [],
       measurements_attributes: [
         :id, :quantity, :unit, :recipe_id,
           ingredient_attributes: [:id, :name]

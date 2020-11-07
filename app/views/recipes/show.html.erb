@@ -61,11 +61,9 @@
             <% @categories.each do |category| %>
               <%= link_to "#{category.name}", "#", class:"tag is-danger is-large" %>
             <% end %>
-            <a href="" class="tag is-warning is-medium">Gluten Free</a>
-            <a href="" class="tag is-warning is-medium">Keto</a>
-            <a href="" class="tag is-warning is-medium">Bulletproof</a>
-              <a href="" class="tag is-success is-medium">Breakfast</a>
-              <a href="" class="tag is-success is-medium">Dessert</a>
+            <% @restrictions.each do |restriction| %>
+              <%= link_to "#{restriction.name}", "#", class:"tag is-warning is-medium" %>
+            <% end %>
             <div class="tags">
               <a href="" class="tag">#whatever</a>
               <a href="" class="tag">#paleo</a>

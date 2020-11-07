@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
   has_many :recipe_categories, dependent: :destroy
   has_many :categories, through: :recipe_categories
 
-  has_many :recipe_restrictions
+  has_many :recipe_restrictions, dependent: :destroy
   has_many :restrictions, through: :recipe_restrictions
 
   has_many :recipe_tags

@@ -81,20 +81,32 @@
         <% end %>
         <%= r.label :categories, "Categories", class: "subtitle is-3" %><br><br>
         <div class="columns">
-          <div class="column is-11 is-offset-1">
+          <div class="column is-11 is-offset-1 is-full-width-mobile">
             <div class="field recipe-checkbox">
               <%= r.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
             </div>
           </div>
         </div>
-      <br>
         <div class="field">
-        <br>
           <%= r.label :course_id, "Course", class: "subtitle is-3" %><br><br>
-            <div class="select is-one-third">
-              <%= r.collection_select(:course_id, Course.all, :id, :name, prompt:"Course") %>
+          <div class="columns">
+            <div class="column is-11 is-offset-1">
+              <div class="select is-large">
+                <%= r.collection_select(:course_id, Course.all, :id, :name, prompt:"Course") %>
+              </div>
             </div>
+\          </div>
         </div>
+        <br>
+        <%= r.label :restrictions, "Dietary Restrictions", class: "subtitle is-3" %><br><br>
+        <div class="columns">
+          <div class="column is-11 is-offset-1">
+            <div class="field recipe-checkbox">
+              <%= r.collection_check_boxes(:restriction_ids, Restriction.all, :id, :name) %>
+            </div>
+          </div>
+        </div>
+      <br>
         <div class="field"> 
            <br>
           <%= r.label :public, "Make Recipe Public?", class: "subtitle is-4" %>
