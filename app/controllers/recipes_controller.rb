@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
   def show
     @author = User.find(@recipe.author_id)
     @steps = @recipe.steps
+    @categories = @recipe.categories
   end
 
   def new
@@ -15,8 +16,8 @@ class RecipesController < ApplicationController
     9.times do
       m = @recipe.measurements.build
       m.build_ingredient
-      @recipe.steps.build
     end
+    5.times {@recipe.steps.build}
   end
 
   def create
@@ -60,7 +61,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public,
+    params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public, category_ids: [],
       measurements_attributes: [
         :id, :quantity, :unit, :recipe_id,
           ingredient_attributes: [:id, :name]

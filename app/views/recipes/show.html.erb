@@ -58,8 +58,9 @@
     <div class="tile is-parent">
         <article class="tile is-child notification">
           <div class="content">
-            <a  href=""class="tag is-danger is-large">Thai</a>
-            <a href="" class="tag is-danger is-large">Vietnamese</a>
+            <% @categories.each do |category| %>
+              <%= link_to "#{category.name}", "#", class:"tag is-danger is-large" %>
+            <% end %>
             <a href="" class="tag is-warning is-medium">Gluten Free</a>
             <a href="" class="tag is-warning is-medium">Keto</a>
             <a href="" class="tag is-warning is-medium">Bulletproof</a>
