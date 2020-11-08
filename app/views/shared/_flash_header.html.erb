@@ -3,13 +3,6 @@
     <p><%= flash[:notice] || flash[:alert] %></p>
     <!-- JS needed  <button class="delete" aria-label="delete"></button> -->
   </div>
-  <% if @user && @user.errors.any? %>
-    <div class="message-body">
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+  <%= render partial: "/shared/error_full_messages", locals: {obj: @user} %>
 </article>

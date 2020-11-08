@@ -58,21 +58,11 @@
     <div class="tile is-parent">
         <article class="tile is-child notification">
           <div class="content">
-            <% @categories.each do |category| %>
-              <%= link_to "#{category.name}", "#", class:"tag is-danger is-large" %>
+            <% shuffled_links(@categories, @restrictions, @tags).each do |link|%>
+              <%= link %>
             <% end %>
-            <% @restrictions.each do |restriction| %>
-              <%= link_to "#{restriction.name}", "#", class:"tag is-warning is-medium" %>
-            <% end %>
-            <div class="tags">
-              <% @tags.each do |tag| %>
-                <%= link_to "##{tag.name}", "#", class:"tag" %>
-              <% end %>
-            </div>
           </div>
         </article>
       </div>
   </div>
 </div>
-
-<!-- Catagories as links -->
