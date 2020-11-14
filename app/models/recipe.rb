@@ -1,4 +1,14 @@
 class Recipe < ApplicationRecord
+  validates :title, presence: true
+  validates :description, length: {minimum: 100}
+  validates :course_id, presence: true
+  validates :photo, allow_blank: true, format:{
+    with: /\w+\.(gif|jpg|png)\z/i,
+    message: "GIF, JPG, or PNG only"
+  }
+
+  belongs_to :course
+
   has_many :user_recipes
   has_many :users, through: :user_recipes
 
@@ -11,15 +21,10 @@ class Recipe < ApplicationRecord
   has_many :recipe_tags
   has_many :tags, through: :recipe_tags
 
-  has_many :measurements
+  has_many :measurements, dependent: :destroy
   has_many :ingredients, through: :measurements
 
   has_many :steps
-
-  belongs_to :course
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :course_id, presence: true
 
   accepts_nested_attributes_for :steps
 
@@ -47,6 +52,18 @@ class Recipe < ApplicationRecord
         self.tags << t if !self.tags.include?(t)
       end
     end
+  end
+
+  # def self.by_category(name)
+  #   where('name = ?' name).order("created_at desc")
+  # end
+
+  def self.newest_first
+    all.order("created_at desc")
+  end
+
+  def self.top_rated
+    all.order("star_rating asc")
   end
 
 end

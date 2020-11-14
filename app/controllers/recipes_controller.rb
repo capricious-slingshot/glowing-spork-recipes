@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.newest_first
   end
 
   def show

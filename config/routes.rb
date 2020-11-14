@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'recipes#index'
-  get  '/', to: 'recipes#index'
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+
+  get  '/recipes/top-rated', to: 'recipes#index' #Recipe.top_rated
+  # get  '/recipes/:name', to: 'recipes#index' #Recipe.by_category
   
   
 
