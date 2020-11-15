@@ -62,7 +62,7 @@ a.oath{
 	background-color: #750000;
 }
 .main{
-	background-image: linear-gradient(rgba(242, 242, 242, 0.5), rgba(102, 102, 102, 0.5)), url('spork.png');
+	background-image: linear-gradient(rgba(242, 242, 242, 0.5), rgba(102, 102, 102, 0.5)), url('recipes/spork.png');
 }
 .hero.is-primary .navbar-brand a.logo:hover{
 	background: #750000;
@@ -86,6 +86,13 @@ a.oath{
 .hero.is-primary .navbar-end .button:hover{
 	background: #a30000;
 	border: 1px soilid black;
+}
+.recipe-wrapper{
+	display: flex;
+	flex-wrap: wrap;
+}
+.container .card{
+	min-width: 300px;
 }
 .container .card .content{
 	color: black;

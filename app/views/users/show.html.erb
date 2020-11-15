@@ -18,15 +18,11 @@
             </div>
           </div>
           <div class="content user-heading">
-            <%= link_to "Add Recipe", new_recipe_path, class: "button is-info" %>
+            <%= link_to "Add Recipe", new_user_recipe_url(@user), class: "button is-info" %>
           </div>
         </article>
-    
+        <%= render '/shared/recipe_card' %>
     <!-- two tabs: show 'authored recipies'  show 'saved recipes' -->
-
-    <%# @user.recipies.each do |recipe| %>
-      <%# render '/shared/recipe_card' %>
-    <%#  end %>
     </div>
 	</div>
 </div>

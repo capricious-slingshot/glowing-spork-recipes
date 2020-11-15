@@ -1,7 +1,6 @@
-<% @recipes.each_slice(4) do |group| %> 
-  <div class="columns">
-    <% group.each do |recipe| %>
-      <div class="column">
+  <div class="columns recipe-wrapper">
+    <% @recipes.each do |recipe| %>
+      <div class="column fuckmylife">
         <div class="card">
           <a href="<%= recipe_path(recipe) %>" alt="<%= recipe.title %>" class="card_wrapper">
             <div class="card-image">
@@ -28,4 +27,3 @@
       </div>
     <% end %>
   </div>
-<% end %>

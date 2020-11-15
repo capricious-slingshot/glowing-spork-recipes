@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     if user.public_profile? || authorized_user
       @user = user 
+      @recipes = Recipe.user_recipes(@user.id)
     else
       redirect_to root_url, notice: "Profile is not Public"
     end

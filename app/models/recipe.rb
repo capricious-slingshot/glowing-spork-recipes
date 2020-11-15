@@ -66,4 +66,8 @@ class Recipe < ApplicationRecord
     all.order("star_rating asc")
   end
 
+  def self.user_recipes(user_id)
+    where(author_id: user_id)
+  end
+
 end

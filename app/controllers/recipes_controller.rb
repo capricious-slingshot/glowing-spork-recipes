@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @author = User.find(@recipe.author_id)
+    @author = User.find_by(id: @recipe.author_id)
     @steps = @recipe.steps
     @categories = @recipe.categories
     @restrictions = @recipe.restrictions
@@ -24,9 +24,9 @@ class RecipesController < ApplicationController
   end
 
   def create
-    recipe = Recipe.new(recipe_params)
-    if recipe.save
-      redirect_to recipe_url(recipe), notice: "Success"
+    @recipe = Recipe.new(recipe_params)
+    if @recipe.save
+      redirect_to recipe_url(@recipe), notice: "Success"
     else
       flash[:alert] = "There was a problem. Recipe was not created."
       render :new
@@ -64,7 +64,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public, 
+    params.require(:recipe).permit(:title, :photo, :author_id, :description, :course_id, :public, :user_id,
       category_ids: [],
       restriction_ids: [],
       measurements_attributes: [
