@@ -21,8 +21,18 @@
             <%= link_to "Add Recipe", new_user_recipe_url(@user), class: "button is-info" %>
           </div>
         </article>
-        <%= render '/shared/recipe_card' %>
-    <!-- two tabs: show 'authored recipies'  show 'saved recipes' -->
+        <div class="tabs is-centered is-large">
+          <ul>
+            <li><a href="#saved">Saved Recipes</a></li>
+            <li class="is-active"><a href="#authored">Authored Recipes</a></li>
+          </ul>
+        </div>
+        <div id="authored">
+          <%= render '/shared/recipe_card' %>
+        </div>
+        <div id="saved">
+          <p>askdhaoihdo ho;v haodhvoiadvoao;vbo asdvoiash voaodv oabdvibaso;v dasd</p>
+        </div>
     </div>
 	</div>
 </div>
