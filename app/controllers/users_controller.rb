@@ -7,16 +7,6 @@ class UsersController < ApplicationController
       @users = User.all
   end
 
-  def show
-    user = User.find(params[:id])
-    if user.public_profile? || authorized_user
-      @user = user 
-      @recipes = Recipe.user_recipes(@user.id)
-    else
-      redirect_to root_url, notice: "Profile is not Public"
-    end
-  end
-
   def new
     @user = User.new
     render layout: "authentication"
@@ -67,13 +57,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :bio, :location, :public_profile )
   end
 
-  def authorized_user
-    @user = User.find(params[:id])
-    current_user?(@user) || current_user_admin?
-  end
-
   def authorize
-    redirect_to root_url, notice: "Access Denied" unless authorized_user
+    redirect_to root_url, notice: "Access Denied" unless authorized_user(@user)
   end
 
 end

@@ -18,21 +18,25 @@
             </div>
           </div>
           <div class="content user-heading">
-            <%= link_to "Add Recipe", new_user_recipe_url(@user), class: "button is-info" %>
+            <%= link_to "Add Recipe", new_user_recipe_url(@user), class: "button is-info" if authorized(@user) %>
           </div>
         </article>
-        <div class="tabs is-centered is-large">
-          <ul>
-            <li><a href="#saved">Saved Recipes</a></li>
-            <li class="is-active"><a href="#authored">Authored Recipes</a></li>
-          </ul>
-        </div>
-        <div id="authored">
-          <%= render '/shared/recipe_card' %>
-        </div>
-        <div id="saved">
-          <p>askdhaoihdo ho;v haodhvoiadvoao;vbo asdvoiash voaodv oabdvibaso;v dasd</p>
-        </div>
+        <% if @saved.present? %>
+          <div class="tabs is-centered is-large">
+            <ul>
+              <li><a href="#saved">Saved Recipes</a></li>
+              <li class="is-active"><a href="#authored">Authored Recipes</a></li>
+            </ul>
+          </div>
+        <% end %>
+          <div id="authored">
+            <%= render '/shared/recipe_card' %>
+          </div>
+        <% if @saved.present? %>
+          <div id="saved">
+            <p><%= @saved %></p>
+          </div>
+        <% end %>
     </div>
 	</div>
 </div>

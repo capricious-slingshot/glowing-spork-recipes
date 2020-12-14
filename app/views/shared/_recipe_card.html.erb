@@ -12,7 +12,7 @@
               <div class="media">
                 <div class="media-content">
                   <p class="title is-4"><%= recipe.title %></p>
-                  <p class="subtitle is-6"><%= link_to "#{author_name(recipe)}", user_path(author(recipe)) %></p>
+                  <p class="subtitle is-6"><%= link_to "#{author_name(recipe)}", user_recipes_path(author(recipe)) %></p>
                 </div>
               </div>
               <div class="content">

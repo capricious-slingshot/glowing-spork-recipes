@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_nav_variable
   helper_method :current_user
   helper_method :current_user?
+  helper_method :authorized_user
 
   def set_nav_variable
     @categories = Category.all
@@ -34,5 +35,9 @@ class ApplicationController < ActionController::Base
     unless current_user_admin?
       redirect_to root_path, alert: "Unauthorized Access"
     end
+  end
+
+  def authorized_user(user)
+    current_user?(user) || current_user_admin?
   end
 end

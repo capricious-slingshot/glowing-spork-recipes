@@ -1,7 +1,7 @@
-<div class="container">
-	<div class="columns">
-	  <div class="column">
-			<%= render '/shared/recipe_card' %>
-		</div>
-	</div>
-</div>
+<% if @user.present? %>
+  <%= render "user_recipes" %>
+<% else %>
+	<%= render "public_recipes" %>
+<% end %>
+
+

@@ -2,7 +2,21 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.newest_first
+    #this is heidious - nested routes ugh
+    @user = User.find_by(id: params[:user_id])
+    if @user
+      if authorized_user(@user)
+        @recipes = Recipe.user_recipes(@user.id)
+        @saved = "these are my saved recipes"
+      elsif @user.public_profile?
+        @recipes = Recipe.user_recipes(@user.id)
+      else
+        flash[:notice] = "Profile Not Public"
+        redirect_to root_path
+      end
+    else
+      @recipes = Recipe.newest_first
+    end
   end
 
   def show

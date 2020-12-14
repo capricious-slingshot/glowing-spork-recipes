@@ -51,4 +51,8 @@ module RecipeHelper
 		end
 		links.shuffle
 	end
+
+	def	authorized(user)
+		@current_user == @user || @current_user.admin?
+	end
 end

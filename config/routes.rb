@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   match '/logout', to: 'sessions#destroy', via: [:get, :delete]
   resource :session
 
-  #is there a better way to do this?
-  get    '/users/:id/recipes', to: 'users#show'
   resources :users, only: [:index, :show, :create, :edit, :update, :destroy] do
     resources  :recipes, shallow: true
   end
