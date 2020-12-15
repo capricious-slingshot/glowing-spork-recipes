@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
     #this is heidious - nested routes ugh
     @user = User.find_by(id: params[:user_id])
     if @user
-      if authorized_user(@user)
+      if authorized_user?(@user)
         @recipes = Recipe.user_recipes(@user.id)
         @saved = "these are my saved recipes"
       elsif @user.public_profile?

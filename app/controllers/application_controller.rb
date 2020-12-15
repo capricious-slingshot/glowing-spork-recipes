@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_nav_variable
   helper_method :current_user
   helper_method :current_user?
-  helper_method :authorized_user
+  helper_method :authorized_user?
 
   def set_nav_variable
     @categories = Category.all
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authorized_user(user)
+  def authorized_user?(user)
     current_user?(user) || current_user_admin?
   end
 end

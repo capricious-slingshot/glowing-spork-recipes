@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :require_signin, except: [:new, :create]
+  before_action :find_user, only: [:edit, :update, :destroy]
   before_action :authorize, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:index]
 
   def index
-      @users = User.all
+    @users = User.all
   end
 
   def new
@@ -27,12 +28,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    
+
   end
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "Successfully Updated #{@user.name}"
+      redirect_to user_recipes_url(@user), notice: "Successfully Updated #{@user.name}"
     else
       flash[:alert] = "Danger Batman"
       render :edit
@@ -57,8 +58,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :bio, :location, :public_profile )
   end
 
+  def find_user
+    @user = User.find_by(id: params[:id])
+  end
+
   def authorize
-    redirect_to root_url, notice: "Access Denied" unless authorized_user(@user)
+    redirect_to root_url, notice: "Access Denied" unless authorized_user?(@user)
   end
 
 end
