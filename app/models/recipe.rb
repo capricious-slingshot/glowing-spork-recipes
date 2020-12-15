@@ -26,9 +26,9 @@ class Recipe < ApplicationRecord
 
   has_many :steps
 
-  accepts_nested_attributes_for :steps
+  accepts_nested_attributes_for :steps 
 
-  def star_rating
+  def star_average
     ratings = UserRecipe.where(recipe_id: self.id)
     return 0 if ratings.empty?
     sum = ratings.collect{ |i| i.rating }.reduce(0, :+)
@@ -63,7 +63,7 @@ class Recipe < ApplicationRecord
   end
 
   def self.top_rated
-    all.order("star_rating asc")
+    all.order("star_average asc")
   end
 
   def self.user_recipes(user_id)

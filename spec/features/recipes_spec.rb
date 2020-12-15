@@ -35,7 +35,7 @@ describe 'Recipe' do
     it 'displays correct star rating' do
       expect(page).to have_tag('span.has-text-star', count: 3)
       expect(page).to have_tag('i.fa-star', count: 3)
-      expect(page).to have_text("#{@recipe.star_rating} stars")
+      expect(page).to have_text("#{@recipe.star_average} stars")
     end
 
     it 'displays every ingredient and corrosponding measurement' do

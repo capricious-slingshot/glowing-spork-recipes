@@ -4,7 +4,7 @@ describe "A recipe" do
   it "correctly calculates it's star rating" do
     recipe = Recipe.first
     
-    expect(recipe.star_rating).to eq(3)
+    expect(recipe.star_average).to eq(3)
   end
 
   it "requires a recipe title" do

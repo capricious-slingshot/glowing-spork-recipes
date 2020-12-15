@@ -29,8 +29,8 @@ module RecipeHelper
 		end
 	end
 
-	def star_rating_text(recipe)
-		rating = recipe.star_rating.round(1)
+	def star_average_text(recipe)
+		rating = recipe.star_average.round(1)
 		!rating.zero? ? "#{rating.to_s} Stars" : "Not enough ratings yet"
 	end
 
