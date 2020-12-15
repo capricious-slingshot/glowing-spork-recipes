@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201107210653) do
+ActiveRecord::Schema.define(version: 20201215004020) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20201107210653) do
     t.integer "rating", default: 0
     t.boolean "saved", default: false
     t.text "notes"
+    t.index ["user_id", "recipe_id"], name: "index_user_recipes_on_user_id_and_recipe_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
