@@ -8,6 +8,14 @@ module ApplicationHelper
     end
   end
 
+  def auth_user(current_user)
+    if current_user
+      user_recipes_path(current_user)
+    else
+      "/login"
+    end
+  end
+
   def auth_header_language(user)
     if user.new_record?
       "Sign Up"

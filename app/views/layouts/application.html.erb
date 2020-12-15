@@ -27,7 +27,7 @@
             </div>
             <div class="navbar-menu">
               <div class="navbar-start">
-                <%= link_to "My Recipes", user_recipes_url(current_user) || '/login', class:"navbar-item" %>
+                <%= link_to "My Recipes", auth_user(current_user), class:"navbar-item" %>
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">Ratings</a>
                   <div class="navbar-dropdown">
@@ -49,8 +49,9 @@
               </div>
               <div class="navbar-end">
                 <div class="navbar-item">
-<!-- # todo: search -->
-                  <!-- <a href="#" class="navbar-item">Search</a> -->
+
+                  
+
                   <div class="buttons">
                     <% if current_user %>
                       <%= link_to "Settings", edit_user_path(current_user), class: "button is-light" %>

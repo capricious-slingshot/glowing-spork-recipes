@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   match '/logout', to: 'sessions#destroy', via: [:get, :delete]
   resource :session
 
-  resources :users, only: [:index, :show, :create, :edit, :update, :destroy] do
+  resources :users, only: [:index, :create, :edit, :update, :destroy] do
     resources  :recipes, shallow: true
   end
 
