@@ -56,7 +56,6 @@ a.oath{
 	margin-bottom: 0;
 }
 
-
 /* appliction layout */ 
 .hero.is-primary{
 	background-color: #750000;
@@ -66,6 +65,9 @@ a.oath{
 }
 .hero.is-primary .navbar-brand a.logo:hover{
 	background: #750000;
+}
+.hero.is-primary .navbar-menu{
+  background: #750000;
 }
 .hero.is-primary a.navbar-item:hover, 
 .hero.is-primary .navbar-link:hover {
@@ -83,10 +85,18 @@ a.oath{
 	background: linear-gradient( rgba(163, 0, 0, 1),rgba(117, 0, 0, 1));
 	color: #000;
 }
+.hero.is-primary .navbar-end .navbar-item{
+	padding-left:0px;
+}
 .hero.is-primary .navbar-end .button:hover{
 	background: #a30000;
 	border: 1px soilid black;
 }
+.hero.is-primary .navbar-end input#query{
+	width:9em;
+}
+
+/* recipes */
 .recipe-wrapper{
 	display: flex;
 	flex-wrap: wrap;
@@ -152,6 +162,10 @@ a.shuffled,a.shuffled,a.shuffled, {
 
 
 /* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
+@media only screen and (max-width : 1024px) {
+	.navbar-end{
+		display: flex;
+	  flex-wrap: wrap;
+	}
 	
 }
