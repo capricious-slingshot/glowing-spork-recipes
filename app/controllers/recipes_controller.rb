@@ -11,11 +11,19 @@ class RecipesController < ApplicationController
       elsif @user.public_profile?
         @recipes = Recipe.user_recipes(@user.id)
       else
-        flash[:notice] = "Profile Not Public"
-        redirect_to root_path
+        redirect_to root_path, notice: "Profile Not Public"
       end
     else
       @recipes = Recipe.newest_first
+    end
+
+    if params[:query].present?
+      query = params[:query].strip.downcase
+      if @recipes.search(query).present?
+        @recipes = @recipes.search(query)
+      else
+        redirect_to root_path, notice: "Sorry, No Matching Results"
+      end
     end
   end
 

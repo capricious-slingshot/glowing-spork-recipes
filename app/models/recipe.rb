@@ -70,4 +70,9 @@ class Recipe < ApplicationRecord
     where(author_id: user_id)
   end
 
+  def self.search(term)
+    left_joins(:course).where("LOWER(title) LIKE :term OR description LIKE :term OR LOWER(name) LIKE :term", term: "%#{term}%")
+    #ingredients, restrictions, tags - join tables? how to handle?
+  end
+
 end

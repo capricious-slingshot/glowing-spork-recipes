@@ -55,4 +55,5 @@ module RecipeHelper
 	def	authorized(user)
 		@current_user == @user || @current_user.admin?
 	end
+
 end
