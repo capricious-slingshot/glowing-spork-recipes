@@ -75,4 +75,8 @@ class Recipe < ApplicationRecord
     #ingredients, restrictions, tags - join tables? how to handle?
   end
 
+  def self.filter_by_star(collection, stars)
+    collection.select{ |i| i.star_average == stars}
+  end
+
 end
