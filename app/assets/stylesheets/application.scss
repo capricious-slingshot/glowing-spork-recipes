@@ -111,6 +111,13 @@ a.oath{
 .container .card .content{
 	color: black;
 }
+    /* recipe/form */
+.recipe-tag-wrapper{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+
 
 /* admin views */
 .main-container {
@@ -160,10 +167,6 @@ a.shuffled,a.shuffled,a.shuffled, {
 .demo2 {
 	display: none;
 }
-
-
-
-
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 1024px) {
