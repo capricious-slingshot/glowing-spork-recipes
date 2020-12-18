@@ -107,6 +107,8 @@ a.oath{
 }
 .container .card{
 	min-width: 300px;
+	max-width: 350px;
+	min-height: 480px;
 }
 .container .card .content{
 	color: black;
@@ -169,7 +171,7 @@ a.shuffled,a.shuffled,a.shuffled, {
 }
 
 /* Small Devices, Tablets */
-@media only screen and (max-width : 1024px) {
+@media only screen and (min-width : 1024px) {
 	.navbar-end{
 		display: flex;
 	  flex-wrap: wrap;
@@ -177,4 +179,27 @@ a.shuffled,a.shuffled,a.shuffled, {
 	.rating-filter-col-1{
     display: none;
 	}
+	.container .card{
+		max-width: 350px;
+	}
 }
+
+@media only screen and (max-width : 992px) {
+	.container .card{
+		max-width: 450px;
+	}
+}
+@media only screen and (max-width : 768px) {
+	.container .card{
+		max-width: 380px;
+		min-width: 350px;
+	}
+}
+
+@media only screen and (max-width : 700px) {
+	.container .card{
+		max-width: 700px;
+	}
+}
+
+
