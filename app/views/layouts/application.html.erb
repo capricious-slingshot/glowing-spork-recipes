@@ -54,16 +54,6 @@
               <div class="navbar-start">
                 <%= link_to "My Recipes", auth_user(current_user), class:"navbar-item" %>
                 <div class="navbar-item has-dropdown is-hoverable">
-                  <a class="navbar-link is-arrowless">Ratings</a>
-                  <div class="navbar-dropdown">
-                    <a href="/recipies/5-star" class="navbar-item">5 Star</a>
-                    <a href="/recipies/4-star" class="navbar-item">4 Star</a>
-                    <a href="/recipies/3-star" class="navbar-item">3 Star</a>
-                    <a href="/recipies/2-star" class="navbar-item">2 Star</a>
-                    <a href="/recipies/1-star" class="navbar-item">1 Star</a>
-                  </div>
-                </div>
-                <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link is-arrowless">Catagories</a>
                   <div class="navbar-dropdown">
                     <% @categories.each do |c| %>

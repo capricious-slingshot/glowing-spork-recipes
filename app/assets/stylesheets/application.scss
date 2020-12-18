@@ -97,6 +97,10 @@ a.oath{
 }
 
 /* recipes */
+.main .rating-filter{
+	background: #fff; 
+	margin-top:12px;
+}
 .recipe-wrapper{
 	display: flex;
 	flex-wrap: wrap;
@@ -167,5 +171,7 @@ a.shuffled,a.shuffled,a.shuffled, {
 		display: flex;
 	  flex-wrap: wrap;
 	}
-	
+	.rating-filter-col-1{
+    display: none;
+	}
 }

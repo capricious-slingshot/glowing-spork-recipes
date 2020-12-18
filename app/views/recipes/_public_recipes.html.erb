@@ -1,6 +1,23 @@
 <div class="container">
 	<div class="columns">
-	  <div class="column">
+	  <div class="column rating-filter-col-1"></div>
+	  <div class="column rating-filter is-narrow">
+		  <%= form_tag("/recipes", method: "get") do %>
+				<%= label_tag(:rating, "Star Rating:", class: "hidden") %>
+				<div class="field has-addons">
+					<div class="control">
+						<div class="select">
+							<%= select_tag "rating", raw("<option value="" disabled selected>Star Rating</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>") %>
+						</div>
+					</div>
+					<div class="control">
+						<%= submit_tag('Filter', class: "button is-light")%>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="columns">
 			<%= render '/shared/recipe_card' %>
 		</div>
 	</div>
