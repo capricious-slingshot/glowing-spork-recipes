@@ -24,9 +24,7 @@ module RecipeHelper
 	end
 
 	def	author_edit_button(recipe)
-		if current_user.id == recipe.author_id
-      link_to "Edit Recipe", edit_recipe_path(recipe), class: "button is-warning is-large crud-button"
-		end
+    link_to "Edit Recipe", edit_recipe_path(recipe), class: "button is-warning is-large crud-button" if recipe.author?(current_user)
 	end
 
 	def star_average_text(recipe)
@@ -54,6 +52,14 @@ module RecipeHelper
 
 	def	authorized(user)
 		@current_user == @user || @current_user.admin?
+	end
+
+	def	user_save_button(recipe, current_user)
+		#UserRecipe - model to work with
+		# saved_recipe = UserRecipe.find_by(user_id: user.id, recipe_id)
+		if !recipe.author?(current_user) #&& !user_recipe.saved
+			link_to "Save Recipe", root_path, class: "button is-warning is-large crud-button"
+		end
 	end
 
 end

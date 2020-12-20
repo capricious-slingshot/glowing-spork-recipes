@@ -51,18 +51,23 @@
             </div>
           <% end %>
         </div>
-          <%= author_edit_button(@recipe) %>
+        <%= author_edit_button(@recipe) %>
       </article>
     </div>   
     </div>
     <div class="tile is-parent">
-        <article class="tile is-child notification">
-          <div class="content">
-            <% shuffled_links(@categories, @restrictions, @tags).each do |link|%>
-              <%= link %>
-            <% end %>
-          </div>
-        </article>
-      </div>
+      <article class="tile is-child notification user-notes">
+        <%= user_save_button(@recipe, current_user) %>
+      </article>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification">
+        <div class="content">
+          <% shuffled_links(@categories, @restrictions, @tags).each do |link| %>
+            <%= link %>
+          <% end %>
+        </div>
+      </article>
+    </div>
   </div>
 </div>

@@ -54,6 +54,11 @@ class Recipe < ApplicationRecord
     end
   end
 
+  def author?(current_user)
+    author = User.find_by(id: self.author_id)
+    current_user == author
+  end
+
   # def self.by_category(name)
   #   where('name = ?' name).order("created_at desc")
   # end

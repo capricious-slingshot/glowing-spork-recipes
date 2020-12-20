@@ -96,7 +96,7 @@ a.oath{
 	width:9em;
 }
 
-/* recipes */
+/* recipes index*/
 .main .rating-filter .column{
 	background: #fff;
 	margin-top:12px;
@@ -113,10 +113,16 @@ a.oath{
 .container .card .content{
 	color: black;
 }
-    /* recipe/form */
+
+/* recipe form */
 .recipe-tag-wrapper{
 	display: flex;
 	flex-wrap: wrap;
+}
+
+/* recipe show */
+.user-notes{
+	background: #808080;
 }
 
 
