@@ -29,10 +29,10 @@ class RecipesController < ApplicationController
     if params[:rating].present?
       stars = params[:rating].to_i
       filtered = Recipe.filter_by_star(@recipes, stars)
-      if filtered
+      if filtered.present?
         @recipes = filtered
       else
-        redirect_to root_path, notice: "Sorry, No Matching Results"
+        redirect_to root_path, notice: "Sorry, No #{stars} Star Ratings"
       end
     end
   end
