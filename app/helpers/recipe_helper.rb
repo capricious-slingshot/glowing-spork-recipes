@@ -54,12 +54,15 @@ module RecipeHelper
 		@current_user == @user || @current_user.admin?
 	end
 
-	def	user_save_button(recipe, current_user)
-		#UserRecipe - model to work with
-		# saved_recipe = UserRecipe.find_by(user_id: user.id, recipe_id)
-		if !recipe.author?(current_user) #&& !user_recipe.saved
+	def	user_save_button(recipe, user)
+		if recipe.saved?(user)
+			link_to "Saved to Your Recipes", user_recipes_path(user)
+		else
 			link_to "Save Recipe", root_path, class: "button is-warning is-large crud-button"
 		end
 	end
 
+	def user_notes(recipe, user)
+
+	end
 end

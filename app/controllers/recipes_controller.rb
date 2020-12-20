@@ -6,10 +6,10 @@ class RecipesController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     if @user
       if authorized_user?(@user)
-        @recipes = Recipe.user_recipes(@user.id)
-        @saved = "these are my saved recipes"
+        @recipes = Recipe.authored_recipes(@user.id)
+        @saved = "these are my saved recipes" #UserRecipe.saved_recipes(@user)
       elsif @user.public_profile?
-        @recipes = Recipe.user_recipes(@user.id)
+        @recipes = Recipe.authored_recipes(@user.id)
       else
         redirect_to root_path, notice: "Profile Not Public"
       end

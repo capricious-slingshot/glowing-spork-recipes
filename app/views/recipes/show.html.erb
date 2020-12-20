@@ -57,7 +57,16 @@
     </div>
     <div class="tile is-parent">
       <article class="tile is-child notification user-notes">
-        <%= user_save_button(@recipe, current_user) %>
+        <div class="columns">
+          <div class="column">
+            <%= !@recipe.author?(current_user) ? user_save_button(@recipe, current_user) : "You are the Author!" %>
+          </div>
+          <div class="column">
+            Rating dropdown
+          </div>
+        </div>
+        <p>Notes: <br></p>
+        <p><%= user_notes(@recipe, current_user) %></p>
       </article>
     </div>
     <div class="tile is-parent">

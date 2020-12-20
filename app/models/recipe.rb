@@ -54,14 +54,15 @@ class Recipe < ApplicationRecord
     end
   end
 
-  def author?(current_user)
+  def author?(user)
     author = User.find_by(id: self.author_id)
-    current_user == author
+    user == author
   end
 
-  # def self.by_category(name)
-  #   where('name = ?' name).order("created_at desc")
-  # end
+  def saved?(user)
+    record = UserRecipe.find_by(user_id: user.id, recipe_id: self.id)
+    record ? record.saved : false
+  end
 
   def self.newest_first
     all.order("created_at desc")
@@ -71,7 +72,7 @@ class Recipe < ApplicationRecord
     all.order("star_average asc")
   end
 
-  def self.user_recipes(user_id)
+  def self.authored_recipes(user_id)
     where(author_id: user_id)
   end
 
