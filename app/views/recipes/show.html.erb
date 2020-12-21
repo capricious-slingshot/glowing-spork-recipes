@@ -10,9 +10,7 @@
           </article>
           <article class="tile is-child notification even-box">
             <p class="subtitle is-4">
-              <% @recipe.star_average.floor.times do %>
-                <span class="icon has-text-star"><i class="fas fa-star"></i></span>
-              <%end %>
+            <%= render '/shared/star_rating', star: @recipe.star_average %>
             </p>
             <p class="title is-5"><%= star_average_text(@recipe) %></p>
             <p><%= @recipe.description %></p>
@@ -57,13 +55,40 @@
     </div>
     <div class="tile is-parent">
       <article class="tile is-child notification user-notes">
-        <div class="columns">
-          <div class="column">
+        <div class="columns level">
+          <div class="column is-narrow">
+            <% if user_stars(current_user.id, @recipe.id) %>
+              <%= render '/shared/star_rating', star: user_stars(current_user.id, @recipe.id) %>
+              <%= "#{user_stars(current_user.id, @recipe.id)} Stars" %>
+            <% else %>
+              <%= form_tag("/recipes", method: "post") do %>
+                <%= label_tag(:rating, "Star Rating:", class: "hidden") %>
+                <div class="field has-addons">
+                  <div class="control">
+                    <div class="select is-info is-large">
+                      <%= select_tag "rating", raw("<option value="" disabled selected>Star Rating</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>") %>
+                    </div>
+                  </div>
+                  <div class="control">
+                    <%= submit_tag('Rate', class: "button is-info is-large")%>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="column level-item">
             <%= !@recipe.author?(current_user) ? user_save_button(@recipe, current_user) : "You are the Author!" %>
           </div>
         </div>
-        <p>Notes: <br></p>
-        <p><%= user_notes(current_user.id, @recipe.id) %></p>
+        <div class="columns">
+          <div class="column">
+            <p class="subtitle is-4">Notes: <br></p>
+            <p><%= user_notes(current_user.id, @recipe.id) %></p>
+          </div>
+          <div class="column is-narrow">
+            <%= link_to "Edit Note", root_path, class: "button is-warning is-large" %>
+          </div>
+        </div>
       </article>
     </div>
     <div class="tile is-parent">

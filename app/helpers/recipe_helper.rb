@@ -29,7 +29,7 @@ module RecipeHelper
 
 	def star_average_text(recipe)
 		rating = recipe.star_average.round(1)
-		!rating.zero? ? "#{rating.to_s} Stars" : "Not enough ratings yet"
+		rating.zero? ? "Not enough ratings yet" : "#{rating.to_s} Stars"
 	end
 
 	def convert_index(index)
@@ -56,14 +56,19 @@ module RecipeHelper
 
 	def	user_save_button(recipe, user)
 		if recipe.saved?(user)
-			link_to "Saved to Your Recipes", user_recipes_path(user)
+			link_to "Saved", user_recipes_path(user), class: "button is-success is-large" 
 		else
-			link_to "Save Recipe", root_path, class: "button is-warning is-large crud-button"
+			link_to "Save Recipe", root_path, class: "button is-info is-large"
 		end
 	end
 
 	def user_notes(user_id, recipe_id)
 		record = UserRecipe.record(user_id, recipe_id)
-		record ? record.notes : "You havent added any notes yet."
+		record && record.notes.present? ? record.notes : "You havent added any notes yet."
+	end
+
+	def user_stars(user_id, recipe_id)
+		record =  UserRecipe.record(user_id, recipe_id)
+		record && record.rating.present? ? record.rating : 0
 	end
 end

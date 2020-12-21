@@ -32,7 +32,7 @@ class Recipe < ApplicationRecord
     ratings = UserRecipe.where(recipe_id: self.id)
     return 0 if ratings.empty?
     sum = ratings.collect{ |i| i.rating }.reduce(0, :+)
-    sum / ratings.count
+    (sum / ratings.count).floor
   end
   
   def measurements_attributes=(form_attributes)
