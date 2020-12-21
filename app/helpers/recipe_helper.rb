@@ -62,7 +62,8 @@ module RecipeHelper
 		end
 	end
 
-	def user_notes(recipe, user)
-
+	def user_notes(user_id, recipe_id)
+		record = UserRecipe.record(user_id, recipe_id)
+		record ? record.notes : "You havent added any notes yet."
 	end
 end

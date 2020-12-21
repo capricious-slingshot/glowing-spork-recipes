@@ -61,12 +61,9 @@
           <div class="column">
             <%= !@recipe.author?(current_user) ? user_save_button(@recipe, current_user) : "You are the Author!" %>
           </div>
-          <div class="column">
-            Rating dropdown
-          </div>
         </div>
         <p>Notes: <br></p>
-        <p><%= user_notes(@recipe, current_user) %></p>
+        <p><%= user_notes(current_user.id, @recipe.id) %></p>
       </article>
     </div>
     <div class="tile is-parent">

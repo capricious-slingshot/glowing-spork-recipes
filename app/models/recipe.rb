@@ -60,8 +60,8 @@ class Recipe < ApplicationRecord
   end
 
   def saved?(user)
-    record = UserRecipe.find_by(user_id: user.id, recipe_id: self.id)
-    record ? record.saved : false
+    record = UserRecipe.record(user.id, self.id)
+    record.present? ? record.saved : false
   end
 
   def self.newest_first
