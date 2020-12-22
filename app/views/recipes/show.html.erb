@@ -12,7 +12,7 @@
             <p class="subtitle is-4">
             <%= render '/shared/star_rating', star: @recipe.star_average %>
             </p>
-            <p class="title is-5"><%= star_average_text(@recipe) %></p>
+            <p class="title is-5"><%= star_average_text(@recipe) %> <span class="subtitle is-6 subtext"> <%= pluralize(@recipe.ratings.count, 'rating') %> </span></p>
             <p><%= @recipe.description %></p>
           </article>
         </div>

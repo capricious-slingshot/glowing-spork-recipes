@@ -64,6 +64,10 @@ class Recipe < ApplicationRecord
     record.present? ? record.saved : false
   end
 
+  def ratings
+    UserRecipe.all.where(recipe_id: self.id)
+  end
+
   def self.newest_first
     all.order("created_at desc")
   end

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   post  '/recipes/:id/rate', to: 'recipes#save_rating'
-  
+
   resources  :recipes
   
 
