@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :find_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy, :save_rating]
 
   def index
     #this is heidious - nested routes ugh
@@ -86,6 +86,19 @@ class RecipesController < ApplicationController
     else
       flash[:alert] = "Error: #{@recipe.title} Not Deleted"
       render :edit
+    end
+  end
+
+  def save_rating
+    binding.pry
+    if params[:rating] != "Star Rating"
+      record = UserRecipe.find_or_create_by(user_id: current_user.id, recipe_id: @recipe.id)
+      record.rating = params[:rating]
+      record.save
+
+      redirect_to @recipe, notice: "Rating Saved"
+    else
+      redirect_to @recipe, alert: "Please Select Star Rating"
     end
   end
 

@@ -8,4 +8,5 @@ class UserRecipe < ApplicationRecord
   def self.record(user_id, recipe_id)
     self.find_by(user_id: user_id, recipe_id: recipe_id)
   end
+
 end

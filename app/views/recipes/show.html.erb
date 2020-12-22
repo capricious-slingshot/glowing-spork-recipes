@@ -57,22 +57,12 @@
       <article class="tile is-child notification user-notes">
         <div class="columns level">
           <div class="column is-narrow">
-            <% if user_stars(current_user.id, @recipe.id) %>
+            <% if user_stars(current_user.id, @recipe.id) > 0 %>
               <%= render '/shared/star_rating', star: user_stars(current_user.id, @recipe.id) %>
               <%= "#{user_stars(current_user.id, @recipe.id)} Stars" %>
             <% else %>
-              <%= form_tag("/recipes", method: "post") do %>
-                <%= label_tag(:rating, "Star Rating:", class: "hidden") %>
-                <div class="field has-addons">
-                  <div class="control">
-                    <div class="select is-info is-large">
-                      <%= select_tag "rating", raw("<option value="" disabled selected>Star Rating</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>") %>
-                    </div>
-                  </div>
-                  <div class="control">
-                    <%= submit_tag('Rate', class: "button is-info is-large")%>
-                  </div>
-                </div>
+              <%= form_tag("/recipes/#{@recipe.id}/rate", method: "post") do %>
+                <%= render "/shared/star_rating_control" %>
               <% end %>
             <% end %>
           </div>

@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     resources  :recipes, shallow: true
   end
 
-  get  '/recipes/:stars', to: 'recipes#index' #Recipe.top_rated scope
-  # get  '/recipes/:catagory_name', to: 'recipes#index' #Recipe.by_category
+  post  '/recipes/:id/rate', to: 'recipes#save_rating'
+  
   resources  :recipes
   
 
