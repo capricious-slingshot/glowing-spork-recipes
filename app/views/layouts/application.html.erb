@@ -52,12 +52,13 @@
             </div>
             <div id="navMenu" class="navbar-menu">
               <div class="navbar-start">
-                <%= link_to "My Recipes", auth_user(current_user), class:"navbar-item" %>
+                <%= link_to "All Recipes", root_path, class: "navbar-item" %>
+                <%= link_to "My Recipes", auth_user(current_user), class: "navbar-item" %>
                 <div class="navbar-item has-dropdown is-hoverable">
-                  <a class="navbar-link is-arrowless">Catagories</a>
+                  <a class="navbar-link is-arrowless">Categories</a>
                   <div class="navbar-dropdown">
-                    <% @categories.each do |c| %>
-                      <a href="/recipies/<%= c.name.downcase %>" class="navbar-item"><%= c.name %></a>
+                    <% Category.all.each do |category| %>
+                      <%= link_to category.name, recipe_category_path(category.name), class: "navbar-item" %>
                     <% end %>
                   </div>
                 </div>
@@ -103,7 +104,5 @@
       <%= render "/shared/flash_header" if !flash.empty? %>
       <%= yield %>
     </section>
-    <footer></footer>
   </body>
 </html>
-

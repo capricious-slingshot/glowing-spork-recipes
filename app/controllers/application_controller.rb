@@ -1,13 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exceptions
-  before_action :set_nav_variable
   helper_method :current_user
   helper_method :current_user?
   helper_method :authorized_user?
-
-  def set_nav_variable
-    @categories = Category.all
-  end
 
   private
 

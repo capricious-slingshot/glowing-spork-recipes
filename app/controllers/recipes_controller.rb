@@ -13,6 +13,10 @@ class RecipesController < ApplicationController
       else
         redirect_to root_path, notice: "Profile Not Public"
       end
+    elsif params[:category_name].present?
+      @recipes = Recipe.by_category(params[:category_name])
+      @heading = params[:category_name]
+      redirect_to root_path, notice: "No Recipes Matching #{params[:category_name]}" unless @recipes.present?
     else
       @recipes = Recipe.newest_first
     end
@@ -90,7 +94,6 @@ class RecipesController < ApplicationController
   end
 
   def save_rating
-    binding.pry
     if params[:rating] != "Star Rating"
       record = UserRecipe.find_or_create_by(user_id: current_user.id, recipe_id: @recipe.id)
       record.rating = params[:rating]

@@ -72,6 +72,11 @@ class Recipe < ApplicationRecord
     all.order("created_at desc")
   end
 
+def self.by_category(name)
+  category = Category.find_by(name: name)
+  category.recipes.where(public: true) if category
+end
+
   def self.top_rated
     all.order("star_average asc")
   end

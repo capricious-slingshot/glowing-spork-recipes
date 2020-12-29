@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'recipes#index'
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-  
 
   #path_helper is free with resources - needs to be manually defined with as:
   # get  '/users/:id/edit', to: 'users#edit', as: 'edit_user'
@@ -12,15 +11,13 @@ Rails.application.routes.draw do
   match '/logout', to: 'sessions#destroy', via: [:get, :delete]
   resource :session
 
+  post  '/recipes/:id/rate', to: 'recipes#save_rating'
+  
+  resources :recipes
+  get '/recipes/category/:category_name', to: "recipes#index", as: 'recipe_category'
+
   resources :users, only: [:index, :create, :edit, :update, :destroy] do
     resources  :recipes, shallow: true
   end
-
-  post  '/recipes/:id/rate', to: 'recipes#save_rating'
-
-  resources  :recipes
-  
-
-  
   
 end
