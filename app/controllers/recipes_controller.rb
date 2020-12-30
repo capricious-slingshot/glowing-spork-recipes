@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
     if @user
       if authorized_user?(@user)
         @recipes = Recipe.authored_recipes(@user.id)
-        @saved = "these are my saved recipes" #UserRecipe.saved_recipes(@user)
+        @saved_recipes = @user.saved_recipes
       elsif @user.public_profile?
         @recipes = Recipe.authored_recipes(@user.id)
       else

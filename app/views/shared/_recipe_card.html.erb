@@ -1,5 +1,5 @@
   <div class="columns recipe-wrapper">
-    <% @recipes.each do |recipe| %>
+    <% collection.each do |recipe| %>
       <div class="column fuckmylife">
         <div class="card">
           <a href="<%= recipe_path(recipe) %>" alt="<%= recipe.title %>" class="card_wrapper">

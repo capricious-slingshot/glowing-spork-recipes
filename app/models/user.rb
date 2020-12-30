@@ -20,4 +20,12 @@ class User < ApplicationRecord
       user.password = SecureRandom.hex 
     end
   end
+
+  def saved_recipes
+    self.recipe_cards.collect { |card| Recipe.find_by(id: card.recipe_id)}
+  end
+
+  def recipe_cards
+    self.user_recipe_cards.all.where(user_id: self.id, saved: true)
+  end
 end

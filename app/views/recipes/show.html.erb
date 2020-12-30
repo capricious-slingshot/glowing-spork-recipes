@@ -62,7 +62,17 @@
               <%= "#{user_stars(current_user.id, @recipe.id)} Stars" %>
             <% else %>
               <%= form_tag("/recipes/#{@recipe.id}/rate", method: "post") do %>
-                <%= render "/shared/star_rating_control" %>
+                <%= label_tag(:rating, "Star Rating:", class: "hidden") %>
+                <div class="field has-addons">
+                  <div class="control">
+                    <div class="select is-info is-large">
+                      <%= select_tag( :rating, raw("<option>Star Rating</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>") ) %>
+                    </div>
+                  </div>
+                  <div class="control">
+                    <%= submit_tag("Rate", class: "button is-info is-large")%>
+                  </div>
+                </div>
               <% end %>
             <% end %>
           </div>
@@ -76,7 +86,8 @@
             <p><%= user_notes(current_user.id, @recipe.id) %></p>
           </div>
           <div class="column is-narrow">
-            <%= link_to "Edit Note", root_path, class: "button is-warning is-large" %>
+            <%= link_to "Add Note", new_user_recipe_card_path(current_user.id, @recipe.id), class: "button is-warning is-large" %>
+            <!-- show edit button if card already exists -->
           </div>
         </div>
       </article>

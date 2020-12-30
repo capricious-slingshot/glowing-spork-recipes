@@ -13,12 +13,13 @@ Rails.application.routes.draw do
 
   post  '/recipes/:id/rate', to: 'recipes#save_rating'
   
-  resources :recipes
+  resources :recipes 
   get '/recipes/category/:category_name', to: "recipes#index", as: 'recipe_category'
 
   resources :users, only: [:index, :create, :edit, :update, :destroy] do
-    resources :user_recipe_cards
-    resources  :recipes, shallow: true
+    resources  :recipes do
+      resources :user_recipe_cards, only: [:new, :create, :edit, :update, :destroy], as: 'cards'
+    end
   end
   
 end
