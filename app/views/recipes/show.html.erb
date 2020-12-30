@@ -86,8 +86,7 @@
             <p><%= user_notes(current_user.id, @recipe.id) %></p>
           </div>
           <div class="column is-narrow">
-            <%= link_to "Add Note", new_user_recipe_card_path(current_user.id, @recipe.id), class: "button is-warning is-large" %>
-            <!-- show edit button if card already exists -->
+            <%= user_notes_button(current_user.id, @recipe.id) %>
           </div>
         </div>
       </article>

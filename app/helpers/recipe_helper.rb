@@ -71,4 +71,13 @@ module RecipeHelper
 		record =  UserRecipeCard.record(user_id, recipe_id)
 		record && record.rating.present? ? record.rating : 0
 	end
+
+	def	user_notes_button(user_id, recipe_id)
+		card = UserRecipeCard.find_by(user_id: user_id, recipe_id: recipe_id)
+		if card.present?
+			link_to "Edit Notes", edit_user_recipe_card_path(current_user.id, @recipe.id, card.id), class: "button is-warning is-large"
+		else
+			link_to "Add Notes", new_user_recipe_card_path(current_user.id, @recipe.id), class: "button is-warning is-large"
+		end
+	end
 end

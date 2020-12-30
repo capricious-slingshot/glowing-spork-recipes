@@ -1,39 +1,65 @@
 class UserRecipeCardsController < ApplicationController
+  before_action :convert_url_params, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_card, only: [:edit, :update, :destroy]
 
   def new
-    @user_id = params[:user_id].to_i
-    @recipe_id = params[:recipe_id].to_i
     @card = UserRecipeCard.find_or_initialize_by(user_id: @user_id, recipe_id: @recipe_id)
   end
 
   def create
-    user = User.find_by(id: params[:user_id])
-    card = UserRecipeCard.find_or_create_by(user_id: user.id, recipe_id: params[:recipe_id])
+    user = User.find_by(id: @user_id)
+    card = UserRecipeCard.find_or_create_by(user_id: @user_id, recipe_id: @recipe_id)
     card.rating = params[:user_recipe_card][:rating].to_i
     card.notes = params[:user_recipe_card][:notes]
     card.saved = true unless recipe_author?(card)
 
     if card.save
-      redirect_to user_recipes_url(user), notice: "Notes Successfully Saved"
+      redirect_to "/users/#{@user_id}/recipes", notice: "Notes Successfully Saved"
     else 
-      render :new, alert: "There was a problem saving your notes"
+      flash[:alert] =  "There was a problem saving your notes"
+      render :new
     end
   end
 
   def edit
-    #@card = UserRecipeCard.find_by(user_id: @user, recipe_id: @recipe)
+    
   end
 
   def update
-    #user_recipe_card_path(@user_id, @recipe_id)
+    binding.pry
+    if @card.update(recipe_card_params)
+      redirect_to "/recipes/#{@recipe_id}", notice: "Successfully Updated Notes"
+    else
+      flash[:alert] = "Error. Update Not Successful"
+      render :edit
+    end
   end
 
   def destroy
-
+    if current_user.id == @card.user_id
+      @card.destroy
+      redirect_to "/recipes/#{@recipe_id}", notice: "Notes Succesfully Deleted!"
+    else
+      flash[:alert] = "OOps! There was an error"
+      render :edit
+    end
   end
 
   private
 
+  def convert_url_params
+    @user_id = params[:user_id].to_i
+    @recipe_id = params[:recipe_id].to_i
+  end
+  
+  def find_card
+    @card = UserRecipeCard.find_by(user_id: @user_id, recipe_id: @recipe_id)
+  end
+  
+  def recipe_card_params
+    params.require(:user_recipe_card).permit(:user_id, :recipe_id, :rating, :saved, :notes)
+  end
+  
   def recipe_author?(card)
     card.user.id == card.recipe.author_id
   end
