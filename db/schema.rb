@@ -77,13 +77,13 @@ ActiveRecord::Schema.define(version: 20201215004020) do
     t.integer "recipe_id"
   end
 
-  create_table "user_recipes", force: :cascade do |t|
+  create_table "user_recipe_cards", force: :cascade do |t|
     t.integer "user_id"
     t.integer "recipe_id"
     t.integer "rating", default: 0
     t.boolean "saved", default: false
     t.text "notes"
-    t.index ["user_id", "recipe_id"], name: "index_user_recipes_on_user_id_and_recipe_id", unique: true
+    t.index ["user_id", "recipe_id"], name: "index_user_recipe_cards_on_user_id_and_recipe_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

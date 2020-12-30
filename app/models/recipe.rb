@@ -9,8 +9,8 @@ class Recipe < ApplicationRecord
 
   belongs_to :course
 
-  has_many :user_recipes
-  has_many :users, through: :user_recipes
+  has_many :user_recipe_cards
+  has_many :users, through: :user_recipe_cards
 
   has_many :recipe_categories
   has_many :categories, through: :recipe_categories
@@ -29,7 +29,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :steps 
 
   def star_average
-    ratings = UserRecipe.where(recipe_id: self.id)
+    ratings = UserRecipeCard.where(recipe_id: self.id)
     return 0 if ratings.empty?
     sum = ratings.collect{ |i| i.rating }.reduce(0, :+)
     (sum / ratings.count).floor
@@ -60,12 +60,12 @@ class Recipe < ApplicationRecord
   end
 
   def saved?(user)
-    record = UserRecipe.record(user.id, self.id)
+    record = UserRecipeCard.record(user.id, self.id)
     record.present? ? record.saved : false
   end
 
   def ratings
-    UserRecipe.all.where(recipe_id: self.id)
+    UserRecipeCard.all.where(recipe_id: self.id)
   end
 
   def self.newest_first

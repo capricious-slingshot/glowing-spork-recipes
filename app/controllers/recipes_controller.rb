@@ -95,7 +95,7 @@ class RecipesController < ApplicationController
 
   def save_rating
     if params[:rating] != "Star Rating"
-      record = UserRecipe.find_or_create_by(user_id: current_user.id, recipe_id: @recipe.id)
+      record = UserRecipeCard.find_or_create_by(user_id: current_user.id, recipe_id: @recipe.id)
       record.rating = params[:rating]
       record.save
 

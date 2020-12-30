@@ -1,4 +1,4 @@
-class UserRecipe < ApplicationRecord
+class UserRecipeCard < ApplicationRecord
   belongs_to :user
   belongs_to :recipe
   

@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="content user-heading">
-            <%= link_to "Add Recipe", new_user_recipe_url(@user), class: "button is-info" if authorized(@user) %>
+            <%= link_to "Add Recipe", new_user_recipe_path(@user), class: "button is-info" if authorized(@user) %>
           </div>
         </article>
         <% if @saved.present? %>

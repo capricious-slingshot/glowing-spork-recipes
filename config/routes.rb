@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/recipes/category/:category_name', to: "recipes#index", as: 'recipe_category'
 
   resources :users, only: [:index, :create, :edit, :update, :destroy] do
+    resources :user_recipe_cards
     resources  :recipes, shallow: true
   end
   

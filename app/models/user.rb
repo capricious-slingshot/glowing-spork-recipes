@@ -7,8 +7,8 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 9 }
   has_secure_password
 
-  has_many :user_recipes, dependent: :destroy
-  has_many :recipes, through: :user_recipes
+  has_many :user_recipe_cards, dependent: :destroy
+  has_many :recipes, through: :user_recipe_cards
 
   def self.authenticate(email, password)
     user = User.find_by(email: email)
