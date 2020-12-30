@@ -16,10 +16,22 @@
             <div class="field">
               <div class="control">
                 <div class="select is-info is-large">
-                  <%= f.select :rating, raw("<option>Star Rating</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>") %>
+                  <%= f.select :rating, ["Star Rating","5", "4", "3", "2", "1"] %>
                 </div>
               </div>
             </div>
+            <% unless @author %>
+              <div class="field"> 
+                <br>
+                <%= f.label :saved, "Save to My Recipes?", class: "subtitle is-4" %>
+                <div class="control radio">
+                  <%= f.label :saved, "Yes", value: "true", class: "subtitle is-4" %>
+                  <%= f.radio_button :saved, true, class: "subtitle is-4" %>
+                  <%= f.label :saved, "No", value: "false", class: "subtitle is-4" %>
+                  <%= f.radio_button :saved, false %>
+                </div>
+              </div>
+            <% end %>
             <br><br>
             <div class="field">
               <div class="control">

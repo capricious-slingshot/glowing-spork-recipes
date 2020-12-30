@@ -4,6 +4,7 @@ class UserRecipeCardsController < ApplicationController
 
   def new
     @card = UserRecipeCard.find_or_initialize_by(user_id: @user_id, recipe_id: @recipe_id)
+    @author = recipe_author?(@card)
   end
 
   def create
@@ -11,10 +12,10 @@ class UserRecipeCardsController < ApplicationController
     card = UserRecipeCard.find_or_create_by(user_id: @user_id, recipe_id: @recipe_id)
     card.rating = params[:user_recipe_card][:rating].to_i
     card.notes = params[:user_recipe_card][:notes]
-    card.saved = true unless recipe_author?(card)
+    card.saved = params[:user_recipe_card][:saved] unless recipe_author?(card)
 
     if card.save
-      redirect_to "/users/#{@user_id}/recipes", notice: "Notes Successfully Saved"
+      redirect_to "/recipes/#{@recipe_id}", notice: "Notes Successfully Saved"
     else 
       flash[:alert] =  "There was a problem saving your notes"
       render :new
@@ -22,11 +23,10 @@ class UserRecipeCardsController < ApplicationController
   end
 
   def edit
-    
+    @author = recipe_author?(@card)
   end
 
   def update
-    binding.pry
     if @card.update(recipe_card_params)
       redirect_to "/recipes/#{@recipe_id}", notice: "Successfully Updated Notes"
     else
@@ -61,6 +61,6 @@ class UserRecipeCardsController < ApplicationController
   end
   
   def recipe_author?(card)
-    card.user.id == card.recipe.author_id
+    current_user.id == card.recipe.author_id
   end
 end

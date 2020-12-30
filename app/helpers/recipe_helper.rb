@@ -56,7 +56,7 @@ module RecipeHelper
 
 	def	user_save_button(recipe, user)
 		if recipe.saved?(user)
-			link_to "Saved", user_recipes_path(user), class: "button is-success is-large" 
+			link_to "Saved Recipes", user_recipes_path(user), class: "button is-success is-large" 
 		else
 			link_to "Save Recipe", root_path, class: "button is-info is-large"
 		end
