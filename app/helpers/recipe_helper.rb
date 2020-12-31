@@ -58,7 +58,7 @@ module RecipeHelper
 		if recipe.saved?(user)
 			link_to "Saved Recipes", user_recipes_path(user), class: "button is-success is-large" 
 		else
-			link_to "Save Recipe", root_path, class: "button is-info is-large"
+			button_to "Save Recipe", save_recipe_path(user.id, recipe.id), class: "button is-info is-large"
 		end
 	end
 

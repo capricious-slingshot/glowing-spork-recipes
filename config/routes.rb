@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resource :session
 
   post  '/recipes/:id/rate', to: 'recipes#save_rating'
+  post  'users/:id/recipes/:id/save', to: 'user_recipe_cards#save_recipe', as: 'save_recipe'
   
   resources :recipes 
   get '/recipes/category/:category_name', to: "recipes#index", as: 'recipe_category'

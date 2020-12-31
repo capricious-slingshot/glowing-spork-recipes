@@ -1,6 +1,8 @@
 class UserRecipeCardsController < ApplicationController
+  before_action :require_signin
   before_action :convert_url_params, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_card, only: [:edit, :update, :destroy]
+  before_action :find_recipe, only: [:save_recipe]
 
   def new
     @card = UserRecipeCard.find_or_initialize_by(user_id: @user_id, recipe_id: @recipe_id)
@@ -45,6 +47,14 @@ class UserRecipeCardsController < ApplicationController
     end
   end
 
+  def save_recipe
+      record = UserRecipeCard.find_or_create_by(user_id: current_user.id, recipe_id: @recipe.id)
+      record.saved = true
+      record.save
+
+      redirect_to @recipe, notice: "Recipe Saved"
+  end
+
   private
 
   def convert_url_params
@@ -62,5 +72,9 @@ class UserRecipeCardsController < ApplicationController
   
   def recipe_author?(card)
     current_user.id == card.recipe.author_id
+  end
+
+  def find_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end
