@@ -31,7 +31,7 @@ class Recipe < ApplicationRecord
   def star_average
     ratings = UserRecipeCard.where(recipe_id: self.id)
     return 0 if ratings.empty?
-    sum = ratings.collect{ |i| i.rating }.reduce(0, :+)
+    sum = ratings.collect{ |i| i.rating }.compact.reduce(0, :+)
     (sum / ratings.count).floor
   end
   
