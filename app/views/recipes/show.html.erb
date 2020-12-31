@@ -77,7 +77,7 @@
             <% end %>
           </div>
           <div class="column level-item">
-            <%= !@recipe.author?(current_user) ? user_save_button(@recipe, current_user) : "You are the Author!" %>
+            <%= save_button_or_save_count(@recipe, current_user) %>
           </div>
         </div>
         <div class="columns">

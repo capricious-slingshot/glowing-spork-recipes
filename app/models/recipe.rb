@@ -68,6 +68,10 @@ class Recipe < ApplicationRecord
     UserRecipeCard.all.where(recipe_id: self.id)
   end
 
+  def number_of_saves
+    UserRecipeCard.recipe_saves(self.id).count
+  end
+
   def self.newest_first
     all.order("created_at desc")
   end

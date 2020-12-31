@@ -80,4 +80,13 @@ module RecipeHelper
 			link_to "Add Notes", new_user_recipe_card_path(current_user.id, @recipe.id), class: "button is-warning is-large"
 		end
 	end
+
+	def	save_button_or_save_count(recipe, user)
+		if !recipe.author?(user) 
+			user_save_button(recipe, user)
+		else
+			tag.h5 "Your recipe has been saved #{pluralize(recipe.number_of_saves, "time")}", class: "subtitle is-5"
+		end
+			
+	end
 end
