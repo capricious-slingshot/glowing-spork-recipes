@@ -77,8 +77,8 @@
     </section>
     <section class="main">
       <div class="container">
+        <%= render "/shared/flash_header" if flash.present? %>
         <div class="columns">
-          <%= render "/shared/flash_header" if flash.present? %>
           <%= yield %>
         </div>
       </div>
