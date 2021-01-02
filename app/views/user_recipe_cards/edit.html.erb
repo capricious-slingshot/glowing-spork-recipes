@@ -1,1 +1,13 @@
-<%= render partial: "form", locals: { title: "Edit Notes", path: user_recipe_card_path(@user_id, @recipe_id), delete: true } %>
+<% content_for(:edit) do %>
+  <div class="column">
+    <div class="field">
+      <div class="control">
+        <%= link_to "Delete Notes", user_recipe_card_path(@user_id, @recipe_id, @card),
+            method: "delete",
+            data: {confirm: "Are you want to DELETE this Note?"}, 
+            class: "button is-danger is-large" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= render partial: "form", locals: { title: "Edit Personal Notes", path: user_recipe_card_path(@user_id, @recipe_id) } %>
