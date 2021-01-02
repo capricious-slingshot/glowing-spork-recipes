@@ -4,13 +4,13 @@
       <article class="media level">
         <figure class="media-left">
           <figure class="image is-128x128">
-            <%= image_tag user_image(@user), class: "is-rounded" %>
+            <%= image_tag user_image(@user), class: "is-rounded user-profile-photo" %>
           </figure>
         </figure>
         <div class="media-content user-heading">
           <div class="content">
             <p>
-              <strong><%= @user.name %></strong> <small><%= user_location(@user) %></small>
+              <strong><%= @user.name %></strong> | <small><%= user_location(@user) %></small>
             </p>
             <p>
               <%= user_bio(@user) %>
