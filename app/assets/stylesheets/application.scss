@@ -66,6 +66,9 @@ a.oath{
 	background: linear-gradient(rgba(242, 242, 242, 0.5), rgba(102, 102, 102, 0.5)), asset_url("recipes/spork.png");
 	height: 100%;
 }
+.main .notes-layout{
+	min-height: 800px;
+}
 .hero.is-primary .navbar-brand a.logo:hover{
 	background: #750000;
 }
