@@ -76,8 +76,12 @@
       </div>
     </section>
     <section class="main">
-      <%= render "/shared/flash_header" if flash.present? %>
-      <%= yield %>
+      <div class="container">
+        <div class="columns">
+          <%= render "/shared/flash_header" if flash.present? %>
+          <%= yield %>
+        </div>
+      </div>
     </section>
   </body>
 </html>

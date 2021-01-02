@@ -1,49 +1,41 @@
-<div class="container">
-	<div class="columns">
-	  <div class="column is-three-fourths-tablet main-container">
-      <article class="media level">
-        <figure class="media-left">
-          <figure class="image is-128x128">
-            <%= image_tag user_image(@user), class: "is-rounded user-profile-photo" %>
-          </figure>
-        </figure>
-        <div class="media-content user-heading">
-          <div class="content">
-            <p>
-              <strong><%= @user.name %></strong> | <small><%= user_location(@user) %></small>
-            </p>
-            <p>
-              <%= user_bio(@user) %>
-            </p>
-          </div>
-        </div>
-        <div class="content user-heading">
-          <%= link_to "Add Recipe", new_user_recipe_path(@user), class: "button is-info" if authorized(@user) %>
-        </div>
-      </article>
-      <div class="tabs is-centered is-large">
-        <ul>
-          <li class="is-active"><a href="#authored">Authored Recipes</a></li>
-        </ul>
-      </div>
-      <div id="authored">
-        <%= render '/shared/recipe_card', collection: @recipes %>
-      </div>
-      <div id="saved">
-        <hr>
-        <div class="tabs is-centered is-large">
-          <ul>
-            <li><a href="#authored">Saved Recipes</a></li>
-          </ul>
-        </div>
-        <div id="saved">
-          <%= render '/shared/recipe_card', collection: @saved_recipes if @saved_recipes.present? %>
-        </div>
+<div class="column is-three-fourths-tablet main-container">
+  <article class="media level">
+    <figure class="media-left">
+      <figure class="image is-128x128">
+        <%= image_tag user_image(@user), class: "is-rounded user-profile-photo" %>
+      </figure>
+    </figure>
+    <div class="media-content user-heading">
+      <div class="content">
+        <p>
+          <strong><%= @user.name %></strong> | <small><%= user_location(@user) %></small>
+        </p>
+        <p>
+          <%= user_bio(@user) %>
+        </p>
       </div>
     </div>
-	</div>
+    <div class="content user-heading">
+      <%= link_to "Add Recipe", new_user_recipe_path(@user), class: "button is-info" if authorized(@user) %>
+    </div>
+  </article>
+  <div class="tabs is-centered is-large">
+    <ul>
+      <li class="is-active"><a href="#authored">Authored Recipes</a></li>
+    </ul>
+  </div>
+  <div id="authored">
+    <%= render '/shared/recipe_card', collection: @recipes %>
+  </div>
+  <div id="saved">
+    <hr>
+    <div class="tabs is-centered is-large">
+      <ul>
+        <li><a href="#authored">Saved Recipes</a></li>
+      </ul>
+    </div>
+    <div id="saved">
+      <%= render '/shared/recipe_card', collection: @saved_recipes if @saved_recipes.present? %>
+    </div>
+  </div>
 </div>
-
-
-
-

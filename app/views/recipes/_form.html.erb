@@ -126,9 +126,16 @@
       <%= r.radio_button :public, false %>
     </div>
   </div>
-  <div class="field">
-    <div class="control">
-      <%= r.submit class: "button is-warning is-large" %>
+  <div class="columns">
+    <div class="column is-narrow">
+      <div class="field">
+        <div class="control">
+          <%= r.submit class: "button is-warning is-large" %>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <%= content_for(:edit)%>
     </div>
   </div>
-<% end %>
+<% end %> 
