@@ -21,14 +21,8 @@ class RecipesController < ApplicationController
       @recipes = Recipe.newest_first
     end
 
-    if params[:query].present?
-      query = params[:query].strip.downcase
-      if @recipes.search(query).present?
-        @recipes = @recipes.search(query)
-      else
-        redirect_to root_path, notice: "Sorry, No Matching Results"
-      end
-    end
+    run_user_query(params[:query], @recipes) if params[:query].present?
+    
 
     if params[:rating].present?
       stars = params[:rating].to_i
@@ -108,7 +102,7 @@ class RecipesController < ApplicationController
   private
 
   def find_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find_by(id: params[:id])
   end
 
   def recipe_params
@@ -126,5 +120,16 @@ class RecipesController < ApplicationController
         :id, :name
       ]
     )
+  end
+
+  def run_user_query(user_input, recipes)
+    results = recipes.search(user_input.strip.downcase)
+    if results.present? && results.length == Recipe.all.length
+      redirect_to root_path, notice: "Too Many Results. Please Refine Your Search"
+    elsif results.present?
+      @recipes = results
+    else
+      redirect_to root_path, notice: "Sorry, No Matching Results"
+    end
   end
 end
