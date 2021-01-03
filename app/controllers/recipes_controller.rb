@@ -22,17 +22,7 @@ class RecipesController < ApplicationController
     end
 
     run_user_query(params[:query], @recipes) if params[:query].present?
-    
-
-    if params[:rating].present?
-      stars = params[:rating].to_i
-      filtered = Recipe.filter_by_star(@recipes, stars)
-      if filtered.present?
-        @recipes = filtered
-      else
-        redirect_to root_path, notice: "Sorry, No #{stars} Star Ratings"
-      end
-    end
+    run_star_filter(params[:rating].to_i, @recipes) if params[:rating].present?
   end
 
   def show
@@ -131,5 +121,10 @@ class RecipesController < ApplicationController
     else
       redirect_to root_path, notice: "Sorry, No Matching Results"
     end
+  end
+
+  def run_star_filter(stars, recipes)
+    filtered = Recipe.filter_by_star(recipes, stars)
+    filtered.present? ? (@recipes=filtered) : (redirect_to root_path, notice: "Sorry, No #{stars} Star Ratings")
   end
 end
