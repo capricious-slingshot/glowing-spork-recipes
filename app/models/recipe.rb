@@ -28,6 +28,15 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :steps 
 
+  #ingredients, restrictions, tags - join tables? how to handle?
+  scope :search, -> (term) { left_joins(:course).where("LOWER(title) LIKE :term OR description LIKE :term OR LOWER(name) LIKE :term", term: "%#{term}%") }
+  scope :newest_first, -> { all.order("created_at desc") }
+  scope :top_rated, -> { all.order("star_average asc") }
+  scope :authored_recipes, ->  (user_id) { where(author_id: user_id) }
+  scope :filter_by_star, ->  (collection, stars) { collection.select{ |i| i.star_average == stars} }
+  scope :public_recipes, -> { where(public: true) }
+  scope :by_category, -> (name) { Category.find_by(name: name).recipes.public_recipes }
+
   def star_average
     ratings = UserRecipeCard.where(recipe_id: self.id)
     return 0 if ratings.empty?
@@ -70,32 +79,6 @@ class Recipe < ApplicationRecord
 
   def number_of_saves
     UserRecipeCard.recipe_saves(self.id).count
-  end
-
-  def self.newest_first
-    all.order("created_at desc")
-  end
-
-  def self.by_category(name)
-    category = Category.find_by(name: name)
-    category.recipes.where(public: true) if category
-  end
-
-  def self.top_rated
-    all.order("star_average asc")
-  end
-
-  def self.authored_recipes(user_id)
-    where(author_id: user_id)
-  end
-
-  def self.search(term)
-    left_joins(:course).where("LOWER(title) LIKE :term OR description LIKE :term OR LOWER(name) LIKE :term", term: "%#{term}%")
-    #ingredients, restrictions, tags - join tables? how to handle?
-  end
-
-  def self.filter_by_star(collection, stars)
-    collection.select{ |i| i.star_average == stars}
   end
 
 end
