@@ -1,4 +1,18 @@
 <% if @user.present? %>
+  <% content_for(:user_saves) do %>
+    <div id="saved">
+      <hr>
+      <div class="tabs is-centered is-large">
+        <ul>
+          <li><a href="#authored">Saved Recipes</a></li>
+        </ul>
+      </div>
+      <div id="saved">
+        <%= render '/shared/recipe_card', collection: @saved_recipes if @shared_recipes.present? %>
+      </div>
+    </div>
+  <% end %>
+
   <%= render "user_recipes" %>
 <% else %>
 	<%= render "public_recipes" %>

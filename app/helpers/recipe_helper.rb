@@ -51,7 +51,9 @@ module RecipeHelper
 	end
 
 	def	authorized(user)
-		@current_user == @user || @current_user.admin?
+		if current_user
+			current_user == user || current_user.admin 
+		end
 	end
 
 	def	user_save_button(recipe, user)

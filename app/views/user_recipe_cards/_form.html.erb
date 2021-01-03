@@ -1,3 +1,4 @@
+<%= render "/shared/flash_header" if flash.present? %>
 <div class="column main-container notes-layout">
   <h1 class="subtitle is-1"><%= title %></h1>
   <%= form_for(@card, url: path) do |f| %>

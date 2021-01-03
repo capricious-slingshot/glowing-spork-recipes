@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     if @user
       if authorized_user?(@user)
-        @recipes = Recipe.authored_recipes(@user.id)
+        @recipes = Recipe.authored(@user.id)
         @saved_recipes = @user.saved_recipes
       elsif @user.public_profile?
         @recipes = Recipe.authored(@user.id).public_recipes
