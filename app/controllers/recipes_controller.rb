@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
         @recipes = Recipe.authored_recipes(@user.id)
         @saved_recipes = @user.saved_recipes
       elsif @user.public_profile?
-        @recipes = Recipe.authored_recipes(@user.id)
+        @recipes = Recipe.authored(@user.id).public_recipes
       else
         redirect_to root_path, notice: "Profile Not Public"
       end

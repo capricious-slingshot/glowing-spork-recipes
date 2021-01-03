@@ -32,7 +32,7 @@ class Recipe < ApplicationRecord
   scope :search, -> (term) { left_joins(:course).where("LOWER(title) LIKE :term OR description LIKE :term OR LOWER(name) LIKE :term", term: "%#{term}%") }
   scope :newest_first, -> { all.order("created_at desc") }
   scope :top_rated, -> { all.order("star_average asc") }
-  scope :authored_recipes, ->  (user_id) { where(author_id: user_id) }
+  scope :authored, ->  (user_id) { where(author_id: user_id) }
   scope :filter_by_star, ->  (collection, stars) { collection.select{ |i| i.star_average == stars} }
   scope :public_recipes, -> { where(public: true) }
   scope :by_category, -> (name) { Category.find_by(name: name).recipes.public_recipes }
