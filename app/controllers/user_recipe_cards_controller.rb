@@ -19,7 +19,7 @@ class UserRecipeCardsController < ApplicationController
     if card.save
       redirect_to "/recipes/#{@recipe_id}", notice: "Notes Successfully Saved"
     else 
-      flash[:alert] =  "There was a problem saving your notes"
+      flash.now[:alert] =  "There was a problem saving your notes"
       render :new
     end
   end
@@ -32,7 +32,7 @@ class UserRecipeCardsController < ApplicationController
     if @card.update(recipe_card_params)
       redirect_to "/recipes/#{@recipe_id}", notice: "Successfully Updated Notes"
     else
-      flash[:alert] = "Error. Update Not Successful"
+      flash.now[:alert] = "Error. Update Not Successful"
       render :edit
     end
   end
@@ -42,7 +42,7 @@ class UserRecipeCardsController < ApplicationController
       @card.destroy
       redirect_to "/recipes/#{@recipe_id}", notice: "Notes Succesfully Deleted!"
     else
-      flash[:alert] = "OOps! There was an error"
+      flash.now[:alert] = "OOps! There was an error"
       render :edit
     end
   end

@@ -48,7 +48,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_url(@recipe), notice: "Success"
     else
-      flash[:alert] = "There was a problem. Recipe was not created."
+      flash.now[:alert] = "There was a problem. Recipe was not created."
       render :new
     end
   end
@@ -61,7 +61,7 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Successfully Updated"
     else
-      flash[:alert] = "Error. Update Not Successful"
+      flash.now[:alert] = "Error. Update Not Successful"
       render :edit
     end
   end
@@ -72,7 +72,7 @@ class RecipesController < ApplicationController
       @recipe.measurements.each { |m| m.destroy }
       redirect_to recipes_url, notice: "#{@recipe.title} Succesfully Deleted!"
     else
-      flash[:alert] = "Error: #{@recipe.title} Not Deleted"
+      flash.now[:alert] = "Error: #{@recipe.title} Not Deleted"
       render :edit
     end
   end

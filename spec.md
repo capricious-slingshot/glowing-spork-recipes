@@ -8,14 +8,14 @@ Specs:
 - [x] Include at least one many-to-many relationship 
 - [x] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user 
 - [x] Include reasonable validations for simple model objects (models should defend against invalid data)
-- [ ] Include a class level ActiveRecord scope method (Your scope method must be chainable, meaning that you must use ActiveRecord Query methods within it (.where and .order) rather than native ruby methods (#find_all or #sort).)
+- [x] Include a class level ActiveRecord scope method (Your scope method must be chainable, meaning that you must use ActiveRecord Query methods within it (.where and .order) rather than native ruby methods (#find_all or #sort).)
 - [x] Include signup
 - [x] Include login
 - [x] Include password handling
 - [x] Include logout
 - [x] Include third party signup/login (e.g. Devise/OmniAuth)
-- [ ] Include nested resource show or index (URL e.g. users/2/recipes)
-- [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
+- [x] Include nested resource show or index (URL e.g. users/2/recipes)
+- [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
 - [x] Include form validation errors 
 - [x] Include fields should be enclosed within a fields_with_errors class
 - [x] Include error messages describing the validation failures present within the view

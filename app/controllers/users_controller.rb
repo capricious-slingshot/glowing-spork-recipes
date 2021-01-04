@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user, notice: "Welcome #{@user.name}!"
     else
-      flash[:alert] = "Danger Batman"
+      flash.now[:alert] = "Danger Batman"
       render :new, layout: "authentication"
     end
   end
@@ -32,11 +32,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     if @user.update(user_params)
       redirect_to user_recipes_url(@user), notice: "Successfully Updated #{@user.name}"
     else
-      flash[:alert] = "Danger Batman"
+      flash.now[:alert] = "Danger Batman"
       render :edit
     end
   end
