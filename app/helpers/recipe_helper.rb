@@ -66,12 +66,12 @@ module RecipeHelper
 
 	def user_notes(user_id, recipe_id)
 		record = UserRecipeCard.record(user_id, recipe_id)
-		record && record.notes.present? ? record.notes : "You havent added any notes yet."
+		record.present? && record.notes.present? ? record.notes : "You havent added any notes yet."
 	end
 
 	def user_stars(user_id, recipe_id)
 		record =  UserRecipeCard.record(user_id, recipe_id)
-		record && record.rating.present? ? record.rating : 0
+		record.present? && record.rating.present? ? record.rating : 0
 	end
 
 	def	user_notes_button(user_id, recipe_id)
