@@ -1,5 +1,4 @@
 <% content_for(:title, @user.name) %>
-
 <div class="column is-three-fourths-tablet main-container">
   <article class="media level">
     <figure class="media-left">
@@ -29,5 +28,17 @@
   <div id="authored">
     <%= render '/shared/recipe_card', collection: @recipes %>
   </div>
-  <%= content_for(:user_saves) if @saved_recipes.present? %>
+  <% if @saved_recipes.present? %>
+    <div id="saved">
+      <hr>
+      <div class="tabs is-centered is-large">
+        <ul>
+          <li><a href="#authored">Saved Recipes</a></li>
+        </ul>
+      </div>
+      <div id="saved">
+        <%= render '/shared/recipe_card', collection: @saved_recipes %>
+      </div>
+    </div>
+  <% end %>
 </div>
