@@ -17,7 +17,15 @@ class User < ApplicationRecord
 
   def self.find_or_create_by_omniauth(auth_hash)
     self.where(email: auth_hash["info"]["email"]).first_or_create do |user|
-      user.password = SecureRandom.hex 
+      binding.pry
+      stubb_password = SecureRandom.hex
+      user.name = auth_hash["info"]["nickname"] unless user.name.present?
+      user.email = auth_hash["info"]["email"] unless user.email.present?
+      user.password =  stubb_password
+      user.password_confirmation =  stubb_password
+      user.photo = auth_hash["extra"]["raw_info"]["avatar_url"] unless user.photo.present?
+      user.bio = auth_hash["extra"]["raw_info"]["bio"] unless user.bio.present?
+      user.location = auth_hash["extra"]["raw_info"]["location"] unless user.location.present?
     end
   end
 
@@ -28,4 +36,5 @@ class User < ApplicationRecord
   def recipe_cards
     self.user_recipe_cards.all.where(user_id: self.id, saved: true)
   end
+
 end
