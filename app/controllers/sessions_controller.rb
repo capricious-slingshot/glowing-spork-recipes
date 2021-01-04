@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash = request.env["omniauth.auth"]
-    ominauth_email = auth_hash["info"]["email"]
+    ominauth_email = auth_hash["info"]["email"] if auth_hash.present?
     if auth_hash && ominauth_email == nil
       flash.now[:alert] = "There was a problem. Please check your Privacy Settings in Github"
       redirect_to :new, layout: "authentication"

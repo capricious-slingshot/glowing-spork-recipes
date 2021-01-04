@@ -1,0 +1,72 @@
+<%= form_for(@user) do |f| %>
+  <div class="field required">
+    <div class="control">
+      <%= f.label :name, class: "hidden" %>
+      <%= f.text_field :name, class: "input is-large", placeholder: 'User Name', autofocus: true %>
+    </div>
+  </div>
+  <div class="field required">
+    <div class="control">
+      <%= f.label :email, class: "hidden" %>
+      <%= f.email_field :email, class: "input is-large", placeholder: "Email" %>
+    </div>
+  </div>
+  <div class="field required">
+    <div class="control">
+      <%= f.label :password, class: "hidden" %>
+      <%= f.password_field :password, class: "input is-large", placeholder: "New Password" %>
+    </div>
+  </div>
+  <div class="field required">
+    <div class="control">
+      <%= f.label :password_confirmation, class: "hidden" %>
+      <%= f.password_field :password_confirmation, class: "input is-large", placeholder: "Password Confirmation" %>
+    </div>
+  </div>
+  <% if @user.persisted? %>
+    <div class="field">
+      <div class="control">
+        <%= f.label :photo, class: "hidden" %>
+        <%= f.text_field :photo, class: "input is-large", placeholder: "Photo Url" %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <%= f.label :bio, class: "hidden" %>
+        <%= f.text_area :bio, class: "textarea is-large", placeholder: "User Bio" %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <%= f.label :location, class: "hidden" %>
+        <%= f.text_field :location, class: "input is-large", placeholder: "Location" %>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.label :public_profile, "Make Profile Public?", class: "subtitle is-4" %>
+      <div class="control radio">
+        <%= f.label :public_profile, "Yes", value: "true", class: "subtitle is-4" %>
+        <%= f.radio_button :public_profile, true, class: "subtitle is-4" %>
+        <%= f.label :public_profile, "No", value: "false", class: "subtitle is-4" %>
+        <%= f.radio_button :public_profile, false %>
+      </div>
+    </div>
+  <% end %>
+  <div class="coulmns">
+    <div class="coulmn is-narrow">
+      <div class="field level">
+        <div class="control level-left">
+          <%= f.submit "#{button_language(@user)}", class: "button is-info is-large create-button" %>
+        </div>
+        <% if @user.persisted? %>
+          <div class="control level-left">
+            <%= link_to "Delete Account", @user,
+                    method: "delete",
+                    data: {confirm: "Are you sure?"}, 
+                    class: "button is-danger is-large" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

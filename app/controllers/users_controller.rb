@@ -32,8 +32,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    binding.pry
     if @user.update(user_params)
-      redirect_to user_recipe_cards_url(@user), notice: "Successfully Updated #{@user.name}"
+      redirect_to user_recipes_url(@user), notice: "Successfully Updated #{@user.name}"
     else
       flash[:alert] = "Danger Batman"
       render :edit

@@ -26,11 +26,12 @@ module UsersHelper
     user.location.present? ? user.location : "Where do you live?"
   end
 
-  private
-
   def uri_exists?(url)
-    uri = URI.parse(url)
-    Net::HTTP.get_response(uri).code == '200'
+    begin
+      Net::HTTP.get_response(URI.parse(url)).is_a?(Net::HTTPSuccess)
+    rescue
+      false
+    end
   end
 
 end
