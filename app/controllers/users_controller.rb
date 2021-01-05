@@ -14,11 +14,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    #truemail validation?
     @user = User.create(user_params)
     if @user.valid?
       #can i redirect to the page they were just on?
       # session[:intended_url] = request.url
+      #redirect_back_or obj
       session[:user_id] = @user.id
       redirect_to @user, notice: "Welcome #{@user.name}!"
     else
