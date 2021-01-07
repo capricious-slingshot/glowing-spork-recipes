@@ -35,12 +35,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    9.times do
-      m = @recipe.measurements.build
-      m.build_ingredient
-    end
-    5.times {@recipe.steps.build}
-    4.times {@recipe.tags.build}    
+    build_form   
   end
 
   def create
@@ -54,7 +49,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    build_missing_fields
+    build_form
   end
 
   def update
@@ -128,10 +123,10 @@ class RecipesController < ApplicationController
     filtered.present? ? (@recipes=filtered) : (redirect_to root_path, notice: "Sorry, No #{stars} Star Ratings")
   end
 
-  def build_missing_fields
+  def build_form
     field_builder(@recipe.measurements, 9)
     field_builder(@recipe.steps, 5)
-    field_builder(@recipe.tags, 4)
+    field_builder(@recipe.tags, 3)
   end
 
   def field_builder(objects, desired_length)
