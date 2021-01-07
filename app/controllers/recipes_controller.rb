@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   def index
     #this is heidious - nested routes ugh
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(slug: params[:user_id])
     if @user
       if authorized_user?(@user)
         @recipes = Recipe.authored(@user.id)

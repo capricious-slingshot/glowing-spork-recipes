@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201215004020) do
+ActiveRecord::Schema.define(version: 20210107020644) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20201215004020) do
     t.string "location"
     t.boolean "public_profile", default: true
     t.boolean "metric", default: false
+    t.string "slug"
   end
 
 end

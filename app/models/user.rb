@@ -1,11 +1,14 @@
 class User < ApplicationRecord
 
   extend ActiveModel::Naming
+  before_validation :generate_slug
+
   validates :name, presence: true, uniqueness: true
   validates_uniqueness_of :email, case_sensitive: false
   validates :email, presence: true, email: true
   validates :password, length: { minimum: 9 }, on: [:create, :update], unless: lambda{ |user| user.password.blank? }
   validates :password_confirmation, presence: true, on: [:create, :update], unless: lambda{ |user| user.password.blank? }
+  validates :slug, uniqueness: true
   has_secure_password
 
   has_many :user_recipe_cards, dependent: :destroy
@@ -36,6 +39,14 @@ class User < ApplicationRecord
 
   def recipe_cards
     self.user_recipe_cards.all.where(user_id: self.id, saved: true)
+  end
+
+  def to_param
+    slug
+  end
+
+  def generate_slug
+    self.slug ||= name.parameterize if name
   end
 
 end

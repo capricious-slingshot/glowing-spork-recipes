@@ -60,7 +60,8 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(id: params[:id])
+    binding.pry
+    @user = User.find_by(slug: params[:id])
   end
 
   def authorize
