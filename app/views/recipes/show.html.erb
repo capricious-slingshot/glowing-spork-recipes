@@ -1,44 +1,45 @@
-<% content_for(:title, @recipe.title)%>
-  <div class="column">
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical is-8">
-        <div class="tile">
-          <div class="tile is-parent is-vertical">
-            <article class="tile is-child notification top-element odd-box heading">
-              <h1 class="title is-2"><%= @recipe.title %></h1>
-              <p><%= link_to "#{author_name(@recipe)}", user_recipes_path(@author) %></p>
-              <p><%= created_on(@recipe) %></p>
-            </article>
-            <article class="tile is-child notification even-box">
-              <p class="subtitle is-4">
-              <%= render '/shared/star_rating', star: @recipe.star_average %>
-              </p>
-              <p class="title is-5"><%= star_average_text(@recipe) %> <span class="subtitle is-6 subtext"> <%= pluralize(@recipe.ratings.count, 'rating') %> </span></p>
-              <p><%= @recipe.description %></p>
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification image-wrapper">
-              <figure class=" ">
-                <%= image_tag "recipes/#{recipe_image(@recipe)}" %>
-              </figure>
-            </article>
-          </div>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification odd-box heading">
-            <p class="title">Ingredients</p>
-            <p class="subtitle"></p>
-            <div class="content">
-              <ul>
-                <% @recipe.measurements.each do |m| %>
-                  <li><%= m.quantity %> <%= m.unit %> <%= m.ingredient.name %></li>
-                <% end %>
-              </ul>
-            </div>
-          </article>
-        </div>
+<% content_for(:title, @recipe.title) %> 
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-8">
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification top-element odd-box heading">
+          <h1 class="title is-2"><%= @recipe.title %></h1>
+          <p><%= link_to "#{author_name(@recipe)}", user_recipes_path(@author) %></p>
+          <p><%= created_on(@recipe) %></p>
+        </article>
+        <article class="tile is-child notification even-box">
+          <p class="subtitle is-4">
+          <%= render '/shared/star_rating', star: @recipe.star_average %>
+          </p>
+          <p class="title is-5"><%= star_average_text(@recipe) %> <span class="subtitle is-6 subtext"> <%= pluralize(@recipe.ratings.count, 'rating') %> </span></p>
+          <p><%= @recipe.description %></p>
+        </article>
       </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification image-wrapper">
+          <figure class=" ">
+            <%= image_tag "recipes/#{recipe_image(@recipe)}" %>
+          </figure>
+        </article>
+      </div>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification odd-box heading">
+        <p class="title">Ingredients</p>
+        <p class="subtitle"></p>
+        <div class="content">
+          <ul>
+            <% @recipe.measurements.each do |m| %>
+              <li><%= m.quantity %> <%= m.unit %> <%= m.ingredient.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="tile is-vertical is-4">
+    <div class="tile">
       <div class="tile is-parent">
         <article class="tile is-child notification even-box top-element">
           <div class="content">
@@ -52,64 +53,68 @@
           </div>
           <%= author_edit_button(@recipe) %>
         </article>
-      </div>   
-      </div>   
-      <div class="tile is-parent">
-        <article class="tile is-child notification user-notes">
-          <% if current_user %>
-            <div class="columns level">
-              <div class="column is-narrow">
-                <% if user_stars(current_user.id, @recipe.id) > 0 %>
-                  <%= render '/shared/star_rating', star: user_stars(current_user.id, @recipe.id) %>
-                  <%= "#{user_stars(current_user.id, @recipe.id)} Stars" %>
-                <% else %>
-                  <%= form_tag("/recipes/#{@recipe.id}/rate", method: "post") do %>
-                    <%= label_tag(:rating, "Star Rating:", class: "hidden") %>
-                    <div class="field has-addons">
-                      <div class="control">
-                        <div class="select is-info is-large">
-                          <%= select_tag( :rating, raw("<option>Star Rating</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>") ) %>
-                        </div>
-                      </div>
-                      <div class="control">
-                        <%= submit_tag("Rate", class: "button is-info is-large")%>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="column level-item">
-                <%= save_button_or_save_count(@recipe, current_user) %>
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <p class="subtitle is-4">Notes: <br></p>
-                <p><%= user_notes(current_user.id, @recipe.id) %></p>
-              </div>
-              <div class="column is-narrow">
-                <%= user_notes_button(current_user.id, @recipe.id) %>
-              </div>
-            </div>
-          <% else %>
-            <div class="columns level">
-              <div class="column is-narrow">
-                <h4 class="subtitle is-4">Save and Rate This Recipe!</h4>
-              </div>
-              <div class="column is-narrow">
-                <%= link_to "Log In", "/login", class:"button is-warning is-large"%>
-              </div>
-          <% end %>
-        </article>
-      </div>
-      <div class="tile is-parent">
-        <article class="tile is-child notification">
-          <div class="content">
-            <% shuffled_links(@categories, @restrictions, @tags).each do |link| %>
-              <%= link %>
-            <% end %>
-          </div>
-        </article>
-      </div>
+      </div> 
     </div>
   </div>
+</div>
+</div>
+<div class="tile is-ancestor second-tile-group">
+  <div class="tile is-parent">
+    <article class="tile is-child notification">
+      <div class="content">
+        <% shuffled_links(@categories, @restrictions, @tags).each do |link| %>
+          <%= link %>
+        <% end %>
+      </div>
+    </article>
+  </div>
+  <div class="tile is-parent is-8">
+    <article class="tile is-child notification user-notes">
+      <% if current_user %>
+        <div class="columns level">
+          <div class="column is-narrow">
+            <% if user_stars(current_user.id, @recipe.id) > 0 %>
+              <%= render '/shared/star_rating', star: user_stars(current_user.id, @recipe.id) %>
+              <%= "#{user_stars(current_user.id, @recipe.id)} Stars" %>
+            <% else %>
+              <%= form_tag("/recipes/#{@recipe.id}/rate", method: "post") do %>
+                <%= label_tag(:rating, "Star Rating:", class: "hidden") %>
+                <div class="field has-addons">
+                  <div class="control">
+                    <div class="select is-info is-large">
+                      <%= select_tag( :rating, raw("<option>Star Rating</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>") ) %>
+                    </div>
+                  </div>
+                  <div class="control">
+                    <%= submit_tag("Rate", class: "button is-info is-large")%>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="column level-item">
+            <%= save_button_or_save_count(@recipe, current_user) %>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <p class="subtitle is-4">Notes: <br></p>
+            <p><%= user_notes(current_user.id, @recipe.id) %></p>
+          </div>
+          <div class="column is-narrow">
+            <%= user_notes_button(current_user.id, @recipe.id) %>
+          </div>
+        </div>
+      <% else %>
+        <div class="columns level">
+          <div class="column is-narrow">
+            <h4 class="subtitle is-4">Save and Rate This Recipe!</h4>
+          </div>
+          <div class="column is-narrow">
+            <%= link_to "Log In", "/login", class:"button is-warning is-large"%>
+          </div>
+        </div>
+      <% end %>
+    </article>
+  </div>
+</div>
