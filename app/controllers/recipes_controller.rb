@@ -54,7 +54,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-
+    build_missing_fields
   end
 
   def update
@@ -126,5 +126,21 @@ class RecipesController < ApplicationController
   def run_star_filter(stars, recipes)
     filtered = Recipe.filter_by_star(recipes, stars)
     filtered.present? ? (@recipes=filtered) : (redirect_to root_path, notice: "Sorry, No #{stars} Star Ratings")
+  end
+
+  def build_missing_fields
+    field_builder(@recipe.measurements, 9)
+    field_builder(@recipe.steps, 5)
+    field_builder(@recipe.tags, 4)
+  end
+
+  def field_builder(objects, desired_length)
+    persisted = objects.length
+    if persisted <= desired_length 
+      (persisted...desired_length).each do |i|
+        m = objects.build
+        m.build_ingredient if objects == @recipe.measurements
+      end
+    end
   end
 end
