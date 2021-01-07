@@ -52,14 +52,19 @@ a.oath{
 .field_with_errors input{
 	border-color: red;
 }
+.main .message{
+	margin-bottom: 0;
+	border-radius: 0;
+	width: 100%;
+}
 .message .message-header{
 	border-radius: 0;
 }
 .is-error .message-header{
 	background-color: #b30404;
 }
-.main .message.is-success,  .main .message.is-error{
-	margin-bottom: 0;
+.main #message-body{
+	padding: 20px;
 }
 
 /* appliction layout */ 
@@ -102,18 +107,30 @@ a.oath{
 .hero.is-primary .navbar-end input#query{
 	width: 9em;
 }
+.main{
+  border-top: 10px solid rgba(128, 128, 128, 1);
+}
+.columns.body-wrapper{
+	margin: 0;
+}
+.body-wrapper .frame{
+	padding: 0;
+}
 
 /* recipes index*/
 .main .rating-filter{
 	background: #fff;
-	margin-top: 0px;
+	margin: 0px;
+	padding: 15px 20px 10px;
+	width: 100%;
 }
 .recipe-wrapper{
 	display: flex;
 	flex-wrap: wrap;
+	padding: 0;
 }
 .container .card{
-	min-width: 300px;
+	min-width: 280px;
 	max-width: 350px;
 	min-height: 480px;
 }
@@ -129,7 +146,7 @@ a.oath{
 
 /* recipe show */
 .user-notes{
-	background: #808080;
+	background: rgb(128, 128, 128);
 	color: rgba(0, 0, 0, 0.7);
 }
 .even-box .subtext{
@@ -150,7 +167,6 @@ a.oath{
 /* admin views */
 .main-container {
 	background: #fff;
-	margin-top: 12px;
 	min-height: 800px;
 }
 .top-element{
@@ -164,7 +180,7 @@ a.oath{
   background: #851d1d;
 }
 .even-box{
-	background: #4d4b4b;
+	background: rgb(77, 75, 75);
 	position: relative;
 }
 .even-box .crud-button{

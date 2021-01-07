@@ -54,9 +54,6 @@
                 </div>
                 <% if current_user %>
                   <div class="navbar-item">
-                    <%= link_to "Settings", edit_user_path(current_user), class: "button is-light" %>
-                  </div>
-                  <div class="navbar-item">
                     <%= link_to "Log Out", session_path, method: :delete, class: "button is-light" %>
                   </div>
                 <% else %>
@@ -78,7 +75,7 @@
     <section class="main">
       <div class="container">
         <%= render "/shared/flash_header" if flash.present? %>
-        <div class="columns">
+        <div class="columns body-wrapper">
           <%= yield %>
         </div>
       </div>

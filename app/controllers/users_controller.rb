@@ -19,8 +19,9 @@ class UsersController < ApplicationController
       #can i redirect to the page they were just on?
       # session[:intended_url] = request.url
       #redirect_back_or obj
+      # binding.pry
       session[:user_id] = @user.id
-      redirect_to @user, notice: "Welcome #{@user.name}!"
+      redirect_to user_recipes_url(@user), notice: "Welcome #{@user.name.capitalize}! Finish Setting Up Your Account!"
     else
       flash.now[:alert] = "Danger Batman"
       render :new, layout: "authentication"
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :bio, :location, :public_profile )
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :bio, :location, :public_profile)
   end
 
   def find_user

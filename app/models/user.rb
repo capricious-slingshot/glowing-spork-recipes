@@ -4,7 +4,8 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates_uniqueness_of :email, case_sensitive: false
   validates :email, presence: true, email: true
-  validates :password, length: { minimum: 9 }
+  validates :password, length: { minimum: 9 }, on: [:create, :update], unless: lambda{ |user| user.password.blank? }
+  validates :password_confirmation, presence: true, on: [:create, :update], unless: lambda{ |user| user.password.blank? }
   has_secure_password
 
   has_many :user_recipe_cards, dependent: :destroy
