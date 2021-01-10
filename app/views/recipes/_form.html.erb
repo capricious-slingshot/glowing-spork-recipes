@@ -19,58 +19,91 @@
       <%= r.text_area :description, class: "textarea is-large", placeholder: "Tender juicy morsels of goodness....." %>
     </div>
   </div>
-  <%= r.label :ingredients, "Ingredients", class: "subtitle is-3" %>
-  <%= r.fields_for :measurements do |m| %>
-    <div class="columns">
-      <div class="column">
-        <div class="field">
-          <%= m.label :quantity, "Quantity", class: "hidden subtitle is-4" %><br>
-            <p class="control is-fullwidth">
-              <%= m.text_field :quantity, class: "input is-large", placeholder: "Quantity" %>
-            </p>
-          </div>
-        </div>
+  <div id="ingredients">
+    <%= r.label :measurements, "Ingredients", class: "subtitle is-3" %>
+    <%= r.fields_for :measurements do |m| %>
+      <%#= render "measurement_fields", measurement: m %>
+      <%#= render partials: "measurement_fields", locals: { measurement: m } %>
+      <div class="columns level">
         <div class="column">
           <div class="field">
-            <%= m.label :unit, "Unit", class: "hidden subtitle is-4" %><br>
-            <p class="control is-fullwidth">
-              <%= m.text_field :unit, class: "input is-large", placeholder: "Unit of Measurement" %>
-            </p>
-          </div>
-        </div>
-        <div class="column">
-          <%= m.fields_for :ingredient do |i|%>
-            <div class="field">
-              <%= i.label :name, "Ingredient", class: "hidden subtitle is-4" %><br>
+            <%= m.label :quantity, "Quantity", class: "hidden subtitle is-4" %><br>
               <p class="control is-fullwidth">
-                <%= i.text_field :name, class: "input is-large", placeholder: "Ingredient Name" %>
+                <%= m.text_field :quantity, class: "input is-large", placeholder: "Quantity" %>
               </p>
             </div>
-          <% end %>
+          </div>
+          <div class="column">
+            <div class="field">
+              <%= m.label :unit, "Unit", class: "hidden subtitle is-4" %><br>
+              <p class="control is-fullwidth">
+                <%= m.text_field :unit, class: "input is-large", placeholder: "Unit of Measurement" %>
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <%= m.fields_for :ingredient do |i|%>
+              <div class="field">
+                <%= i.label :name, "Ingredient", class: "hidden subtitle is-4" %><br>
+                <p class="control is-fullwidth">
+                  <%= i.text_field :name, class: "input is-large", placeholder: "Ingredient Name" %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+          <div class="column is-narrow">
+            <div class="field">
+              <div class="control">
+                <%= link_to_remove_association "Remove ", m, class: "button is-default is-light is-danger level-item" %>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-  <% end %>
-  <%= r.label :steps, "Directions", class: "subtitle is-3" %><br><br>
-  <%= r.fields_for :steps do |s| %>
-    <div class="columns level">
-      <div class="column level-left is-2">
-        <div class="field">
-          <%= s.label :position, "Step #{convert_index(s.index)}", class: "subtitle is-5 level-item" %>
+    <% end %>
+      <div class="field">
+        <div class="control">
+          <%= link_to_add_association "Add Ingredient", r, :measurements, class: "button is-default is-light" %>
         </div>
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column is-11 is-offset-1">
-        <div class="field">
-          <%= s.label :description, class: "subtitle is-3 hidden" %>
-          <div class="control">
-            <%= s.text_area :description, class: "input is-large textarea", placeholder: "Description", autofocus: true %>
+      </div><br><br>
+  </div>
+  <div id="steps">
+    <%= r.label :steps, "Directions", class: "subtitle is-3" %><br><br>
+    <%= r.fields_for :steps do |step| %>
+      <%#= render "step_fields", step: step %>
+      <%#= render partials: "step_fields", locals: { step: step } %>
+      <div class="nested-fields">
+        <div class="columns level">
+          <div class="column level-left is-2">
+            <div class="field">
+              <%= step.label :position, "Step #{convert_index(step.index)}", class: "subtitle is-5 level-item" %>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-11 is-offset-1 level">
+            <div class="field">
+              <%= step.label :description, class: "subtitle is-3 hidden" %>
+              <div class="control">
+                <%= step.text_area :description, class: "input is-large textarea", placeholder: "Description", autofocus: true %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control level-right">
+                <%= link_to_remove_association "Remove This Step", step, class: "button is-default is-light is-danger level-item" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    <% end %>
+    <br>
+    <div class="field">
+      <div class="control">
+        <%= link_to_add_association "Add Another Step", r, :steps, class: "button is-default is-light" %>
+      </div>
     </div>
-    <br><br>
-  <% end %>
+  </div>
+<br><br>
   <%= r.label :categories, "Categories", class: "subtitle is-3" %><br><br>
   <div class="columns">
     <div class="column is-11 is-offset-1 is-full-width-mobile">
@@ -98,23 +131,32 @@
       </div>
     </div>
   </div>
-  <%= r.label :tags, "Tags", class: "subtitle is-3" %><br><br>
-  <div class="columns">
-    <div class="column is-11 is-offset-1">
-      <div class="columns recipe-tag-wrapper">
-        <%= r.fields_for :tags do |t| %>
-          <div class="column is-3">
-            <div class="field">
-              <%= t.label :name, "#", class: "subtitle is-3 hidden" %>
-              <div class="control">
-                <%= t.text_field :name, class: "input is-large", placeholder: "paleo, delicious...", autofocus: true %>
+  <div id="tags">
+    <%= r.label :tags, "Tags", class: "subtitle is-3" %><br><br>
+    <div class="columns">
+      <div class="column is-11 is-offset-1">
+        <div class="columns recipe-tag-wrapper">
+          <%= r.fields_for :tags do |t| %>
+            <%#= render "tag_fields", t: t %>
+            <%#= render partial: "tag_fields", locals: { t: t } %>
+            <div class="column is-3 nested-fields">
+              <div class="field">
+                <%= t.label :name, "#", class: "subtitle is-3 hidden" %>
+                <div class="control">
+                  <%= t.text_field :name, class: "input is-large", placeholder: "paleo, delicious...", autofocus: true %>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-    <br>
+    <div class="field">
+      <div class="control">
+        <%= link_to_add_association "Add Another Tag", r, :tags, class: "button is-default is-light" %>
+      </div>
+    </div>
+    <br><br>
   </div>
   <div class="field"> 
       <br>

@@ -95,14 +95,14 @@ class RecipesController < ApplicationController
       category_ids: [],
       restriction_ids: [],
       measurements_attributes: [
-        :id, :quantity, :unit, :recipe_id,
+        :id, :quantity, :unit, :recipe_id, :_destroy,
           ingredient_attributes: [:id, :name]
       ],
       steps_attributes:[
-        :id, :description, :position
+        :id, :description, :position, :_destroy
       ],
       tags_attributes:[
-        :id, :name
+        :id, :name, :_destroy
       ]
     )
   end
@@ -124,8 +124,8 @@ class RecipesController < ApplicationController
   end
 
   def build_form
-    field_builder(@recipe.measurements, 9)
-    field_builder(@recipe.steps, 5)
+    field_builder(@recipe.measurements, 3)
+    field_builder(@recipe.steps, 2)
     field_builder(@recipe.tags, 3)
   end
 
