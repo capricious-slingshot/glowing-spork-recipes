@@ -1,22 +1,23 @@
-<div class="columns level nested-fields">
-  <div class="column level-left is-2">
-    <div class="field">
-      <%#= f.label :position, "Step #{convert_index(f.index)}", class: "subtitle is-5 level-item" %>
-      <%= f.label :position, "Step ", class: "subtitle is-5 level-item" %>
-    </div>
-  </div>
-</div>
-<div class="columns">
-  <div class="column is-11 is-offset-1 level">
-    <div class="field">
-      <%= f.label :description, class: "subtitle is-3 hidden" %>
-      <div class="control">
-        <%= f.text_area :description, class: "input is-large textarea", placeholder: "Description", autofocus: true %>
+<div class="nested-fields">
+  <div class="columns level ">
+    <div class="column level-left is-2">
+      <div class="field">
+        <%= f.label :position, "Step", class: "subtitle is-5 level-item" %>
       </div>
     </div>
-    <div class="field">
-      <div class="control level-right">
-        <%= link_to_remove_association "Remove This Step", f, class: "button is-default is-light is-danger level-item" %>
+  </div>
+  <div class="columns">
+    <div class="column is-11 is-offset-1 level">
+      <div class="field">
+        <%= f.label :description, class: "subtitle is-3 hidden" %>
+        <div class="control">
+          <%= f.text_area :description, class: "input is-large textarea", placeholder: "Description", autofocus: true %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control level-right">
+          <%= link_to_remove_association "Remove This Step", f, class: "button is-default is-light is-danger level-item" %>
+        </div>
       </div>
     </div>
   </div>

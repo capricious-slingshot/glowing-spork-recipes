@@ -17,21 +17,14 @@
     </div>
     <div class="column">
       <%= f.fields_for :ingredient do |i|%>
-        <div class="field">
-          <%= i.label :name, "Ingredient", class: "hidden subtitle" %><br>
-          <p class="control is-fullwidth">
-            <%= i.text_field :name, class: "input is-large", placeholder: "Ingredient Name" %>
-          </p>
-        </div>
+        <%= render "ingredient_fields", f: i %>
       <% end %>
     </div>
     <div class="column is-narrow">
-      <%= f.fields_for :ingredient do |i|%>
-        <div class="field">
-          <div class="control is-2 level-item remove-bttn">
-            <%= link_to_remove_association "Remove", i, class: "button is-default is-light is-danger level-item" %>
-          </div>
+      <div class="field">
+        <div class="control is-2 level-item remove-bttn">
+          <%= link_to_remove_association "Remove", f, class: "button is-default is-light is-danger level-item" %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
