@@ -1,30 +1,37 @@
-<!--
-<div class="columns nested-fields">
+<div class="columns nested-fields level">
   <div class="column">
     <div class="field">
-      <%#= measurement.label :quantity, "Quantity", class: "hidden subtitle is-4" %><br>
+      <%= f.label :quantity, "Quantity", class: "hidden subtitle" %><br>
         <p class="control is-fullwidth">
-          <%#= measurement.text_field :quantity, class: "input is-large", placeholder: "Quantity" %>
+          <%= f.text_field :quantity, class: "input is-large", placeholder: "Quantity" %>
         </p>
       </div>
     </div>
     <div class="column">
       <div class="field">
-        <%#= measurement.label :unit, "Unit", class: "hidden subtitle is-4" %><br>
+        <%= f.label :unit, "Unit", class: "hidden subtitle" %><br>
         <p class="control is-fullwidth">
-          <%#= measurement.text_field :unit, class: "input is-large", placeholder: "Unit of Measurement" %>
+          <%= f.text_field :unit, class: "input is-large", placeholder: "Unit of Measurement" %>
         </p>
       </div>
     </div>
     <div class="column">
-      <%#= measurement.fields_for :ingredient do |i|%>
+      <%= f.fields_for :ingredient do |i|%>
         <div class="field">
-          <%#= i.label :name, "Ingredient", class: "hidden subtitle is-4" %><br>
+          <%= i.label :name, "Ingredient", class: "hidden subtitle" %><br>
           <p class="control is-fullwidth">
-            <%#= i.text_field :name, class: "input is-large", placeholder: "Ingredient Name" %>
+            <%= i.text_field :name, class: "input is-large", placeholder: "Ingredient Name" %>
           </p>
         </div>
-      <#% end %>
+      <% end %>
+    </div>
+    <div class="column is-narrow">
+      <%= f.fields_for :ingredient do |i|%>
+        <div class="field">
+          <div class="control is-2 level-item remove-bttn">
+            <%= link_to_remove_association "Remove", i, class: "button is-default is-light is-danger level-item" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
--->

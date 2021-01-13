@@ -143,6 +143,9 @@ a.oath{
 	display: flex;
 	flex-wrap: wrap;
 }
+.remove-bttn{
+	margin-top: 20px;
+}
 
 /* recipe show */
 .user-notes{
@@ -241,6 +244,9 @@ a.shuffled,a.shuffled,a.shuffled, {
 	.container .card{
 		max-width: 380px;
 		min-width: 350px;
+	}
+	.remove-bttn{
+		margin-top: 0;
 	}
 }
 @media only screen and (max-width : 700px) {

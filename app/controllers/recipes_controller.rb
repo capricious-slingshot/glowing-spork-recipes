@@ -35,7 +35,12 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    build_form   
+    # build_form 
+
+    m = @recipe.measurements.build
+    m.build_ingredient
+    @recipe.steps.build
+    @recipe.tags.build   
   end
 
   def create
@@ -49,7 +54,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    build_form
+    # build_form
   end
 
   def update
@@ -123,19 +128,19 @@ class RecipesController < ApplicationController
     filtered.present? ? (@recipes=filtered) : (redirect_to root_path, notice: "Sorry, No #{stars} Star Ratings")
   end
 
-  def build_form
-    field_builder(@recipe.measurements, 3)
-    field_builder(@recipe.steps, 2)
-    field_builder(@recipe.tags, 3)
-  end
+  # def build_form
+  #   field_builder(@recipe.measurements, 3)
+  #   field_builder(@recipe.steps, 2)
+  #   field_builder(@recipe.tags, 3)
+  # end
 
-  def field_builder(objects, desired_length)
-    persisted = objects.length
-    if persisted <= desired_length 
-      (persisted...desired_length).each do |i|
-        m = objects.build
-        m.build_ingredient if objects == @recipe.measurements
-      end
-    end
-  end
+  # def field_builder(objects, desired_length)
+  #   persisted = objects.length
+  #   if persisted <= desired_length 
+  #     (persisted...desired_length).each do |i|
+  #       m = objects.build
+  #       m.build_ingredient if objects == @recipe.measurements
+  #     end
+  #   end
+  # end
 end
