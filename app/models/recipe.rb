@@ -26,7 +26,7 @@ class Recipe < ApplicationRecord
 
   has_many :steps
 
-  accepts_nested_attributes_for :steps 
+  accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
 
   #ingredients, restrictions, tags - join tables? how to handle?
   scope :search, -> (term) { left_joins(:course).where("LOWER(title) LIKE :term OR description LIKE :term OR LOWER(name) LIKE :term", term: "%#{term}%") }
