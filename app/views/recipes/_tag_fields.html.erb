@@ -1,8 +1,14 @@
-<div class="column is-3 nested-fields">
-  <div class="field">
-    <%= f.label :name, "Label Name", class: "subtitle is-3 hidden" %>
-    <div class="control">
-      <%= f.text_field :name, class: "input is-large", placeholder: "paleo, delicious...", autofocus: true %>
+<div class="nested-fields">
+  <div class="column">
+    <div class="field has-addons">
+      <%= f.label :name, "Label Name", class: "subtitle is-3 hidden" %>
+      <div class="control">
+        <%= f.text_field :name, class: "input is-medium", placeholder: "paleo, delicious...", autofocus: true %>
+      </div>
+      <div class="control">
+        <%= link_to_remove_association "Remove", f, class: "button is-medium is-light is-danger level-item" %>
+      </div>
     </div>
+      
   </div>
 </div>

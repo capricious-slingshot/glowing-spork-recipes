@@ -28,7 +28,7 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
 
-  #ingredients, restrictions, tags - join tables? how to handle?
+  #Deep Search: ingredients, restrictions, tags - join tables? how to handle? 
   scope :search, -> (term) { left_joins(:course).where("LOWER(title) LIKE :term OR description LIKE :term OR LOWER(name) LIKE :term", term: "%#{term}%") }
   scope :newest_first, -> { all.order("created_at desc") }
   scope :top_rated, -> { all.order("star_average asc") }
@@ -60,9 +60,13 @@ class Recipe < ApplicationRecord
   def tags_attributes=(form_attr)
     form_attr.values.each do |tag|
       if tag.values.all?(&:present?)
-        tag_name = Tag.format(tag['name'])
-        t = Tag.find_or_create_by(name: tag_name)
-        self.tags << t if !self.tags.include?(t)
+        if tag["_destroy"] != "false"
+          RecipeTag.find_by(recipe_id: self.id, tag_id: tag['id']).destroy
+        else
+          tag_name = Tag.format(tag['name'])
+          t = Tag.find_or_create_by(name: tag_name)
+          self.tags << t if !self.tags.include?(t)
+        end
       end
     end
   end
