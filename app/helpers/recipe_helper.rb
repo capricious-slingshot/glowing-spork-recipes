@@ -39,13 +39,13 @@ module RecipeHelper
 	def	shuffled_links(categories,restrictions,tags)
 		links = []
 		categories.each do |category|
-		  links << (link_to "#{category.name}", recipe_category_path(category.name), class:"subtitle is-2 shuffled tag")
+		  links << (link_to "#{category.name}", recipe_category_path(category.name), class:"subtitle is-3 shuffled tag")
 		end
 		restrictions.each do |restriction|
-			links << (link_to "#{restriction.name}", "/recipes?utf8=✓&query=#{restriction.name}&commit=Search", class:"subtitle is-3 shuffled tag is-white")
+			links << (link_to "#{restriction.name}", "/recipes?utf8=✓&query=#{restriction.name}&commit=Search", class:"subtitle is-4 shuffled tag is-white")
 		end
 		tags.each do |tag|
-			links << (link_to "##{tag.name}", "#", class:"subtitle is-4 shuffled")
+			links << (link_to "##{tag.name}", "#", class:"subtitle is-5 shuffled")
 		end
 		links.shuffle
 	end
