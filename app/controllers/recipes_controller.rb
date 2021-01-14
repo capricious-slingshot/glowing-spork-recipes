@@ -58,6 +58,7 @@ class RecipesController < ApplicationController
   end
 
   def update
+    #how do I handle the _destroy method?
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Successfully Updated"
     else
@@ -101,7 +102,7 @@ class RecipesController < ApplicationController
       restriction_ids: [],
       measurements_attributes: [
         :id, :quantity, :unit, :recipe_id, :_destroy,
-          ingredient_attributes: [:id, :name]
+          ingredient_attributes: [:id, :name, :_destroy]
       ],
       steps_attributes:[
         :id, :description, :position, :_destroy

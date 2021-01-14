@@ -1,29 +1,31 @@
-<div class="columns nested-fields level">
-  <div class="column">
-    <div class="field">
-      <%= f.label :quantity, "Quantity", class: "hidden subtitle" %><br>
-        <p class="control is-fullwidth">
-          <%= f.text_field :quantity, class: "input is-large", placeholder: "Quantity" %>
-        </p>
-      </div>
-    </div>
+<div class="nested-fields">
+  <div class="columns level">
     <div class="column">
       <div class="field">
-        <%= f.label :unit, "Unit", class: "hidden subtitle" %><br>
-        <p class="control is-fullwidth">
-          <%= f.text_field :unit, class: "input is-large", placeholder: "Unit of Measurement" %>
-        </p>
+        <%= f.label :quantity, "Quantity", class: "hidden subtitle" %><br>
+          <p class="control is-fullwidth">
+            <%= f.text_field :quantity, class: "input is-large", placeholder: "Quantity" %>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="column">
-      <%= f.fields_for :ingredient do |i|%>
-        <%= render "ingredient_fields", f: i %>
-      <% end %>
-    </div>
-    <div class="column is-narrow">
-      <div class="field">
-        <div class="control is-2 level-item remove-bttn">
-          <%= link_to_remove_association "Remove", f, class: "button is-default is-light is-danger level-item" %>
+      <div class="column">
+        <div class="field">
+          <%= f.label :unit, "Unit", class: "hidden subtitle" %><br>
+          <p class="control is-fullwidth">
+            <%= f.text_field :unit, class: "input is-large", placeholder: "Unit of Measurement" %>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <%= f.fields_for :ingredient do |i|%>
+          <%= render "ingredient_fields", f: i %>
+        <% end %>
+      </div>
+      <div class="column is-narrow">
+        <div class="field">
+          <div class="control is-2 level-item remove-bttn">
+            <%= link_to_remove_association "Remove", f, class: "button is-default is-light is-danger level-item" %>
+          </div>
         </div>
       </div>
     </div>
