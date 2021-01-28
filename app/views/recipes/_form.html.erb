@@ -19,7 +19,7 @@
       <%= r.text_area :description, class: "textarea is-large", placeholder: "Tender juicy morsels of goodness....." %>
     </div>
   </div>
-  <div id="ingredients">
+  <div>
     <%= r.label :measurements, "Ingredients", class: "subtitle is-3" %>
     <%= r.fields_for :measurements do |measurement| %>
       <%= render "measurement_fields", f: measurement %>
@@ -27,8 +27,7 @@
     <div class="field">
       <div class="control">
       <br><br>
-        <%= link_to_add_association "Add Ingredient", r, :measurements, class: "button is-default is-light" %>
-        <!-- , data:  { association_insertion_node: "#indredients", association_insertion_method: :append } -->
+        <%#= link_to_add_association "Add Ingredient", r, :measurements, class: "button is-default is-light" %>
       </div>
     </div><br><br>
   </div>
@@ -85,7 +84,7 @@
     </div>
     <div class="field">
       <div class="control">
-        <%= link_to_add_association "Add Another Tag", r, :tags, class: "button is-default is-light", data:  { association_insertion_node: ".recipe-tag-wrapper", association_insertion_method: :append } %>
+        <%= link_to_add_association "Add Another Tag", r, :tags, class: "button is-default is-light", data: { association_insertion_node: ".recipe-tag-wrapper", association_insertion_method: :append } %>
         <!-- data hash is just for css: https://www.youtube.com/watch?v=56xjUOAAZY8 -->
       </div>
     </div>

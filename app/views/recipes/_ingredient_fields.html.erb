@@ -2,7 +2,8 @@
   <div class="field">
     <%= f.label :name, "Ingredient", class: "hidden subtitle" %><br>
     <p class="control is-fullwidth">
-      <%= f.text_field :name, class: "input is-large", placeholder: "Ingredient Name" %>
+      <%= f.text_field :name, class: "input is-large", placeholder: "Ingredient Name", data:  { association_insertion_node: "#ingredient", association_insertion_method: :append } %>
+      <!-- , data:  { association_insertion_node: "#indredient", association_insertion_method: :append } -->
     </p>
   </div>
 </div>

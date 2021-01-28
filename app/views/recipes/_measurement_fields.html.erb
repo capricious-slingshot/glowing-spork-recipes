@@ -16,7 +16,7 @@
           </p>
         </div>
       </div>
-      <div class="column">
+      <div id="ingredient" class="column">
         <%= f.fields_for :ingredient do |i|%>
           <%= render "ingredient_fields", f: i %>
         <% end %>
