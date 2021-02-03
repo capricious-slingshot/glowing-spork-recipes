@@ -27,7 +27,9 @@
     <div class="field">
       <div class="control">
       <br><br>
-        <%#= link_to_add_association "Add Ingredient", r, :measurements, class: "button is-default is-light" %>
+        <%= link_to_add_association "Add Ingredient", r, :measurements, class: "button is-default is-light", wrap_object: Proc.new { |measurement| measurement.build_ingredient; measurement } %>
+        <%#= link_to_add_association 'Add Field', f, :perimeter_field, class: 'btn btn-success', wrap_object: Proc.new { |perimeter_build| perimeter_build.perimeter_field_value.build; perimeter_build }  %>
+
       </div>
     </div><br><br>
   </div>

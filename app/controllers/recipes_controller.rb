@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy, :save_rating]
 
   def index
-    #this is heidious - nested routes ugh
+    #this is hideious - nested routes ugh
     @user = User.find_by(slug: params[:user_id])
     if @user
       if authorized_user?(@user)
@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    build_form   
+    build_form
   end
 
   def create
@@ -49,11 +49,10 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    build_form
+
   end
 
   def update
-    #how do I handle the _destroy method?
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "Successfully Updated"
     else
@@ -125,18 +124,12 @@ class RecipesController < ApplicationController
   end
 
   def build_form
-    field_builder(@recipe.measurements, 6)
-    field_builder(@recipe.steps, 2)
-    field_builder(@recipe.tags, 3)
+    2.times do 
+      m = @recipe.measurements.build
+      m.build_ingredient
+    end
+    2.times { @recipe.steps.build }
+    3.times { @recipe.tags.build }
   end
 
-  def field_builder(objects, desired_length)
-    persisted = objects.length
-    if persisted <= desired_length 
-      (persisted...desired_length).each do |i|
-        m = objects.build
-        m.build_ingredient if objects == @recipe.measurements
-      end
-    end
-  end
 end

@@ -25,6 +25,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :measurements
 
   has_many :steps
+  attr_accessor :_destroy
 
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
 
@@ -46,12 +47,14 @@ class Recipe < ApplicationRecord
   
   def measurements_attributes=(form_attributes)
     form_attributes.values.each do |row|
-      if row.values.all?(&:present?)        
+      if row.values.all?(&:present?)
+        
         if row["_destroy"] != "false"
           Measurement.find_by(id: row['id']).destroy
         else
+          binding.pry
           ingredient = Ingredient.find_or_create_by(name: row[:ingredient_attributes][:name])
-          self.measurements << Measurement.where(quantity: row['quantity'], unit: row['unit'], ingredient_id: ingredient.id).first_or_create(row)
+          self.measurements << Measurement.where(quantity: row['quantity'], unit: row['unit'], ingredient_id: ingredient.id).first_or_create(row.except("_destroy"))
         end
       end
     end
