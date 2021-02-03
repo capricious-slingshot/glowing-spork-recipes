@@ -7,9 +7,9 @@ To install this App locally:
 
 - clone the repository from [GitHub](https://github.com/capricious-slingshot/glowing-spork-recipes)
 - cd into the directory
-- run `bundle exec rake install` from the command line
-- run rails db:migrate db:seed to set up cna seed the database
-- start application with 'rails s'
+- run `bundle install` from the command line
+- run `rails db:migrate db:seed` to set up and seed the database
+- start application server from the commandline with `rails s`
 - navigate to [the homepage](http://localhost:3000/)
 
   Enjoy!
