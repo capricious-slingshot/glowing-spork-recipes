@@ -19,7 +19,6 @@ class UsersController < ApplicationController
       #can i redirect to the page they were just on?
       # session[:intended_url] = request.url
       #redirect_back_or obj
-      # binding.pry
       session[:user_id] = @user.id
       redirect_to user_recipes_url(@user), notice: "Welcome #{@user.name.capitalize}! Finish Setting Up Your Account!"
     else
@@ -60,7 +59,6 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    binding.pry
     @user = User.find_by(slug: params[:id])
   end
 

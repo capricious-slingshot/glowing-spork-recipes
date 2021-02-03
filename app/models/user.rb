@@ -21,7 +21,6 @@ class User < ApplicationRecord
 
   def self.find_or_create_by_omniauth(auth_hash)
     self.where(email: auth_hash["info"]["email"]).first_or_create do |user|
-      binding.pry
       stubb_password = SecureRandom.hex
       user.name = auth_hash["info"]["nickname"] unless user.name.present?
       user.email = auth_hash["info"]["email"] unless user.email.present?
