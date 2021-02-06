@@ -18,11 +18,12 @@ class RecipesController < ApplicationController
       @heading = params[:category_name]
       redirect_to root_path, notice: "No Recipes Matching #{params[:category_name]}" unless @recipes.present?
     else
+      binding.pry
       @recipes = Recipe.newest_first
     end
-
     run_user_query(params[:query], @recipes) if params[:query].present?
     run_star_filter(params[:rating].to_i, @recipes) if params[:rating].present?
+    run_ordering_filter(params[:ordering], @recipes) if params[:ordering].present?
   end
 
   def show
@@ -121,6 +122,10 @@ class RecipesController < ApplicationController
   def run_star_filter(stars, recipes)
     filtered = Recipe.filter_by_star(recipes, stars)
     filtered.present? ? (@recipes=filtered) : (redirect_to root_path, notice: "Sorry, No #{stars} Star Ratings")
+  end
+
+  def run_ordering_filter(ordering, collection)
+    @recipes = Recipe.filter_by_order(ordering, collection)
   end
 
   def build_form
