@@ -18,8 +18,7 @@ class RecipesController < ApplicationController
       @heading = params[:category_name]
       redirect_to root_path, notice: "No Recipes Matching #{params[:category_name]}" unless @recipes.present?
     else
-      binding.pry
-      @recipes = Recipe.newest_first
+      @recipes = Recipe.all
     end
     run_user_query(params[:query], @recipes) if params[:query].present?
     run_star_filter(params[:rating].to_i, @recipes) if params[:rating].present?
